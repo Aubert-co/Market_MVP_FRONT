@@ -23,7 +23,7 @@ export const userCoupons = async():Promise<ResponseDatas<BaseCoupon<number>[]>>=
       
       return {datas,message:'Success',status:response.status}
         
-    }catch(err:unknown){
+    }catch{
       return {status:500,message:'Algo deu errado',datas:[] as BaseCoupon<number>[]}
     }
 }
@@ -44,7 +44,7 @@ export const userOrders = async():Promise<ResponseDatas<UserOrders[]>>=>{
     
     return {datas,message:'Success',status:200}
     
-  }catch(err:unknown){
+  }catch{
     return {status:500,message:'Algo deu errado',datas:[]}
   }
 }
