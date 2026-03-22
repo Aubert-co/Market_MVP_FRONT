@@ -21,7 +21,7 @@ export const ListProducts = ({ products, listType }: Props) => {
   return (
     <>
       {
-       products.map(({ id, name, imageUrl, price }: any) => (
+       products.map(({ id, name, imageUrl, price }: Product) => (
             <Link
               to={`/produto/${id}`}
               key={id}
