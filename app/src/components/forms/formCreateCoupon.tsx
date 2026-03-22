@@ -10,10 +10,10 @@ import { ButtonsDiv, PrimaryButton } from "@/styles/shared.style"
 import { createCoupon } from "@/services/store/couponAdmin.service"
 
 type ValidateInputs={
-    selectDiscount:any,
-    discount:any,
-    cupomCode:any,
-    quantity:any
+    selectDiscount:unknown,
+    discount:unknown,
+    cupomCode:unknown,
+    quantity:unknown
 }
 function validateInputs({ selectDiscount, discount, cupomCode, quantity }:ValidateInputs) {
   if (selectDiscount !== "fixed" && selectDiscount !== "percent")
