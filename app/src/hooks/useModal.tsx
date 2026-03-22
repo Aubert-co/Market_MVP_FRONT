@@ -69,7 +69,7 @@ export function useModal() {
         document.removeEventListener("keydown", handleEsc);
         document.body.style.overflow = "auto";
         };
-    }, [isOpen, onClose]);
+    }, []);
 
     if (!isOpen) return null;
 
