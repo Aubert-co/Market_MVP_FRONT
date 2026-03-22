@@ -17,7 +17,7 @@ export const FormCreateStore = ({formRef}:PropsFormCreateStore)=>{
     const navigate = useNavigate()
     const submit = async(e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
-        let [name,description] = getMultiInputValues(nameRef,descriptionRef)
+        const [name,description] = getMultiInputValues(nameRef,descriptionRef)
         
          if(!isAValidString(name) ){
             setMessage({content:'Digite um nome válido',type:'info'})
