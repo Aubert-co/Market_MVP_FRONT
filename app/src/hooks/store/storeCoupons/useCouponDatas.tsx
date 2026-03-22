@@ -32,6 +32,6 @@ export const useCouponDatas = ({setPagesInfos,nextPage,couponStatus}:Props):Retu
         setPages:setPagesInfos,
         body:{nextPage:nextPage.currentPage,couponStatus}
       })
-    },[nextPage.currentPage,couponStatus])
+    },[nextPage.currentPage,couponStatus,setPagesInfos])
     return {coupons:coupons.datas,status:coupons.status}
 }
