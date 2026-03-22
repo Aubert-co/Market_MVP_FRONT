@@ -19,7 +19,7 @@ export const useDashboardStats = ():ReturnUseStats=>{
   },status:0})
   const mappedStats = mapStats(stats.datas)
   useEffect(()=>{
-    usableFetch<BackendStats,{}>({
+    usableFetch<BackendStats,unknown>({
       service:dashboardStats,
       setDatas:setStats,
       body:{}

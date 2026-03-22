@@ -15,7 +15,7 @@ type ReturnDatas = {
 export const useStoreLastOrders = ():ReturnDatas=>{
     const [orders,setOrders] = useState<OrderState>({datas:[],status:0})
     useEffect(()=>{
-        usableFetch<Order[],{}>({
+        usableFetch<Order[],unknown>({
             service:lastOrders,
             setDatas:setOrders,
             body:{}

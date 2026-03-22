@@ -1,5 +1,5 @@
 import { usableFetch } from "@/services/fetchs"
-import { serviceGetStores } from "@/services/store/store.services"
+import { DATAS_STORE, serviceGetStores } from "@/services/store/store.services"
 import { ListContainer } from "@/styles/profile.style"
 import type { Store } from "@/types/store.types"
 import { shortDescription } from "@/utils"
@@ -10,8 +10,9 @@ import { RenderDataState } from "@/components/shared/renderDataState"
 import { BoxSkeleton } from "../templates/skeleton"
 
 type StoreState = {
-    datas:Store[],
+    datas:Store,
     status:number
+    message:string
 }
 type PropsUserStore = {
     formRef:React.RefObject<HTMLInputElement |null>
@@ -47,12 +48,11 @@ export const ListStore =  ({store,formRef}:PropsListStore & PropsUserStore)=>{
 
 export const UserStore =({formRef}:PropsUserStore)=>{
     const [ stores,setStores] = useState<StoreState>({
-        datas:[],status:0
+        datas:DATAS_STORE,status:0,message:''
     })
-  
-   
+
     useEffect(()=>{
-      usableFetch<Store[],{}>({setDatas:setStores,service:serviceGetStores,body:{}})
+      usableFetch<Store,unknown>({setDatas:setStores,service:serviceGetStores,body:{}})
     },[])
     return (
         <ListContainer>
@@ -61,7 +61,7 @@ export const UserStore =({formRef}:PropsUserStore)=>{
             </div>
             <div  className="list-container">
             <RenderDataState<Store>
-                datas={stores.datas}
+                datas={[stores.datas]}
                 status={stores.status}
                 emptyMessage={
                     <>
@@ -73,7 +73,7 @@ export const UserStore =({formRef}:PropsUserStore)=>{
                     <BoxSkeleton className="list-image" classNameImg="list-item" length={1}/>
                 }
             >
-                <ListStore store={stores.datas} formRef={formRef}/>
+                <ListStore store={[stores.datas]} formRef={formRef}/>
             </RenderDataState>
             </div>
         </ListContainer>

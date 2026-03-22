@@ -44,7 +44,7 @@ export const UserCoupons = ({formRef}:PropsUserCoupons)=>{
     const [ coupons  ,setCoupons] = useState<StateCoupon>({datas:[],status:0})
   
     useEffect(()=>{
-        usableFetch<BaseCoupon<number>[],{}>({
+        usableFetch<BaseCoupon<number>[],unknown>({
           setDatas:setCoupons,
           service:userCoupons,
           body:{}

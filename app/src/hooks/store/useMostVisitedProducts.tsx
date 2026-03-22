@@ -14,7 +14,7 @@ type ReturnedDatas = {
 export const useMostVisitedProducts = ():ReturnedDatas=>{
   const [mostVisited,setVisited] = useState<VisitedState>({datas:[],status:0})
   useEffect(()=>{
-    usableFetch<TopVisitedProduct[],{}>({
+    usableFetch<TopVisitedProduct[],unknown>({
       service:topVisitedProducts,
       setDatas:setVisited,
       body:{}

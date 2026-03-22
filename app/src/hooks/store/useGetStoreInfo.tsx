@@ -14,7 +14,7 @@ export const useGetStoreInfo = ()=>{
         datas:DATAS_STORE,status:0,message:''
     })
     useEffect(()=>{
-        usableFetch<Store,{}>({
+        usableFetch<Store,unknown>({
             service:serviceGetStores,
             setDatas:setStoreInfo,
             body:{}

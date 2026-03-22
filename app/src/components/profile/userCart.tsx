@@ -32,7 +32,7 @@ export const Cart = ({formRef,setMessage}:Props)=>{
 
     useEffect(() => {
         if (updateCart) {
-          usableFetch<UserCart[],{}>({
+          usableFetch<UserCart[],unknown>({
             service:getUserCart,
             setDatas:setUserCart,
             body:{}

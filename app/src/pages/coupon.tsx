@@ -22,7 +22,7 @@ export const Coupon = ()=>{
     datas:[] as Coupons,status:0
   })
   useEffect(()=>{
-    usableFetch<Coupons,{}>({
+    usableFetch<Coupons,unknown>({
       service:availableCoupons,
       body:{},
       setDatas:setCoupons

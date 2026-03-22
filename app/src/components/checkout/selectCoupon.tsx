@@ -16,7 +16,7 @@ type Props = {
 export const SelectCoupon = ({setCoupon}:Props)=>{
     const [ coupons  ,setStateCoupons] = useState<StateCoupon>({datas:[],status:0})
     useEffect(()=>{
-        usableFetch<BaseCoupon<number>[],{}>({
+        usableFetch<BaseCoupon<number>[],unknown>({
           setDatas:setStateCoupons,
           service:userCoupons,
           body:{}

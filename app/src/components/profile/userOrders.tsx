@@ -39,7 +39,7 @@ export const UserOrdersComponent = ()=>{
   const [orders,setDatas] = useState<State>({datas:[],status:0})
 
   useEffect(()=>{
-    usableFetch<UserOrders[],{}>({
+    usableFetch<UserOrders[],unknown>({
       service:userOrders,
       setDatas,
       body:{}
