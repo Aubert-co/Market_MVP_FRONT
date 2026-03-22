@@ -25,7 +25,7 @@ export const getStoreCoupons = async({couponStatus,nextPage}:StoreCoupons):Promi
             return {datas:[],status:response.status,message,currentPage:1,totalPages:1}
         }
         return {datas,status:response.status,message,currentPage,totalPages}
-   }catch(err:any){
+   }catch{
         return {datas:[],status:500,message:'Algo deu errado!',currentPage:1,totalPages:1}
    }
 }
@@ -47,7 +47,7 @@ export const createCoupon = async({code,expiresAt,
 
         return {status:response.status,message:datas.message}
 
-    }catch(err:unknown){
+    }catch{
         return {status:500,message:"Algo deu errado!"}
     }
 }

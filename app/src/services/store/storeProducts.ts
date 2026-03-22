@@ -28,7 +28,7 @@ export const getStoreProducts = async({nextPage,category,orderby,name}:
             }
         
           
-        }catch(err:unknown){
+        }catch{
             return {datas:[],currentPage:1,totalPages:1,status:500,message:'Deu erro'}
         }
 

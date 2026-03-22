@@ -16,7 +16,7 @@ export const availableCoupons = async():Promise<ResponseDatas<Coupom>>=>{
         }
         const {datas,message}  = await response.json()
         return {datas ,message,status:response.status}
-    }catch(err:unknown){
+    }catch{
         return {datas:[] ,message:'Algo deu errado!',status:500}
     }
 }
@@ -35,7 +35,7 @@ export const userAddCoupon = async(couponId:number):Promise<Response>=>{
         }
         const {message} = await response.json()
         return {message,status:response.status}
-    }catch(err:unknown){
+    }catch{
         return {message:'Algo deu errado!',status:500}
     }
 }

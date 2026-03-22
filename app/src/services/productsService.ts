@@ -18,7 +18,7 @@ export const serviceGetProducts = async({nextPage}:GetProductsIndex):Promise<Res
         }
         const {datas,currentPage,totalPages} = await response.json()
         return {datas,currentPage,totalPages,status:response.status,message:'sucesso'}
-    }catch(err:unknown){
+    }catch{
         return {datas:[] , currentPage:1,totalPages:1,status:500,message:'Algo deu errado!'}
     }
 }
@@ -46,7 +46,7 @@ export const searchProduct = async({name,category,minPrice,maxPrice,orderBy,stor
         }
         const {datas,message} = await response.json()
         return {datas,message,status:response.status}
-    }catch(err:any){
+    }catch{
         return {datas:[],status:500,message:'Algo deu errado!'}
     }
 }

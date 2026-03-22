@@ -24,7 +24,7 @@ export const syncCart = async({cart}:BodySyncCart):Promise<ResponseDatas<UserCar
       saveCart({cart,updatedAt:Date.now(),isSaved:true})
     }
     return {datas:[],status:response.status,message:''}
-  }catch(err:unknown){
+  }catch{
     return {status:500,message:'Algo deu errado',datas:[]}
   }
 }
@@ -54,7 +54,7 @@ export const  getUserCart = async():Promise<ResponseDatas<UserCart[]>>=>{
         saveCart( { cart: datas as UserCart[],updatedAt:Date.now()})
       }
       return {datas:datas as UserCart[],status:response.status,message:'success'}
-    }catch(err:any){
+    }catch{
       return {datas:[],status:500,message:'Algo deu errado!'}
     }
   
@@ -76,7 +76,7 @@ export const deleteFromCart = async(cart:Array<number> ):Promise<Response>=>{
       return {message,status:response.status}
     }   
     return {message,status:response.status}
-  }catch(err:unknown){
+  }catch{
     return {status:500,message:'Algo deu errado!'}
   }
 }
@@ -98,7 +98,7 @@ export const addToCart = async(id:number):Promise<Response>=>{
       return {message,status:response.status}
     } 
     return {message,status:response.status}
-  }catch(err:unknown){
+  }catch{
     return {status:500,message:'Algo deu errado!'}
   }
 }

@@ -17,7 +17,7 @@ export const serviceCreateOrder = async(order:CreateOrder[]):Promise<Response>=>
         })
         const {message} = await response.json()
         return {status:response.status,message}
-    }catch(err:unknown){
+    }catch{
         return {message:'Algo deu errado!',status:500}
     }
 }

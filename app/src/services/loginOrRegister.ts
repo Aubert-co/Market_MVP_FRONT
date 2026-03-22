@@ -24,7 +24,7 @@ export const serviceLoginOrRegister = async({name,email,password,typeForm}:Login
         const res = await response.json()
         
         return {status:response.status,message:res.message}
-    }catch(err:any){
+    }catch{
         return {status:501,message:'Algo deu errado'}
     }
 

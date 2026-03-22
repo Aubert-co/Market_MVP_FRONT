@@ -28,7 +28,7 @@ export const useRemoveFromCart = ({setMessage,setUpdateCart}:PropsRemove)=>{
 
             setMessage({ content: 'Não foi possível remover o item. Tente novamente mais tarde.', type: 'error' });
 
-        } catch (error) {
+        } catch  {
             setMessage({ content: 'Ocorreu um erro inesperado. Tente novamente.', type: 'error' });
         }
     }

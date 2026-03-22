@@ -25,7 +25,7 @@ export const serviceCreateStore =
     const {message} = await response.json();
     
     return { message, status: response.status };
-  } catch (err: unknown) {
+  } catch  {
   
     return { message: 'Algo deu errado', status: 500};
   }
@@ -49,7 +49,7 @@ export const serviceGetStores = async():Promise<ResponseDatas<Store>>=>{
         const {datas} = await response.json()
         
         return {status:200 ,datas,message:'sucess'}
-    }catch(err:any){
+    }catch{
       return {
           status:500,datas:DATAS_STORE
           ,message:'Algo deu errado!'

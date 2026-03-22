@@ -80,7 +80,7 @@ export const productDetail =  async ({productId}:ProductDetailBody):Promise<Resp
         }
         const {datas,message} = await response.json()
         return {datas,status:response.status,message}
-    }catch(err:unknown){
+    }catch{
         return {
           datas:{
             comments:[],

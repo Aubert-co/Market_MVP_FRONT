@@ -22,7 +22,7 @@ export const getStoreOrders = async({status,nextPage,search}:GetStoreOrders)
           totalPages:json.totalPages
           
       }
-    }catch(err:any){
+    }catch{
       return {
           status:500,
           message:'Algo deu errado!',
@@ -50,7 +50,7 @@ export const lastOrders = async():Promise<ResponseDatas<Order[]>>=>{
         const {message,datas} = await response.json()
 
         return {datas,status:response.status,message} 
-    }catch(err){
+    }catch{
         return {datas:[],message:'Algo deu errado',status:500}
     }
 }

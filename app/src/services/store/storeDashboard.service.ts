@@ -19,7 +19,7 @@ export const storeDashboardService = async():Promise<ResponseDatas<GetStoreDashb
             status:response.status}
         }
         return {message,datas,status:response.status}
-    }catch(err:any){
+    }catch{
         return {message:'Algo deu errado!',
             datas:[{
             orders:{cancelled:0,completed:0,pending:0,lastPending:[]},
@@ -47,7 +47,7 @@ export const topVisitedProducts = async():Promise<ResponseDatas<TopVisitedProduc
         const {message,datas} = await response.json()
 
         return {datas,message,status:response.status}
-    }catch(err:any){
+    }catch{
         return {
             message:"Algo deu errado",
             status:500,
@@ -72,7 +72,7 @@ export const dashboardStats = async():Promise<ResponseDatas<BackendStats>>=>{
 
     return { datas, message , status:response.status}
 
-  }catch(err:any){
+  }catch{
     return {message:'Algo deu errado',status:500,datas:{
       revenue:0,views:0,orders:0,conversion:0,coupons:0,products:0
     }}
