@@ -16,7 +16,7 @@ type Props = {
     nextPage:number,
     orderStatus:OrderStatus,
     setPagesInfos:SetPages,
-    search:any
+    search:unknown
 }
 export const useStoreOrders = ({nextPage,orderStatus
     ,setPagesInfos,search
@@ -29,6 +29,6 @@ export const useStoreOrders = ({nextPage,orderStatus
             body:{nextPage,status:orderStatus,search},
             setPages:setPagesInfos
         })
-    },[nextPage,orderStatus])
+    },[nextPage,orderStatus,search,setPagesInfos])
     return {orders:orders.datas,status:orders.status};
 }
