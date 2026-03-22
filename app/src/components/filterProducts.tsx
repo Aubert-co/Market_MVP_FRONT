@@ -2,7 +2,7 @@ import { InputWithLabel } from "@/components/forms/inputWithLabel"
 import { useSelect } from "@/hooks/useSelect"
 import {  categorySelectOptions } from "@/constants/filters"
 import type { Filter, OrderBy,CategoryOption,DatasSelect } from "@/types/filters.types"
-import { getMultiInputValues } from "@/utils"
+
 import { useRef, type SetStateAction } from "react"
 import styled from "styled-components"
 
@@ -100,27 +100,30 @@ export const FilterProducts = ({setValues}:Props)=>{
     const {Select:SelectOrderBy,selected:orderBy,setSelected:setOrder} = useSelect<OrderBy>(
         {datas:DATASORDERBY,text:'Ordene por',className:"order-by",name:"filter-orderby"});
   
-    const minPriceRef = useRef<any>('0')
-    const maxPriceRef = useRef<any>('0')
+    const minPriceRef = useRef<HTMLInputElement | null >(null)
+    const maxPriceRef = useRef<HTMLInputElement | null>(null)
 
     const onClick = (e:React.FormEvent<HTMLFormElement>)=>{
       e.preventDefault()
-    
-      const [maxPrice,minPrice] = getMultiInputValues(maxPriceRef,minPriceRef)
+      
+      const maxPrice = maxPriceRef.current?.value ?? '0'
+      const minPrice = minPriceRef.current?.value ?? '0'
     
       setValues({
         category,
         orderBy,
-        maxPrice:Number(maxPrice),
-        minPrice:Number(minPrice)
+        maxPrice:Number(maxPrice) , 
+        minPrice:Number(minPrice) 
       })
         
     }
     const onClean = ()=>{
       setCategory("Todas")
       setOrder("asc")
-      minPriceRef.current.value = ""
-      maxPriceRef.current.value = ""
+
+    if (minPriceRef.current) minPriceRef.current.value = ''
+    if (maxPriceRef.current) maxPriceRef.current.value = ''
+    
     }
     return(
         <FilterProductsContainer onSubmit={onClick} className="filter-products">
