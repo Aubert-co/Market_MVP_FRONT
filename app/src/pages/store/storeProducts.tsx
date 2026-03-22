@@ -13,7 +13,7 @@ import { useSideBarOrDrawer } from "@/hooks/useSidebarOrDrawer"
 import Sidebar from "@/components/shared/sidebar"
 import { Drawer } from "@/components/shared/drawer"
 import { DashboardHeader } from "@/components/store/dashboardHeader"
-import { userStoreProducts } from "@/hooks/store/useStoreProducts"
+import { useStoreProducts } from "@/hooks/store/useStoreProducts"
 import { useSearch } from "@/hooks/useSearch"
 import { useProductDrawer } from "@/hooks/store/storeProduct/useProductDrawer"
 import { useUrlParams } from "@/hooks/store/storeProduct/useUrlParams"
@@ -42,7 +42,7 @@ export const StoreProducts = ()=>{
 
     const {searchEvent,searchProduct} = useSearch({mode:'update',initialValue:searchQuery})
    
-    const {products} = userStoreProducts({
+    const {products} = useStoreProducts({
         nextPage:pageInfos,category:categories,searchProduct,
         setPagesInfos,orderby:orderProductBy
     })

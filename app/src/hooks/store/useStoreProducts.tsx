@@ -10,14 +10,14 @@ type Props = {
     category:Category
     setPagesInfos:SetPages,
     nextPage:{currentPage:number}
-    searchProduct?:string,
+    searchProduct?:unknown,
     orderby?:ProductSortOption
 }
 type State = {
     datas:Product[],
     status:number,
 }
-export const userStoreProducts = ({category,setPagesInfos,searchProduct,nextPage,orderby}:Props)=>{
+export const useStoreProducts = ({category,setPagesInfos,searchProduct,nextPage,orderby}:Props)=>{
     const [products,setProducts] = useState<State>({datas:[],status:0})
     
      useEffect(()=>{
@@ -28,7 +28,7 @@ export const userStoreProducts = ({category,setPagesInfos,searchProduct,nextPage
                 setPages:setPagesInfos,
                 
             })
-        },[searchProduct,category,nextPage.currentPage])
+        },[searchProduct,category,nextPage.currentPage,orderby,setPagesInfos])
 
     return {products}
 }
