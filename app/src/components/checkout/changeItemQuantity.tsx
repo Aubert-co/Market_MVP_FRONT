@@ -29,7 +29,7 @@ const QuantityControl = styled.div`
 }
 
 .input-quantity:focus {
-  border-color: #0e1420; /* usa sua cor base */
+  border-color: #0e1420; 
 }
 
  button {
@@ -68,7 +68,7 @@ export const ChangeQuantity = ({quantity,id,setUpdate,stock}:Props)=>{
         setQuantity(quant)
         setUpdate(true)
     }
-    const onChange = (e:any)=>{
+    const onChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
         const value = Number(e.target.value)
         if(value > stock)return;
         if(value <= 1)return;
