@@ -114,7 +114,7 @@ describe("when the input are invalids",()=>{
         jest.clearAllMocks()
     })
     it("should display the error message when the email is invalid",async()=>{
-        let invalidEmail = ""
+        const invalidEmail = ""
         serviceMoked.mockResolvedValue({status:201,message:'Sucess'})
         const {queryByPlaceholderText,getByText,getByTestId}= render(
                  
@@ -143,8 +143,7 @@ describe("when the input are invalids",()=>{
         expect( getByTestId("message_content")).toHaveTextContent('Digite um e-mail válido')
     })
     it("should display the error message when the password is invalid",async()=>{
-   
-        let invalidPassword = 1
+        const invalidPassword = 1
         serviceMoked.mockResolvedValue({status:201,message:'Sucess'})
         const {queryByPlaceholderText,getByText,container}= render(
                  
@@ -173,8 +172,8 @@ describe("when the input are invalids",()=>{
         expect( container).toHaveTextContent('Digite uma senha válida')
     })
      it("should display the error message when the email and password is empty",async()=>{
-        let invalidEmail = ""
-        let invalidPassword = ""
+        const invalidEmail = ""
+        const invalidPassword = ""
         serviceMoked.mockResolvedValue({status:201,message:'Sucess'})
         const {queryByPlaceholderText,getByText,container}= render(
                  

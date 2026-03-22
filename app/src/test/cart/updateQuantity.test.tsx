@@ -12,7 +12,7 @@ describe('Component UpdateCartQuantity',()=>{
         jest.clearAllMocks()
     })
     it("should decrease the quantity correctly",()=>{
-        let quantity = 3
+        const quantity = 3
          setQuantity.mockImplementation((updater) => {
             if (typeof updater === "function") {
                 updater( quantity ) 
@@ -43,7 +43,7 @@ describe('Component UpdateCartQuantity',()=>{
         expect( decreaseStorage ).toHaveBeenCalledWith(id , quantity-1)
     })
     it("should increase the quantity correctly",async()=>{
-        let quantity = 3
+        const quantity = 3
          setQuantity.mockImplementation((updater) => {
             if (typeof updater === "function") {
                 updater( quantity ) 
@@ -76,7 +76,7 @@ describe('Component UpdateCartQuantity',()=>{
        
     })
     it("should not decrease the quantity when the quantity is equal to 1",()=>{
-        let quantity = 1
+        const quantity = 1
          setQuantity.mockImplementation((updater) => {
             if (typeof updater === "function") {
                 updater( quantity ) 
@@ -104,7 +104,7 @@ describe('Component UpdateCartQuantity',()=>{
      
     })
      it("should not increase the quantity when the quantity is equal to 5",async()=>{
-        let quantity = 5
+        const quantity = 5
        
         const {getByText}= render(
 
@@ -128,7 +128,7 @@ describe('Component UpdateCartQuantity',()=>{
        
     })
       it("should not allow increasing quantity beyond available stock of 3",async()=>{
-        let quantity = 3
+        const quantity = 3
         const stock = 3
         const {getByText}= render(
 

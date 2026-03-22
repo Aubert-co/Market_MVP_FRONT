@@ -10,7 +10,7 @@ jest.mock("react-router-dom", () => ({
 }))
 
 describe("component SideBar",()=>{
-    let setState = jest.fn()
+    const setState = jest.fn()
    
     beforeEach(()=>{
         jest.clearAllMocks()

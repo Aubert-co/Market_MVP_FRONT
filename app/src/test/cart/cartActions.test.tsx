@@ -14,7 +14,7 @@ describe('Component UpdateCartQuantity',()=>{
         jest.clearAllMocks()
     })
     it("should decrease and increase the quantity correctly",()=>{
-        let quantity = 3
+        const quantity = 3
          setQuantity.mockImplementation((updater) => {
             if (typeof updater === "function") {
                 updater( quantity ) 

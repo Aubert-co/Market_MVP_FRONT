@@ -3,7 +3,7 @@ import { FormCreateCoupon } from "@/components/forms/formCreateCoupon"
 import * as services from "@/services/store/couponAdmin.service"
 
 const spyService = jest.spyOn(services,'createCoupon')
- let eventCloseDrawer = jest.fn()
+const eventCloseDrawer = jest.fn()
 describe("component FormCreateCoupon",()=>{
     const body = {
         code:"DESCONTO15",

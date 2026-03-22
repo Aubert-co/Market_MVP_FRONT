@@ -3,7 +3,7 @@ import { usePagination } from "@/hooks/usePagination"
 import { useEffect } from "react"
 
 describe("test pagination",()=>{
-    let mockNavigate =jest.fn()
+    const mockNavigate =jest.fn()
     beforeEach(()=>{
         jest.clearAllMocks()
     })
@@ -15,7 +15,7 @@ describe("test pagination",()=>{
                 currentPage:1,
                 totalPages:10
             })
-            },[])
+            },[setPagesInfos])
             return <Pagination/>
         }
         const {container,getAllByTestId,getByText} = render(
@@ -58,7 +58,7 @@ describe("test pagination",()=>{
                 currentPage:1,
                 totalPages:10
             })
-            },[])
+            },[setPagesInfos])
             return <Pagination/>
         }
         const {getAllByTestId,getByText} = render(

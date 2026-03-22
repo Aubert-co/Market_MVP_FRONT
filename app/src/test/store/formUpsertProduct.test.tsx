@@ -5,6 +5,9 @@ import type { UpsertProducts } from "@/types/storeDashboard.types"
 import { fireEvent, render, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import * as storeStorage from '@/storage/store.storage'
+import type { RenderResult } from '@testing-library/react'
+
+type Queries = Pick<RenderResult, 'getByPlaceholderText' | 'getByTestId'>
 
 const spyServiceUpdate = jest.spyOn(services,'serviceUpdateProduct')
 const spyStorage = jest.spyOn(storeStorage,'getStorageStore')
@@ -22,7 +25,7 @@ const editRefs = {
 const file = new File(["testing"], "test-image.png", { type: "image/png" })
 const onCancel = jest.fn()
 
-const getInputs = (getByPlaceholderText:any,getByTestId:any)=>{
+const getInputs = ({getByPlaceholderText,getByTestId}:Queries)=>{
     const name = getByPlaceholderText("Ex: camisa polo")
     const file = getByTestId("image-product")
     const description = getByPlaceholderText("Ex: uma camisa para eventos...")
@@ -62,7 +65,7 @@ describe("component FormUpsertProduct update product",()=>{
                     onCancel={onCancel}
                 />
         )
-        const {name,description,price,stock,category} = getInputs(getByPlaceholderText,getByTestId)
+        const {name,description,price,stock,category} = getInputs({getByPlaceholderText,getByTestId})
 
         expect(name).toHaveValue(editRefs.name)
         expect(description).toHaveValue(editRefs.description)
@@ -90,7 +93,7 @@ describe("component FormUpsertProduct update product",()=>{
                     onCancel={onCancel}
                 />
         )
-        const {name,description,price,stock,category,fileInput} = getInputs(getByPlaceholderText,getByTestId)
+        const {name,description,price,stock,category,fileInput} = getInputs({getByPlaceholderText,getByTestId})
         const selectCategory = categories[4]
         const getUpdateImage = getByTestId("upsert-image-update")
         expect(getUpdateImage).toBeInTheDocument()
@@ -139,7 +142,7 @@ describe("component FormUpsertProduct update product",()=>{
                     onCancel={onCancel}
                 />
         )
-        const {name,description,price,stock,category,fileInput} = getInputs(getByPlaceholderText,getByTestId)
+        const {name,description,price,stock,category,fileInput} = getInputs({getByPlaceholderText,getByTestId})
         const submit = getByText("Enviar")
         expect(name).toHaveValue(editRefs.name)
         expect(description).toHaveValue(editRefs.description)
@@ -247,7 +250,7 @@ describe("component FormUpsertProduct create product",()=>{
             onCancel={onCancel}
         />
         )
-        const {name,description,stock,category,price,fileInput} = getInputs(getByPlaceholderText,getByTestId)
+        const {name,description,stock,category,price,fileInput} = getInputs({getByPlaceholderText,getByTestId})
 
         const submit = getByText("Enviar")
 
@@ -284,7 +287,7 @@ describe("component FormUpsertProduct create product",()=>{
             onCancel={onCancel}
         />
         )
-        const {name,description,stock,category,price,fileInput} = getInputs(getByPlaceholderText,getByTestId)
+        const {name,description,stock,category,price,fileInput} = getInputs({getByPlaceholderText,getByTestId})
 
         const submit = getByText("Enviar")
 
@@ -314,6 +317,7 @@ describe("component FormUpsertProduct create product",()=>{
   {
     field: "name",
     errorMessage: "Digite um nome válido",
+    // eslint-disable-next-line
     fillExcept: async (user:any, inputs:any) => {
       await user.upload(inputs.file, body.image);
       await user.type(inputs.description, body.description);
