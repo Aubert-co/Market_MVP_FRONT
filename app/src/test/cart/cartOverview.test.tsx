@@ -22,8 +22,8 @@ describe("Component CartOverview",()=>{
             
         )
         const total = userCartMocks.reduce((val,tr)=>{
-            val + tr.product.price * tr.quantity
-            return val
+            return val + tr.product.price * tr.quantity
+            
         },0)    
         
         expect( queryByText("Seu carrinho está vazio 🛒")).not.toBeInTheDocument()
