@@ -11,7 +11,7 @@ type Props = {
   status:number
 }
 
-export const renderTopVisitedProducts = (
+const renderTopVisitedProducts = (
   products: TopVisitedProduct[]
 ) => {
   return products.map((p) => (
