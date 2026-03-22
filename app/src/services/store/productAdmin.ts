@@ -36,7 +36,7 @@ export const serviceCreateProduct = async({name,description,price,
         }
         const datas = await response.json()
         return {message:datas.message,status:response.status}
-    }catch(err:unknown){
+    }catch{
         return {message:'Algo deu errado',status:500}
     }
 }
@@ -56,7 +56,7 @@ export const serviceUpdateProduct = async(payload:UpdateProduct):Promise<Respons
     allowedFields.forEach((field) => {
         const value = payload[field];
         if (value !== undefined && value !== null) {
-            formData.append(field, value as any);
+            formData.append(field, value as keyof UpsertProducts);
         }
     }); 
     formData.append('storeId',String( storeId ))
@@ -68,7 +68,7 @@ export const serviceUpdateProduct = async(payload:UpdateProduct):Promise<Respons
             credentials:'include'
         })
         return {message:'',status:response.status}
-    }catch(err){
+    }catch{
         return {message:'Algo deu errado',status:500}
     }
 }
