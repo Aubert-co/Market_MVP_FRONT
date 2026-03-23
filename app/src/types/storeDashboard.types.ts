@@ -28,7 +28,7 @@ export type Order = {
 
 
 export type GetStoreProducts = {
-  name?:string,
+  name?:unknown,
   category?:Category,
   nextPage?:number,
   orderby?:ProductSortOption
@@ -37,7 +37,7 @@ export type GetStoreProducts = {
 export type GetStoreOrders ={
   status:OrderStatus,
   nextPage?:number | string,
-  search:any
+  search:unknown
 }
 export type GetStoreCoupons = {
   nextPage?:number | string
