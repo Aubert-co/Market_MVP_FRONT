@@ -2,14 +2,16 @@ import type { UpsertProducts } from "@/types/storeDashboard.types";
 import { categories } from "../constants/filters";
 
 
-export const isValidEmail = (email:any):boolean=>{
+export const isValidEmail = (email:unknown):boolean=>{
+  if(!email || typeof email !== 'string' )return false; 
+
   const emailRegex = new RegExp(
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   );
   return emailRegex.test(email);
 }
 
-export const isAValidString =(value:any,maxLength:number = 15):boolean=>{
+export const isAValidString =(value:unknown,maxLength:number = 15):boolean=>{
     if(!value || typeof value !== 'string' )return false;
 
     if(value.length <= 4 || value.length >= maxLength)return false;
@@ -25,7 +27,7 @@ export const getValidImageFile = (image: RefValue): File | undefined => {
 };
 
 
-export const checkIsAValidNumber = (value:any):boolean=>{
+export const checkIsAValidNumber = (value:unknown):boolean=>{
    if (typeof value === 'boolean') return false;
 
   const number = Number(value);
