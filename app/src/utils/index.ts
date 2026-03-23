@@ -1,7 +1,10 @@
 import type { UserTotally } from "@/types/checkout.types";
 import type { OrderStatus } from "@/types/storeDashboard.types";
 
-export type RefValue = React.RefObject<HTMLInputElement | null | HTMLTextAreaElement | HTMLSelectElement>;
+export type RefValue =
+  React.RefObject<
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | null 
+  >
 export type SetSearchParams = (
   value:
     | URLSearchParams
