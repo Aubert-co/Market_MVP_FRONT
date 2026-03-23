@@ -37,7 +37,7 @@ describe("usableFetch",()=>{
     const status = 201
 
     mockService.mockResolvedValue({datas, message, status})
-
+    // eslint-disable-next-line 
     await usableFetch<MockReturn,{}>({
       service: mockService,
       setDatas,
@@ -55,7 +55,7 @@ describe("usableFetch",()=>{
     const status = 201
 
     mockService.mockRejectedValue({datas, message, status})
-
+    // eslint-disable-next-line 
     await usableFetch<MockReturn,{}>({
       service: mockService,
       setDatas,
@@ -106,7 +106,7 @@ describe("usableFetchWithPages",()=>{
     const currentPage = 15
     const totalPages =300
     mockService.mockResolvedValue({datas, message, status,currentPage,totalPages})
-
+    // eslint-disable-next-line 
     await usableFetchWithPages<MockReturn,{}>({
       service: mockService,
       setDatas,
@@ -124,7 +124,7 @@ describe("usableFetchWithPages",()=>{
     it("should handle errors correctly when service throws", async ()=>{
    
     mockService.mockRejectedValueOnce('')
-
+      // eslint-disable-next-line 
     await usableFetchWithPages<MockReturn,{}>({
       service: mockService,
       setDatas,
