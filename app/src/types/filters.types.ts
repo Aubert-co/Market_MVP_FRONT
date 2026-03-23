@@ -1,4 +1,4 @@
-import type { categories } from "@/constants"
+import type { categories } from "@/constants/filters"
 import type { OrderStatus } from "./storeDashboard.types"
 
 export type OrderBy = 'asc' | 'desc' 
