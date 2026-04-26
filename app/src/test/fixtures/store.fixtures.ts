@@ -5,25 +5,30 @@ export const FixtureVisitedProducs:TopVisitedProduct[] = [{
     id: 1,
     name: "Camiseta Oversized Preta",
     imageUrl: "https://via.placeholder.com/150",
-    growth: 12.5,
-    currentMonthViews: 1250,
-    lastMonthViews: 1111,
+    _count:{
+      views:3355
+    },
+    category:"shirt"
   },
   {
     id: 2,
     name: "Tênis Esportivo Branco",
     imageUrl: "https://via.placeholder.com/150",
-    growth: -5.2,
-    currentMonthViews: 980,
-    lastMonthViews: 1034,
+    _count:{
+      views:399
+    },
+    category:"shirt"
+
   },
   {
     id: 3,
     name: "Relógio Digital Premium",
     imageUrl: "https://via.placeholder.com/150",
-    growth: 28.9,
-    currentMonthViews: 2140,
-    lastMonthViews: 1660,
+    _count:{
+      views:300
+    },
+    category:"shoes"
+  
   }
 ]
 export const FixtureOrders: Order[] = [

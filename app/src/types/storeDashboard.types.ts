@@ -90,7 +90,7 @@ export type TopVisitedProduct = {
     _count:{
       views:number
     },
-    category:number
+    category:string
 }
 
 export type LastOrders = {
