@@ -14,7 +14,11 @@ type Props = {
 const renderTopVisitedProducts = (
   products: TopVisitedProduct[]
 ) => {
-  return products.map((p) => (
+  
+  return products.map((p) => {
+    const growth = p._count.views
+    return (
+    
     <Card key={p.id}>
       <SmallImage
         src={loadImage(p.imageUrl)}
@@ -24,15 +28,16 @@ const renderTopVisitedProducts = (
       <Info>
         <Name>{p.name}</Name>
         <Visits>
-          {p.currentMonthViews.toLocaleString()} visitas
+          {p._count.views} visitas
         </Visits>
       </Info>
 
-      <Growth $positive={p.growth >= 0}>
-        {p.growth >= 0 ? "↑" : "↓"} {Math.abs(p.growth)}%
+      <Growth $positive={true}>
+        {growth >= 0 ? "↑" : "↓"} {Math.abs(growth)}%
       </Growth>
     </Card>
-  ))
+    )
+  })
 }
 
 export const TopVisitedProducts = ({ products,status }: Props) => {

@@ -86,10 +86,11 @@ export type OpenSideBarOuDrawer = "sidebar" | "drawer" | null
 export type TopVisitedProduct = {
     name:string,
     imageUrl:string,
-    growth:number,
-    currentMonthViews:number,
-    lastMonthViews:number,
-    id:number
+    id:number,
+    _count:{
+      views:number
+    },
+    category:number
 }
 
 export type LastOrders = {
