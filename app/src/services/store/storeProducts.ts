@@ -8,7 +8,7 @@ export const getStoreProducts = async({nextPage,category,orderby,name}:
     GetStoreProducts):Promise<ResponseWithPages<Product[]>>=>{
          try{     
             const store = getStorageStore()
-            const response = await fetch(`/admin/store/products/${store.id}/${nextPage}`,{
+            const response = await fetch(`stores/${store.id}/products?page=${nextPage}&category=${category}&orderBy=${orderby}&search=${name}`,{
                 method:'GET',
                 headers: {'Content-Type': 'application/json'},
                 body:JSON.stringify({category,name,orderby}),
