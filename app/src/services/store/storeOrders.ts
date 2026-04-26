@@ -1,14 +1,16 @@
 import type {  GetStoreOrders, Order } from "@/types/storeDashboard.types";
 import type {  ResponseDatas, ResponseWithPages } from "@/types/services.types";
+import { getStorageStore } from "@/storage/store.storage";
 
 
 export const getStoreOrders = async({status,nextPage,search}:GetStoreOrders)
 :Promise<ResponseWithPages<Order[]> >=>{
  
    try{
-      const response = await fetch('',{
-          method:'POST',
-          body:JSON.stringify({status,currentPage:nextPage,search})
+    const store = getStorageStore()
+      const response = await fetch(`/stores/${store.id}/orders?page=${nextPage}&status=${status}&orderId=${search}`,{
+          method:'GET',
+          credentials:'include'
       })
       
 
@@ -37,7 +39,8 @@ export const getStoreOrders = async({status,nextPage,search}:GetStoreOrders)
 export const lastOrders = async():Promise<ResponseDatas<Order[]>>=>{
     
     try{
-        const response = await fetch('',{
+        const store = getStorageStore()
+        const response = await fetch(`/stores/${store.id}/lastOrders`,{
             credentials:'include'
         })
         if(!response.ok){
