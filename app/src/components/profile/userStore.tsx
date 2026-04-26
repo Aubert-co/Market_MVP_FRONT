@@ -61,7 +61,7 @@ export const UserStore =({formRef}:PropsUserStore)=>{
             </div>
             <div  className="list-container">
             <RenderDataState<Store>
-                datas={[stores.datas]}
+                datas={ stores.datas.id === 0 ? [] : [stores.datas]}
                 status={stores.status}
                 emptyMessage={
                     <>
