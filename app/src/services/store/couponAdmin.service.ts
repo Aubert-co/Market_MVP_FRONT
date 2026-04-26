@@ -13,12 +13,11 @@ export type StoreCoupons = {
 export const getStoreCoupons = async({couponStatus,nextPage}:StoreCoupons):Promise<ResponseWithPages<StoreCoupon>>=>{
     
     try{
-        const status = couponStatus
+
         const store = getStorageStore()
-        const response = await fetch(`/store/coupons/${store.id}`,{
+        const response = await fetch(`/store/coupons/${store.id}?page=${nextPage}&status=${couponStatus}`,{
             credentials:'include',
-            method:'POST',
-            body:JSON.stringify({status,nextPage})
+            method:'GET',
         })
         const {datas,message,currentPage,totalPages} = await response.json()
         if(!response.ok){
