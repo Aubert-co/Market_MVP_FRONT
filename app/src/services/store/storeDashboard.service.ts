@@ -32,8 +32,9 @@ export const storeDashboardService = async():Promise<ResponseDatas<GetStoreDashb
 
 export const topVisitedProducts = async():Promise<ResponseDatas<TopVisitedProduct[]>>=>{
      try{
-        const response = await fetch('',{
-            method:'POST',
+        const store = getStorageStore()
+        const response = await fetch(`/stores/${store.id}/products/most-viewed`,{
+            method:'GET',
             credentials:'include'
         })
        
