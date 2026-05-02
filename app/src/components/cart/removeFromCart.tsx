@@ -21,6 +21,6 @@ export const RemoveFromCart = ({id,setMessage}:Props)=>{
     const click = ()=>{
         onClick([id])
     }
-    return <FaTrash  key={id} data-testid="delete-item" onClick={click}/>
+    return <FaTrash aria-label="Remover item do carrinho" key={id} data-testid="delete-item" onClick={click}/>
     
 }
