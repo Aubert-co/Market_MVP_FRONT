@@ -2,13 +2,14 @@ import type {  ResponseWithPages } from "@/types/services.types";
 import type { Product } from "@/types/products.types";
 import { getStorageStore } from "@/storage/store.storage";
 import type {   GetStoreProducts } from "@/types/storeDashboard.types";
+import { API_BASE_URL } from "@/configs/api";
 
 
 export const getStoreProducts = async({nextPage,category,orderby,name}:
     GetStoreProducts):Promise<ResponseWithPages<Product[]>>=>{
          try{     
             const store = getStorageStore()
-            const response = await fetch(`stores/${store.id}/products?page=${nextPage}&category=${category}&orderBy=${orderby}&search=${name}`,{
+            const response = await fetch(`${API_BASE_URL}/stores/${store.id}/products?page=${nextPage}&category=${category}&orderBy=${orderby}&search=${name}`,{
                 method:'GET',
                 headers: {'Content-Type': 'application/json'},
                 body:JSON.stringify({category,name,orderby}),

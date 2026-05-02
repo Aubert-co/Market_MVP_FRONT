@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "@/configs/api"
 import { getStorageStore } from "@/storage/store.storage"
 import type { BaseCoupon } from "@/types/coupons.types"
 import type { FilterCoupons } from "@/types/filters.types"
@@ -15,7 +16,7 @@ export const getStoreCoupons = async({couponStatus,nextPage}:StoreCoupons):Promi
     try{
 
         const store = getStorageStore()
-        const response = await fetch(`/store/coupons/${store.id}?page=${nextPage}&status=${couponStatus}`,{
+        const response = await fetch(`${API_BASE_URL}/store/coupons/${store.id}?page=${nextPage}&status=${couponStatus}`,{
             credentials:'include',
             method:'GET',
         })
@@ -33,7 +34,7 @@ export const createCoupon = async({code,expiresAt,
     discount,discountType,quantity}:Omit<BaseCoupon<string>,'id'>):Promise<Response>=>{
     try{
         const store = getStorageStore()
-        const response = await fetch('/store/create/coupon',{
+        const response = await fetch(`${API_BASE_URL}/stores/coupons`,{
             method:'POST',
             credentials:'include',
             headers: {

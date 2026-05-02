@@ -1,13 +1,14 @@
 import type { Product } from "@/types/products.types";
 import type { OrderBy } from "@/types/filters.types";
 import type { ResponseDatas, ResponseWithPages} from "@/types/services.types"
+import { API_BASE_URL } from "@/configs/api";
 
 export type GetProductsIndex = {
   nextPage:string | number
 }
 export const serviceGetProducts = async({nextPage}:GetProductsIndex):Promise<ResponseWithPages<Product[]>>=>{
     try{
-        const response = await fetch(`/product/page/${nextPage}`,{
+        const response = await fetch(`${API_BASE_URL}/product?page=${nextPage}`,{
             method:'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -31,12 +32,11 @@ export type BodySearch ={
   storeId?:number
 }
 
-export const searchProduct = async({name,category,minPrice,maxPrice,orderBy,storeId}:BodySearch):Promise<ResponseDatas<Product[]> >=>{
+export const searchProduct = async({name,category,minPrice,maxPrice,orderBy}:BodySearch):Promise<ResponseDatas<Product[]> >=>{
     try{
         
-        const response = await fetch('/product/filter',{
-            method:'POST',
-            body:JSON.stringify({name,category,minPrice,maxPrice,orderBy,storeId}),
+        const response = await fetch(`${API_BASE_URL}/product/search?name${name}&category=${category}&minPrice=${minPrice}&maxPrice=${maxPrice}&orderBy=${orderBy}`,{
+            method:'GET',
             headers: {
                 'Content-Type': 'application/json'
             }

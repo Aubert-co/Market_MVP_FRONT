@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "@/configs/api";
 import type { Response, ResponseDatas } from "@/types/services.types";
 import type { Store } from '@/types/store.types'
 
@@ -14,7 +15,7 @@ export const serviceCreateStore =
     formData.append('description', description);
     formData.append('image', image);
 
-    const response = await fetch('/store/create', {
+    const response = await fetch(`${API_BASE_URL}/stores`, {
       method: 'POST',
       body: formData,
       credentials: 'include',
@@ -36,7 +37,7 @@ export const DATAS_STORE = {
 } satisfies Store
 export const serviceGetStores = async():Promise<ResponseDatas<Store>>=>{
     try{
-        const response = await fetch('/store/mystores',{
+        const response = await fetch(`${API_BASE_URL}/store`,{
           method:'GET',
           credentials:'include',
           headers: {

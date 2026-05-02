@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "@/configs/api"
 import type { BaseCoupon } from "@/types/coupons.types"
 import type { UserOrders } from "@/types/orders.types"
 import type { ResponseDatas } from "@/types/services.types"
@@ -9,7 +10,7 @@ import type { ResponseDatas } from "@/types/services.types"
 export const userCoupons = async():Promise<ResponseDatas<BaseCoupon<number>[]>>=>{
   
     try{
-      const response = await fetch('/user/list/coupons',{
+      const response = await fetch(`${API_BASE_URL}/coupons`,{
         method:'GET',
         credentials:'include',
         headers: {
@@ -30,7 +31,7 @@ export const userCoupons = async():Promise<ResponseDatas<BaseCoupon<number>[]>>=
 
 export const userOrders = async():Promise<ResponseDatas<UserOrders[]>>=>{
   try{
-    const response = await fetch('/orders/me',{
+    const response = await fetch(`${API_BASE_URL}/orders`,{
       method:'GET',
       credentials:'include',
       headers:{

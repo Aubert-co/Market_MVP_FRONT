@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "@/configs/api"
 import type { BaseCoupon } from "@/types/coupons.types"
 import type { Response, ResponseDatas } from "@/types/services.types"
 
@@ -5,7 +6,7 @@ type Coupom = BaseCoupon<number>[]
 
 export const availableCoupons = async():Promise<ResponseDatas<Coupom>>=>{
     try{
-        const response = await fetch("/coupon/available/1",{
+        const response = await fetch(`${API_BASE_URL}/coupons/available?page=1`,{
             method:'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -22,7 +23,7 @@ export const availableCoupons = async():Promise<ResponseDatas<Coupom>>=>{
 }
 export const userAddCoupon = async(couponId:number):Promise<Response>=>{
     try{
-        const response = await fetch('/user/add/coupon',{
+        const response = await fetch(`${API_BASE_URL}/coupons`,{
             method:'POST',
             credentials:'include',
             headers:{

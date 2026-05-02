@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "@/configs/api"
 import { getStorageStore } from "@/storage/store.storage"
 import type {  ResponseDatas } from "@/types/services.types"
 import type { BackendStats, GetStoreDashboard, TopVisitedProduct } from "@/types/storeDashboard.types"
@@ -33,7 +34,7 @@ export const storeDashboardService = async():Promise<ResponseDatas<GetStoreDashb
 export const topVisitedProducts = async():Promise<ResponseDatas<TopVisitedProduct[]>>=>{
      try{
         const store = getStorageStore()
-        const response = await fetch(`/stores/${store.id}/products/most-viewed`,{
+        const response = await fetch(`${API_BASE_URL}/stores/${store.id}/products/most-viewed`,{
             method:'GET',
             credentials:'include'
         })

@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "@/configs/api";
 import { getItemsFromCart, saveCart } from "@/storage/cart.storage"
 import type { UserCart } from "@/types/cart.types"
 import type {  Response, ResponseDatas } from "@/types/services.types";
@@ -8,7 +9,7 @@ export type BodySyncCart = {
 }
 export const syncCart = async({cart}:BodySyncCart):Promise<ResponseDatas<UserCart[]>>=>{
   try{
-    const response = await fetch('/user/cart/update',{
+    const response = await fetch(`${API_BASE_URL}/cart`,{
       method:'PUT',
       credentials:'include',
       body:JSON.stringify({cart}),
@@ -38,7 +39,7 @@ export const  getUserCart = async():Promise<ResponseDatas<UserCart[]>>=>{
     
     try{
      
-      const response = await fetch('/user/cart',{
+      const response = await fetch(`${API_BASE_URL}/cart`,{
         method:'GET',
         credentials:'include',
         headers: {
@@ -62,7 +63,7 @@ export const  getUserCart = async():Promise<ResponseDatas<UserCart[]>>=>{
 
 export const deleteFromCart = async(cart:Array<number> ):Promise<Response>=>{
   try{
-    const response = await fetch('/user/cart/remove',{
+    const response = await fetch(`${API_BASE_URL}/cart`,{
       method:'DELETE',
       headers: {
         'Content-Type': 'application/json'
@@ -83,7 +84,7 @@ export const deleteFromCart = async(cart:Array<number> ):Promise<Response>=>{
 
 export const addToCart = async(id:number):Promise<Response>=>{
    try{
-    const response = await fetch('/user/cart/add',{
+    const response = await fetch(`${API_BASE_URL}/cart`,{
       method:'POST',
       headers: {
         'Content-Type': 'application/json'

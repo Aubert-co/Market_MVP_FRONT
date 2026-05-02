@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "@/configs/api"
 import type { Response } from "@/types/services.types"
 
 export type CreateOrder = {
@@ -7,7 +8,7 @@ export type CreateOrder = {
 }
 export const serviceCreateOrder = async(order:CreateOrder[]):Promise<Response>=>{
     try{
-        const response = await fetch('/order/create',{
+        const response = await fetch(`${API_BASE_URL}/orders`,{
             method:'POST',
             credentials:'include',
             body:JSON.stringify({order}),

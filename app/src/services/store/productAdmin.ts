@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "@/configs/api"
 import { getStorageStore } from "@/storage/store.storage"
 import type { Response } from "@/types/services.types"
 import type { UpsertProducts } from "@/types/storeDashboard.types"
@@ -25,7 +26,7 @@ export const serviceCreateProduct = async({name,description,price,
     formData.append('description',description)
     formData.append('storeId',storeId.toString())
     try{
-        const response = await fetch('/product/create',{
+        const response = await fetch(`${API_BASE_URL}/stores/products`,{
             method:'POST',
             credentials:'include',
             body:formData,
@@ -62,7 +63,7 @@ export const serviceUpdateProduct = async(payload:UpdateProduct):Promise<Respons
     formData.append('storeId',String( storeId ))
     formData.append('productId',String(payload.id))
     try{
-        const response = await fetch('/product/update',{
+        const response = await fetch(`${API_BASE_URL}/stores/products`,{
             method:'PUT',
             body:formData,
             credentials:'include'

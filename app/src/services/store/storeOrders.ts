@@ -1,6 +1,7 @@
 import type {  GetStoreOrders, Order } from "@/types/storeDashboard.types";
 import type {  ResponseDatas, ResponseWithPages } from "@/types/services.types";
 import { getStorageStore } from "@/storage/store.storage";
+import { API_BASE_URL } from "@/configs/api";
 
 
 export const getStoreOrders = async({status,nextPage,search}:GetStoreOrders)
@@ -8,7 +9,7 @@ export const getStoreOrders = async({status,nextPage,search}:GetStoreOrders)
  
    try{
     const store = getStorageStore()
-      const response = await fetch(`/stores/${store.id}/orders?page=${nextPage}&status=${status}&orderId=${search}`,{
+      const response = await fetch(`${API_BASE_URL}/stores/${store.id}/orders?page=${nextPage}&status=${status}&orderId=${search}`,{
           method:'GET',
           credentials:'include'
       })
@@ -40,7 +41,7 @@ export const lastOrders = async():Promise<ResponseDatas<Order[]>>=>{
     
     try{
         const store = getStorageStore()
-        const response = await fetch(`/stores/${store.id}/lastOrders`,{
+        const response = await fetch(`${API_BASE_URL}/stores/${store.id}/orders/latest`,{
             credentials:'include'
         })
         if(!response.ok){

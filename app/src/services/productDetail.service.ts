@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "@/configs/api"
 import type { ProductDetails } from "@/types/productDetail.types"
 import type { ResponseDatas} from '@/types/services.types'
 
@@ -58,7 +59,7 @@ export type ProductDetailBody = {
 }
 export const productDetail =  async ({productId}:ProductDetailBody):Promise<ResponseDatas<ProductDetails>>=>{
     try{
-        const response = await fetch(`/product/${productId}`,{
+        const response = await fetch(`${API_BASE_URL}/product/${productId}/details`,{
             method:'GET',
             headers: {
               'Content-Type': 'application/json'

@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "@/configs/api";
 import type { Response } from "@/types/services.types";
 
 type LoginOrRegister ={
@@ -9,7 +10,7 @@ type LoginOrRegister ={
 export const serviceLoginOrRegister = async({name,email,password,typeForm}:LoginOrRegister):Promise<Response>=>{
     try{
         const url = typeForm === 'login' ? '/login' : '/register'
-        const response = await fetch(`https://auth.aubertdev.com.br${url}`,{
+        const response = await fetch(`${API_BASE_URL}${url}`,{
             method:'POST',
             body:JSON.stringify({name,email,password}),
             headers: {
@@ -22,7 +23,7 @@ export const serviceLoginOrRegister = async({name,email,password,typeForm}:Login
         }
 
         const res = await response.json()
-        
+        console.log(res)
         return {status:response.status,message:res.message}
     }catch{
         return {status:501,message:'Algo deu errado'}
