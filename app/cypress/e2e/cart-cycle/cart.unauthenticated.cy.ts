@@ -4,6 +4,7 @@
 
 describe('Unauthenticated user navigation (product → profile/cart)',()=>{
     beforeEach(()=>{
+        cy.reset_mocks()
         cy.visit("/")
     })
     it("should return an error message when adding a product to the cart while the user is not logged in",()=>{
