@@ -29,5 +29,5 @@ export const AddCoupon = ({id,setMessage}:Props)=>{
         setMessage({content:'Algo deu errado!',type:'error'})
         
     }
-  return <button onClick={onClick} className="btn-get-coupon">Pegar</button>
+  return <button onClick={onClick} data-testid="add-coupon" className="btn-get-coupon">Pegar</button>
 }
