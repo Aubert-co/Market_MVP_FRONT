@@ -18,11 +18,11 @@ export const TopBar = ({navigationMode}:Props)=>{
             <SearchBar searchEvent={searchEvent}/>
             <nav>
                 <i>
-                    <FaShoppingCart onClick={()=>navigate("/perfil/carrinho")}/>
+                    <FaShoppingCart data-testid="profile-cart" onClick={()=>navigate("/perfil/carrinho")}/>
                 </i>
 
                 <i>
-                  <FaUser onClick={()=>navigate("/perfil/ordens")}/>
+                  <FaUser data-testid="profile-orders" onClick={()=>navigate("/perfil/ordens")}/>
                 </i>
             </nav>
         </>
