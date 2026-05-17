@@ -15,7 +15,7 @@ describe("component ListCoupons",()=>{
             expect( getByText(val.code) ).toBeInTheDocument()
                expect( getByText(new Date(val.expiresAt).toLocaleDateString("pt-BR"))).toBeInTheDocument()
           
-            expect(getAllByTestId("discount")[index]).toHaveTextContent("Desconto:" +" "+ val.discount.toString() +""+ discountType)
+            expect(getAllByTestId("discount")[index]).toHaveTextContent("Desconto"+ val.discount.toString() + discountType)
             expect(getByText(val.quantity)).toBeInTheDocument()
          
         })
