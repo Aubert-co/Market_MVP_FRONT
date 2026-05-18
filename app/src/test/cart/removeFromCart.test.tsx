@@ -9,7 +9,7 @@ const deleteFromCart = jest.spyOn(services,'deleteFromCart')
 
 const storage = jest.spyOn(storages,'removeItemFromCart')
 describe("Component RemoveFromCart",()=>{
-    const setMessage = jest.fn()
+    const addMessage = jest.fn()
     const setUpdateCart = jest.fn()
     beforeEach(()=>{
         jest.clearAllMocks()
@@ -21,7 +21,7 @@ describe("Component RemoveFromCart",()=>{
                 setUpdateCart,
                 updateCart:true
             }}>
-                <RemoveFromCart id={1} setMessage={setMessage}/>
+                <RemoveFromCart id={1} addMessage={addMessage}/>
             </UpdateCartContext.Provider>
         )
         const btn = getByTestId("delete-item")
@@ -32,8 +32,8 @@ describe("Component RemoveFromCart",()=>{
        await waitFor(() => {});
         expect(storage).toHaveBeenCalledTimes(1);
         expect(setUpdateCart).toHaveBeenCalledWith(true);
-        expect(setMessage).toHaveBeenCalledTimes(1);
-        expect(setMessage).toHaveBeenCalledWith({
+        expect(addMessage).toHaveBeenCalledTimes(1);
+        expect(addMessage).toHaveBeenCalledWith({
             content: 'Removido do carrinho com sucesso!',
             type: 'success'
         });
@@ -45,7 +45,7 @@ describe("Component RemoveFromCart",()=>{
                 setUpdateCart,
                 updateCart:true
             }}>
-                <RemoveFromCart id={1} setMessage={setMessage}/>
+                <RemoveFromCart id={1} addMessage={addMessage}/>
             </UpdateCartContext.Provider>
         )
         const btn = getByTestId("delete-item")
@@ -57,8 +57,8 @@ describe("Component RemoveFromCart",()=>{
         
         expect(storage).toHaveBeenCalledTimes(0);
         expect(setUpdateCart).not.toHaveBeenCalled();
-        expect(setMessage).toHaveBeenCalledTimes(1);
-        expect(setMessage).toHaveBeenCalledWith({
+        expect(addMessage).toHaveBeenCalledTimes(1);
+        expect(addMessage).toHaveBeenCalledWith({
             content: 'Sua sessão expirou. Faça login novamente.',
             type: 'error'
         });
@@ -71,7 +71,7 @@ describe("Component RemoveFromCart",()=>{
                 setUpdateCart,
                 updateCart:true
             }}>
-                <RemoveFromCart id={1} setMessage={setMessage}/>
+                <RemoveFromCart id={1} addMessage={addMessage}/>
             </UpdateCartContext.Provider>
         )
         const btn = getByTestId("delete-item")
@@ -83,8 +83,8 @@ describe("Component RemoveFromCart",()=>{
         
         expect(storage).toHaveBeenCalledTimes(0);
         expect(setUpdateCart).not.toHaveBeenCalled();
-        expect(setMessage).toHaveBeenCalledTimes(1);
-        expect(setMessage).toHaveBeenCalledWith({
+        expect(addMessage).toHaveBeenCalledTimes(1);
+        expect(addMessage).toHaveBeenCalledWith({
             content: 'Não foi possível remover o item. Tente novamente mais tarde.',
             type: 'error'
         });
@@ -97,7 +97,7 @@ describe("Component RemoveFromCart",()=>{
                 setUpdateCart,
                 updateCart:true
             }}>
-                <RemoveFromCart id={1} setMessage={setMessage}/>
+                <RemoveFromCart id={1} addMessage={addMessage}/>
             </UpdateCartContext.Provider>
         )
         const btn = getByTestId("delete-item")
@@ -109,8 +109,8 @@ describe("Component RemoveFromCart",()=>{
         
         expect(storage).toHaveBeenCalledTimes(0);
         expect(setUpdateCart).not.toHaveBeenCalled();
-        expect(setMessage).toHaveBeenCalledTimes(1);
-        expect(setMessage).toHaveBeenCalledWith({
+        expect(addMessage).toHaveBeenCalledTimes(1);
+        expect(addMessage).toHaveBeenCalledWith({
             content: 'Ocorreu um erro inesperado. Tente novamente.',
             type: 'error'
         });

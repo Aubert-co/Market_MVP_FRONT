@@ -13,9 +13,9 @@ describe("BoxMessage",()=>{
   
     it("should render for 3 seconds by default when no duration is provided",async()=>{
         const TestComponent= () => {
-            const { setMessage,BoxMessage } = useBoxMessage({styledType:'toast'})
+            const { addMessage,BoxMessage } = useBoxMessage({styledType:'toast'})
             const onClick = ()=>{
-                setMessage({content:'lorem ipstu',type:'info'})
+                addMessage({content:'lorem ipstu',type:'info'})
             }
             return (
                 <>
@@ -43,9 +43,9 @@ describe("BoxMessage",()=>{
     })
    it("should render the div with type 'error' correctly",async()=>{
         const TestComponent= () => {
-            const { setMessage,BoxMessage } = useBoxMessage({styledType:''})
+            const { addMessage,BoxMessage } = useBoxMessage({styledType:''})
             const onClick = ()=>{
-                setMessage({content:'lorem ipstu',type:'error'})
+                addMessage({content:'lorem ipstu',type:'error'})
             }
             return (
                 <>
@@ -72,9 +72,9 @@ describe("BoxMessage",()=>{
     })
     it("should render the div with type 'success' correctly",async()=>{
         const TestComponent= () => {
-            const { setMessage,BoxMessage } = useBoxMessage({styledType:''})
+            const { addMessage,BoxMessage } = useBoxMessage({styledType:''})
             const onClick = ()=>{
-                setMessage({content:'lorem ipstu',type:'success'})
+                addMessage({content:'lorem ipstu',type:'success'})
             }
             return (
                 <>
@@ -98,5 +98,31 @@ describe("BoxMessage",()=>{
         await waitFor(()=>{
             expect(queryByText(text)).toBeNull()
         },{timeout:3001 })
+    })
+    it("should not render the same message",async()=>{
+        const TestComponent= () => {
+            const { addMessage,BoxMessage } = useBoxMessage({styledType:''})
+            const onClick = ()=>{
+                addMessage({content:'lorem ipstu',type:'success'})
+                addMessage({content:'lorem ipstu2',type:'success'})
+            }
+            return (
+                <>
+                    <BoxMessage/>
+                    <button onClick={onClick}>Click</button>
+                </>
+               
+            )
+        }
+        const {getByText,queryAllByTestId} = render(
+            <TestComponent/>
+        )
+        const button = getByText('Click');
+       
+        fireEvent.click(button)
+        fireEvent.click(button)
+        fireEvent.click(button)
+    
+        expect(queryAllByTestId("message_")).toHaveLength(2)
     })
 })

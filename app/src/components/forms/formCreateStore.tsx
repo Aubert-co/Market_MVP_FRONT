@@ -13,43 +13,43 @@ export const FormCreateStore = ({formRef}:PropsFormCreateStore)=>{
     const nameRef = useRef<HTMLInputElement>(null)
     const descriptionRef = useRef<HTMLTextAreaElement>(null)
     const imageRef = useRef<HTMLInputElement>(null);
-    const { BoxMessage,setMessage} = useBoxMessage({styledType:""});
+    const { BoxMessage,addMessage} = useBoxMessage({styledType:""});
     const navigate = useNavigate()
     const submit = async(e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
         const [name,description] = getMultiInputValues(nameRef,descriptionRef)
         
          if(!isAValidString(name) ){
-            setMessage({content:'Digite um nome válido',type:'info'})
+            addMessage({content:'Digite um nome válido',type:'info'})
             return
         };
         if(!isAValidString(description,200) ){
-            setMessage({content:'Digite uma descrição válida até 200 letras',type:'info'})
+            addMessage({content:'Digite uma descrição válida até 200 letras',type:'info'})
             return
         };
         
         const file = getValidImageFile(imageRef);
        
         if(!file){
-            setMessage({content:'Adicione uma imagem válida',type:'info'})
+            addMessage({content:'Adicione uma imagem válida',type:'info'})
             return
         }
         const {status} = await serviceCreateStore({name,description,image:file})
         if(status === 201){
-            setMessage({content:'Loja criada com sucesso!',type:'success'});
+            addMessage({content:'Loja criada com sucesso!',type:'success'});
             navigate('/perfil/loja')
             return
         }
         if(status === 422){
-            setMessage({content:'Falha ao criar a loja. Certifique-se de que a imagem é válida',type:'error'})
+            addMessage({content:'Falha ao criar a loja. Certifique-se de que a imagem é válida',type:'error'})
             return
         }
         if(status === 409){
-            setMessage({content:'Já existe uma loja com esse nome, tente outro',type:'info'})
+            addMessage({content:'Já existe uma loja com esse nome, tente outro',type:'info'})
             return
         }
         if(status > 422){
-            setMessage({content:'Algo deu errado ao criar a sua loja!',type:'error'})
+            addMessage({content:'Algo deu errado ao criar a sua loja!',type:'error'})
             return
         }
     }

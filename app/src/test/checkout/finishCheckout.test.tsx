@@ -12,7 +12,7 @@ const newItems:ItemsCheckout[] = mockProducts.map((val)=>{
     return {...val,quantity:val.id+5}
 })
 describe("component FinishCheckout",()=>{
-    const setMessage = jest.fn()
+    const addMessage = jest.fn()
     beforeEach(()=>{
         jest.clearAllMocks()
     })
@@ -21,7 +21,7 @@ describe("component FinishCheckout",()=>{
         serviceCreateOrder.mockResolvedValue({status:201,message:'lorem iptsu'})
         const couponId = 3933
         const {getByText} = render(
-            <FinishCheckout couponId={couponId} setMessage={setMessage}/>
+            <FinishCheckout couponId={couponId} addMessage={addMessage}/>
         )
         
         const btnFinish = getByText("Finalizar")
@@ -29,8 +29,8 @@ describe("component FinishCheckout",()=>{
         fireEvent.click( btnFinish )
         
         await waitFor(()=>{
-            expect( setMessage ).toHaveBeenCalledTimes(1)
-            expect( setMessage ).toHaveBeenCalledWith({content:'Compra realizada com sucesso!',type:'success'})
+            expect( addMessage ).toHaveBeenCalledTimes(1)
+            expect( addMessage ).toHaveBeenCalledWith({content:'Compra realizada com sucesso!',type:'success'})
             expect( serviceCreateOrder ).toHaveBeenCalledTimes(1)
             expect( serviceCreateOrder ).toHaveBeenCalledWith(
                 newItems.map((val)=>{
@@ -44,7 +44,7 @@ describe("component FinishCheckout",()=>{
         serviceCreateOrder.mockResolvedValue({status:201,message:'lorem iptsu'})
         const couponId = 3933
         const {getByText} = render(
-            <FinishCheckout couponId={couponId} setMessage={setMessage}/>
+            <FinishCheckout couponId={couponId} addMessage={addMessage}/>
         )
         
         const btnFinish = getByText("Finalizar")
@@ -52,7 +52,7 @@ describe("component FinishCheckout",()=>{
         fireEvent.click( btnFinish )
         
     
-        expect( setMessage ).toHaveBeenCalledTimes(0)
+        expect( addMessage ).toHaveBeenCalledTimes(0)
         expect( serviceCreateOrder ).toHaveBeenCalledTimes(0)
           
     })
@@ -61,7 +61,7 @@ describe("component FinishCheckout",()=>{
         serviceCreateOrder.mockResolvedValue({status:401,message:'lorem iptsu'})
         const couponId = 3933
         const {getByText} = render(
-            <FinishCheckout couponId={couponId} setMessage={setMessage}/>
+            <FinishCheckout couponId={couponId} addMessage={addMessage}/>
         )
         
         const btnFinish = getByText("Finalizar")
@@ -69,8 +69,8 @@ describe("component FinishCheckout",()=>{
         fireEvent.click( btnFinish )
         
         await waitFor(()=>{
-            expect( setMessage ).toHaveBeenCalledTimes(1)
-            expect( setMessage ).toHaveBeenCalledWith({content:'Faça login para finalizar a compra!',type:'info'})
+            expect( addMessage ).toHaveBeenCalledTimes(1)
+            expect( addMessage ).toHaveBeenCalledWith({content:'Faça login para finalizar a compra!',type:'info'})
             expect( serviceCreateOrder ).toHaveBeenCalledTimes(1)
             
         })
@@ -80,7 +80,7 @@ describe("component FinishCheckout",()=>{
         serviceCreateOrder.mockResolvedValue({status:500,message:'lorem iptsu'})
         const couponId = 3933
         const {getByText} = render(
-            <FinishCheckout couponId={couponId} setMessage={setMessage}/>
+            <FinishCheckout couponId={couponId} addMessage={addMessage}/>
         )
         
         const btnFinish = getByText("Finalizar")
@@ -88,8 +88,8 @@ describe("component FinishCheckout",()=>{
         fireEvent.click( btnFinish )
         
         await waitFor(()=>{
-            expect( setMessage ).toHaveBeenCalledTimes(1)
-            expect( setMessage ).toHaveBeenCalledWith({content:'Algo deu errado ao tentar finalizar a compra!',type:'error'})
+            expect( addMessage ).toHaveBeenCalledTimes(1)
+            expect( addMessage ).toHaveBeenCalledWith({content:'Algo deu errado ao tentar finalizar a compra!',type:'error'})
             expect( serviceCreateOrder ).toHaveBeenCalledTimes(1)
             
         })

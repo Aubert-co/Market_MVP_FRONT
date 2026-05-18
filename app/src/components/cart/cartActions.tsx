@@ -1,14 +1,14 @@
 import { UpdateCartQuantity } from "./updateCartQuantity"
 import { RemoveFromCart } from "./removeFromCart"
-import React, {  useState, type SetStateAction } from "react"
+import  {  useState } from "react"
 import styled from "styled-components"
-import type { Message } from "../../hooks/useBoxMessages"
+import type { AddMessageParams } from "../../hooks/useBoxMessages"
 
 
 type Props = {
   id:number,
   quantity:number,
-  setMessage: React.Dispatch<SetStateAction<Message>>,
+  addMessage:({}:AddMessageParams)=>void,
   stock:number
 }
 const CartStyle = styled.div`
@@ -26,7 +26,7 @@ const CartStyle = styled.div`
 }
 
 .cart-update button {
-  background: #0e1420; /* sua cor base */
+  background: #0e1420; 
   color: white;
   border: none;
   border-radius: 6px;
@@ -55,21 +55,21 @@ const CartStyle = styled.div`
  svg {
   font-size: 1.2rem;
   cursor: pointer;
-  color: #dc2626; /* vermelho para destacar a lixeira */
+  color: #dc2626; 
   transition: color 0.2s ease, transform 0.2s ease;
 }
 
  svg:hover {
-  color: #b91c1c; /* vermelho mais escuro no hover */
+  color: #b91c1c; 
   transform: scale(1.1);
 }
 `
-export const CartActions = ({id,quantity,setMessage,stock}:Props)=>{
+export const CartActions = ({id,quantity,addMessage,stock}:Props)=>{
     const [updatedQuantity,setQuantity] = useState( quantity )
   
     return (
         <CartStyle>
-            <RemoveFromCart id={id} setMessage={setMessage}/>
+            <RemoveFromCart id={id} addMessage={addMessage}/>
             <UpdateCartQuantity stock={stock} id={id} quantity={updatedQuantity} setQuantity={setQuantity}/>
         </CartStyle>
     )

@@ -35,7 +35,7 @@ export const FormLoginOrRegister = ({submitEvent,type,formRef}:PropsForm)=>{
   const refUserPassword = useRef<HTMLInputElement>(null);
   const refRepeatUserPassword = useRef<HTMLInputElement>(null);
   const titleText = type === "Login" ? "Login" : "Cadastro"
-  const {setMessage,BoxMessage} = useBoxMessage({styledType:""})
+  const {addMessage,BoxMessage} = useBoxMessage({styledType:""})
   
   const handleSubmit = (e:React.FormEvent<HTMLFormElement>):void=>{
     e.preventDefault()
@@ -43,18 +43,18 @@ export const FormLoginOrRegister = ({submitEvent,type,formRef}:PropsForm)=>{
       refUserEmail,refUserName,refUserPassword,refRepeatUserPassword,
     );
     if(!isValidEmail(email)){
-      return setMessage({content:'Digite um e-mail válido',type:'info'});
+      return addMessage({content:'Digite um e-mail válido',type:'info'});
     }
     if(!isAValidString(password)){
-      return  setMessage({content:'Digite uma senha válida',type:'info'});
+      return  addMessage({content:'Digite uma senha válida',type:'info'});
     }
     if(type === "Register"){
       if(!isAValidString(name) ){
-        return setMessage({content:'Digite um nome válido',type:'info'});;
+        return addMessage({content:'Digite um nome válido',type:'info'});;
       }
-      if(password !== repeatPassword)return setMessage({content:'As senhas não coincidem',type:'info'});
+      if(password !== repeatPassword)return addMessage({content:'As senhas não coincidem',type:'info'});
     }
-    submitEvent({name,password,email,setMessageParams:setMessage})
+    submitEvent({name,password,email,setMessageParams:addMessage})
 
   }
   return (

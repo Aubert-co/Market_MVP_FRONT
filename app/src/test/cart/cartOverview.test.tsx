@@ -10,14 +10,14 @@ jest.spyOn(cleanCart, 'useRemoveFromCart').mockImplementation(() => ({
   onClick
 }))
 describe("Component CartOverview",()=>{
-    const setMessage = jest.fn()
+    const addMessage = jest.fn()
     const setUpdateCart  =jest.fn()
     
     it("should render the cart total and action buttons when the cart has items",()=>{
         jest.spyOn(storages,'getItemsFromCart').mockReturnValue({cart:userCartMocks,updatedAt:344,isSaved:false})
         const {getByText,queryByText} = render(
             <BrowserRouter>
-                <CartOverview setMessage={setMessage} setUpdateCart={setUpdateCart} updateCart={false}/>
+                <CartOverview addMessage={addMessage} setUpdateCart={setUpdateCart} updateCart={false}/>
             </BrowserRouter>
             
         )
@@ -39,7 +39,7 @@ describe("Component CartOverview",()=>{
         jest.spyOn(storages,'getItemsFromCart').mockReturnValue({cart:[],updatedAt:344,isSaved:false})
         const {queryByText} = render(
            <BrowserRouter>
-                 <CartOverview setMessage={setMessage} setUpdateCart={setUpdateCart} updateCart={false}/>
+                 <CartOverview addMessage={addMessage} setUpdateCart={setUpdateCart} updateCart={false}/>
            </BrowserRouter>
         )
        

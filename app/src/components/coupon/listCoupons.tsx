@@ -1,15 +1,14 @@
 import type { BaseCoupon } from "@/types/coupons.types";
 import assets from '@/assets/coupon.png'
-import type { SetStateAction } from "react"
-import type { Message } from "../../hooks/useBoxMessages"
+import type { AddMessageParams } from "../../hooks/useBoxMessages"
 import { AddCoupon } from "./AddCoupon";
 
 
 type Props = {
   datas:BaseCoupon<number>[],
-  setMessage: React.Dispatch<SetStateAction<Message>>
+  addMessage:({}:AddMessageParams)=>void
 }
-export const ListCoupons = ({ datas,setMessage }: Props) => {
+export const ListCoupons = ({ datas,addMessage }: Props) => {
   return (
  
       <>
@@ -21,17 +20,31 @@ export const ListCoupons = ({ datas,setMessage }: Props) => {
             className="coupon-image"
           />
           <div className="coupon-details">
-            <div><strong>Código:</strong> {val.code}</div>
-            <div><strong>Quantidade:</strong> {val.quantity}</div>
-            <div data-testid="discount">
-              <strong>Desconto:</strong> {val.discount}{val.discountType === "percent" ? "%" : " R$"}
+            <div className="coupon-row">
+              <span className="label">Código</span>
+              <span className="value code">{val.code}</span>
             </div>
-            <div>
-              <strong>Expira em:</strong>{" "}
-              {new Date(val.expiresAt).toLocaleDateString("pt-BR")}
+
+            <div className="coupon-row">
+              <span className="label">Quantidade</span>
+              <span className="value">{val.quantity}</span>
             </div>
+
+            <div className="coupon-row" data-testid="discount">
+              <span className="label">Desconto</span>
+              <span className="value highlight">
+                {val.discount}{val.discountType === "percent" ? "%" : " R$"}
+              </span>
             </div>
-            <AddCoupon id={val.id} setMessage={setMessage}/>
+
+            <div className="coupon-row">
+              <span className="label">Expira em</span>
+              <span className="value">
+                {new Date(val.expiresAt).toLocaleDateString("pt-BR")}
+              </span>
+            </div>
+          </div>
+            <AddCoupon id={val.id} addMessage={addMessage}/>
         </div>
       ))}
       </>

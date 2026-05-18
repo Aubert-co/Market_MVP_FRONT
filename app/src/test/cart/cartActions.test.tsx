@@ -9,7 +9,7 @@ describe('Component UpdateCartQuantity',()=>{
     const setUpdateCart = jest.fn()
     const id = 3
     const setQuantity =jest.fn()
-    const setMessage = jest.fn()
+    const addMessage = jest.fn()
     beforeEach(()=>{
         jest.clearAllMocks()
     })
@@ -26,7 +26,7 @@ describe('Component UpdateCartQuantity',()=>{
                             setUpdateCart,
                             updateCart:true
                         }}>
-                            <CartActions stock={10} id={id} quantity={quantity} setMessage={setMessage}/>
+                            <CartActions stock={10} id={id} quantity={quantity} addMessage={addMessage}/>
                 </UpdateCartContext.Provider>
         )
 

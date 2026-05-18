@@ -47,7 +47,7 @@ export const FormCreateCoupon = ({setCloseDrawer}:Props)=>{
     const discountRef = useRef(null)
     const cupomCodeRef = useRef(null)
     const quantityRef = useRef(null)
-    const {BoxMessage,setMessage}= useBoxMessage({styledType:''})
+    const {BoxMessage,addMessage}= useBoxMessage({styledType:''})
 
     const onSubmit =async (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
@@ -56,7 +56,7 @@ export const FormCreateCoupon = ({setCloseDrawer}:Props)=>{
              
         const errorMessages = validateInputs({discount,selectDiscount,cupomCode,quantity})
         if(errorMessages){
-            setMessage({content:errorMessages,type:'info'})
+            addMessage({content:errorMessages,type:'info'})
             return 
         }
         const {status,message} = await createCoupon({
@@ -65,18 +65,18 @@ export const FormCreateCoupon = ({setCloseDrawer}:Props)=>{
         })
         
         if(status === 201){
-            setMessage({content:"Cupom criado com sucesso",type:"success"})
+            addMessage({content:"Cupom criado com sucesso",type:"success"})
             return
         }
         if(status === 409){
-            setMessage({content:"Já existe um cupom com esse nome",type:'info'})
+            addMessage({content:"Já existe um cupom com esse nome",type:'info'})
             return
         }
         if(message === "Limit of active coupons reached for this store."){
-            setMessage({content:'Sua loja já possui mais de 5 cupons ativos',type:'info'})
+            addMessage({content:'Sua loja já possui mais de 5 cupons ativos',type:'info'})
             return
         }
-        setMessage({content:"Algo deu errado , tente novamente",type:"error"})
+        addMessage({content:"Algo deu errado , tente novamente",type:"error"})
     }
     return (
        <UserFormStyles $minHeight="none">

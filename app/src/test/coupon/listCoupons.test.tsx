@@ -7,7 +7,7 @@ const spyServices = jest.spyOn(services,'userAddCoupon')
 describe("component ListCoupons",()=>{
     it("should render the data correctly",async()=>{
         const {getAllByTestId , getAllByText,getByText} =render(
-            <ListCoupons datas={mockCoupons} setMessage={mockMessage}/>
+            <ListCoupons datas={mockCoupons} addMessage={mockMessage}/>
         )
 
         mockCoupons.map((val,index)=>{

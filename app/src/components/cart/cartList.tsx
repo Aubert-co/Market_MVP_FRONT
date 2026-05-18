@@ -1,15 +1,15 @@
 import type { UserCart } from "@/types/cart.types"
 import { CartActions } from "./cartActions"
-import React, { type SetStateAction } from "react"
-import type { Message } from "../../hooks/useBoxMessages"
+
+import type { AddMessageParams } from "../../hooks/useBoxMessages"
 import { loadImage } from "@/utils"
 
 type PropsCartList = {
   cart:UserCart[]
-  setMessage: React.Dispatch<SetStateAction<Message>>
+  addMessage:({content,type}:AddMessageParams)=>void
 }
 
-export const CartList = ({ cart ,setMessage}: PropsCartList) => {
+export const CartList = ({ cart ,addMessage}: PropsCartList) => {
   
   return (
     <>
@@ -27,7 +27,7 @@ export const CartList = ({ cart ,setMessage}: PropsCartList) => {
               <h3>Preço:R${val.product.price}</h3>
               <p>Produto: {val.product.name}</p>
               <p>Estoque: {val.product.stock}</p>
-              <CartActions stock={val.product.stock} setMessage={setMessage} id={val.id} quantity={val.quantity} />
+              <CartActions stock={val.product.stock} addMessage={addMessage} id={val.id} quantity={val.quantity} />
             </div>
           </div>
         );

@@ -1,8 +1,8 @@
 import type {UpdateCartState} from "@/context/cart.context"
 import { getItemsFromCart } from "@/storage/cart.storage"
-import { useEffect ,useState, type SetStateAction} from "react"
+import { useEffect ,useState} from "react"
 import styled from "styled-components"
-import type { Message } from "../../hooks/useBoxMessages"
+import type { AddMessageParams } from "../../hooks/useBoxMessages"
 import { useRemoveFromCart } from "./useRemoveFromCart"
 import { setItemsCheckout } from "@/storage/checkout.storage"
 import type { ItemsCheckout } from "@/types/checkout.types"
@@ -20,12 +20,12 @@ const ListInfo = styled.div`
     
 `
 type Props = UpdateCartState &{
-  setMessage: React.Dispatch<SetStateAction<Message>>
+  addMessage:({}:AddMessageParams)=>void
 }
-export const CartOverview  =({updateCart,setUpdateCart,setMessage}:Props)=>{
+export const CartOverview  =({updateCart,setUpdateCart,addMessage}:Props)=>{
   const [cartTotal,setCartTotal] = useState<number>(0)
   const {onClick} = useRemoveFromCart({
-    setMessage,
+    addMessage,
     setUpdateCart
   })
   const navigate = useNavigate()
