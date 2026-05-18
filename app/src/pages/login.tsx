@@ -2,11 +2,11 @@ import { useNavigate } from "react-router-dom"
 import { useRef } from "react"
 import { serviceLoginOrRegister } from "@/services/loginOrRegister"
 import { FormLoginOrRegister } from "@/components/forms/formLoginOrRegister";
-import type { Message } from "@/hooks/useBoxMessages";
+import type { AddMessageParams } from "@/hooks/useBoxMessages";
 export type TypeSubmitLogin = {
     email:string,
     password:string,
-    setMessageParams:(msg:Message)=>void,
+    setMessageParams:(msg:AddMessageParams)=>void,
     name:string
 }
 
@@ -21,7 +21,8 @@ export const Login = ()=>{
             typeForm:'login'
         } )
         if( status === 201){
-            submitUserDatas.setMessageParams({content:"Você fez login com sucesso, você será redirecionado",type:'success'})
+            submitUserDatas
+            .setMessageParams({content:"Você fez login com sucesso, você será redirecionado",type:'success'})
             setTimeout(()=>{
                 navigate('/');
             },3000)

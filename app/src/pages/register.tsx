@@ -2,7 +2,7 @@ import {useRef} from "react";
 import { useNavigate } from "react-router-dom";
 import { serviceLoginOrRegister } from "@/services/loginOrRegister";
 import { FormLoginOrRegister } from "@/components/forms/formLoginOrRegister";
-import type { Message } from "@/hooks/useBoxMessages";
+import type { AddMessageParams } from "@/hooks/useBoxMessages";
 import { StyleCreateStore } from "@/styles/registerPage";
 import { BoxBenefits } from "@/components/boxBenefits";
 import { adLinkRegister, adTextRegister, benefitsRegister } from "@/constants/benefitsRegister";
@@ -12,7 +12,7 @@ import { adLinkRegister, adTextRegister, benefitsRegister } from "@/constants/be
 export type TypeSubmitRegister ={
     email:string,
     password:string,
-    setMessageParams:(msg:Message,duration?:number)=>void,
+    setMessageParams:(msg:AddMessageParams,duration?:number)=>void,
     name:string
 
 }
@@ -41,7 +41,7 @@ export const Register = ()=>{
             });
 
         }
-        setMessageParams({content:'Ocorreu um erro inesperado.'+status,type:'info'});
+        setMessageParams({content:'Ocorreu um erro inesperado.',type:'error'});
     }
     return (
         <StyleCreateStore>
