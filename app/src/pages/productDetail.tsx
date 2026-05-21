@@ -17,7 +17,7 @@ type ProductState = {
 }
 export const ProductDetail = ()=>{
     const {productid} = useParams()
-    const {BoxMessage,setMessage} = useBoxMessage({styledType:'toast'})
+    const {BoxMessage,addMessage} = useBoxMessage({styledType:'toast'})
     
     useSyncCart()
     const [ products , setProducts] = useState<ProductState>({
@@ -50,7 +50,7 @@ export const ProductDetail = ()=>{
             <ProductStyle>
                 <BoxMessage/>
                 
-                <BoxProductDetail setMessage={setMessage} status={products.status} datas={products.datas} />
+                <BoxProductDetail addMessage={addMessage} status={products.status} datas={products.datas} />
             </ProductStyle>
         </Container>
     )
