@@ -17,7 +17,7 @@ type State = {
 
 
 export const Coupon = ()=>{
-  const {BoxMessage,setMessage}  =useBoxMessage({styledType:'toast'})
+  const {BoxMessage,addMessage}  =useBoxMessage({styledType:'toast'})
   const [coupons,setCoupons] = useState<State>({
     datas:[] as Coupons,status:0
   })
@@ -48,7 +48,7 @@ export const Coupon = ()=>{
                   >
               
                 <ListCoupons 
-                  setMessage={setMessage} 
+                  addMessage={addMessage} 
                   datas={ coupons.datas }/>
               </RenderDataState>
             </div>
