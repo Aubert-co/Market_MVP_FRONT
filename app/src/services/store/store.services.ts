@@ -35,24 +35,24 @@ export const serviceCreateStore =
 export const DATAS_STORE = {
   name:'',photo:'',id:0,description:''
 } satisfies Store
-export const serviceGetStores = async():Promise<ResponseDatas<Store>>=>{
+export const serviceGetStores = async():Promise<ResponseDatas<Store[]>>=>{
     try{
-        const response = await fetch(`${API_BASE_URL}/store`,{
+        const response = await fetch(`${API_BASE_URL}/stores`,{
           method:'GET',
           credentials:'include',
           headers: {
             'Content-Type': 'application/json'
           }
         })
-        if(!response.ok){
-          return {message:'Algo deu errado',status:response.status,datas:DATAS_STORE}
-        }
+       
         const {datas} = await response.json()
-        
+         if(!response.ok){
+          return {message:'Algo deu errado',status:response.status,datas:[]}
+        }
         return {status:200 ,datas,message:'sucess'}
     }catch{
       return {
-          status:500,datas:DATAS_STORE
+          status:500,datas:[]
           ,message:'Algo deu errado!'
         }
     }
