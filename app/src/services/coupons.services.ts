@@ -13,10 +13,8 @@ export const availableCoupons = async():Promise<ResponseDatas<Coupom>>=>{
             }
         })
         
-        let {datas,message}  = await response.json()
-        if(!datas){
-            datas = []
-        }
+        const {datas,message}  = await response.json()
+        
         if(!response.ok){
             return {datas:[],message:'',status:response.status}
         }

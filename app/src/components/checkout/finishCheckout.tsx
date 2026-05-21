@@ -5,7 +5,7 @@ import { PrimaryButton } from "@/styles/shared.style"
 
 type Props = {
     couponId?:number,
-    addMessage:({}:AddMessageParams)=>void,
+    addMessage:({type,content}:AddMessageParams)=>void,
 }
 export const FinishCheckout = ({couponId,addMessage}:Props)=>{
      const onClick = async()=>{

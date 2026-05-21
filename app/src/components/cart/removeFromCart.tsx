@@ -6,7 +6,7 @@ import { useRemoveFromCart } from "./useRemoveFromCart"
 
 type Props ={
     id:number,
-    addMessage:({}:AddMessageParams)=>void
+    addMessage:({type,content}:AddMessageParams)=>void
 }
 
 

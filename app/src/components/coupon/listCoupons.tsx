@@ -6,7 +6,7 @@ import { AddCoupon } from "./AddCoupon";
 
 type Props = {
   datas:BaseCoupon<number>[],
-  addMessage:({}:AddMessageParams)=>void
+  addMessage:({content,type}:AddMessageParams)=>void
 }
 export const ListCoupons = ({ datas,addMessage }: Props) => {
   return (

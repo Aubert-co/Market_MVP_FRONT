@@ -3,7 +3,7 @@ import { userAddCoupon } from "@/services/coupons.services"
 
 type Props = {
     id:number,
-    addMessage:({}:AddMessageParams)=>void
+    addMessage:({content,type}:AddMessageParams)=>void
 }
 export const AddCoupon = ({id,addMessage}:Props)=>{
     const onClick = async()=>{

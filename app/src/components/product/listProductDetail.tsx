@@ -18,7 +18,7 @@ type Props = {
       rating: number;
     };
   };
- addMessage:({}:AddMessageParams)=>void
+ addMessage:({content,type}:AddMessageParams)=>void
 }
 export const ListProductDetail = ({product,ratings,addMessage}:Props)=>{
     const navigate = useNavigate()

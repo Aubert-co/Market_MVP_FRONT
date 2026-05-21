@@ -9,7 +9,7 @@ import { BoxSkeleton } from "../templates/skeleton"
 
 type Props ={
     datas:ProductDetails,
-    addMessage: ({}:AddMessageParams)=>void,
+    addMessage: ({content,type}:AddMessageParams)=>void,
     status:number
 }
 

@@ -32,9 +32,7 @@ export const serviceCreateStore =
   }
 };
 
-export const DATAS_STORE = {
-  name:'',photo:'',id:0,description:''
-} satisfies Store
+
 export const serviceGetStores = async():Promise<ResponseDatas<Store[]>>=>{
     try{
         const response = await fetch(`${API_BASE_URL}/stores`,{

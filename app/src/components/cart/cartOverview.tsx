@@ -20,7 +20,7 @@ const ListInfo = styled.div`
     
 `
 type Props = UpdateCartState &{
-  addMessage:({}:AddMessageParams)=>void
+  addMessage:({content,type}:AddMessageParams)=>void
 }
 export const CartOverview  =({updateCart,setUpdateCart,addMessage}:Props)=>{
   const [cartTotal,setCartTotal] = useState<number>(0)

@@ -20,7 +20,7 @@ type Props = {
   nextPage:{currentPage:number},
   couponStatus:FilterCoupons
   setPagesInfos:SetPages,
-  refresh:Number,
+  refresh:number,
  
 }
 export const useCouponDatas = ({setPagesInfos,nextPage,couponStatus,refresh}:Props):ReturnCouponsDatas=>{

@@ -8,7 +8,7 @@ import type { AddMessageParams } from "../../hooks/useBoxMessages"
 type Props = {
   id:number,
   quantity:number,
-  addMessage:({}:AddMessageParams)=>void,
+  addMessage:({type,content}:AddMessageParams)=>void,
   stock:number
 }
 const CartStyle = styled.div`

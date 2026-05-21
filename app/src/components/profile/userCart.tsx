@@ -18,7 +18,7 @@ type CartState = {
 }
 type Props = {
   formRef:React.RefObject<HTMLInputElement | null>,
-  addMessage:({}:AddMessageParams)=>void
+  addMessage:({content,type}:AddMessageParams)=>void
 
 }
 
