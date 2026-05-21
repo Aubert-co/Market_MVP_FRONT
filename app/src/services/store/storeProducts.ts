@@ -5,18 +5,19 @@ import type {   GetStoreProducts } from "@/types/storeDashboard.types";
 import { API_BASE_URL } from "@/configs/api";
 
 
-export const getStoreProducts = async({nextPage,category,orderby,name}:
+export const getStoreProducts = async({nextPage,category,orderby,name=""}:
     GetStoreProducts):Promise<ResponseWithPages<Product[]>>=>{
          try{     
+            if(category === "Todas")category = "";
             const store = getStorageStore()
             const response = await fetch(`${API_BASE_URL}/stores/${store.id}/products?page=${nextPage}&category=${category}&orderBy=${orderby}&search=${name}`,{
                 method:'GET',
                 headers: {'Content-Type': 'application/json'},
-                body:JSON.stringify({category,name,orderby}),
                 credentials:'include'
             })  
+            
             const responseValues = await response.json()
-          
+           
              if(!response.ok){
                 return {datas:[],message:responseValues.message,currentPage:1,totalPages:1,status:response.status}
              }
@@ -29,7 +30,7 @@ export const getStoreProducts = async({nextPage,category,orderby,name}:
             }
         
           
-        }catch{
+        }catch(err){
             return {datas:[],currentPage:1,totalPages:1,status:500,message:'Deu erro'}
         }
 
