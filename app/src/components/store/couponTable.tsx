@@ -41,8 +41,8 @@ export const CouponTable = ({coupons,status}:Props) => {
     <RenderDataState<Coupom>
       datas={coupons}
       status={status}
-      emptyMessage={"testing"}
-      errorMessage="algo deu errado"
+      emptyMessage={"Nenhum cupom disponivel"}
+      errorMessage="Algo deu errado, tente novamente mais tarde!"
       skeleton={<TableSkeleton/>}
       >
       
