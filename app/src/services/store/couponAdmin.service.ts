@@ -12,18 +12,26 @@ export type StoreCoupons = {
     nextPage:number
 }
 export const getStoreCoupons = async({couponStatus,nextPage}:StoreCoupons):Promise<ResponseWithPages<StoreCoupon>>=>{
-    
     try{
-
         const store = getStorageStore()
-        const response = await fetch(`${API_BASE_URL}/store/coupons/${store.id}?page=${nextPage}&status=${couponStatus}`,{
+        const response = await fetch(`${API_BASE_URL}/stores/coupons/${store.id}?page=${nextPage}&status=${couponStatus}`,{
             credentials:'include',
             method:'GET',
+             headers: {
+            'Content-Type': 'application/json'
+            },
         })
         const {datas,message,currentPage,totalPages} = await response.json()
-        if(!response.ok){
-            return {datas:[],status:response.status,message,currentPage:1,totalPages:1}
+          if(!response.ok){
+            return {
+                datas:[],
+                message,
+                status:response.status,
+                currentPage:1,
+                totalPages:1
+            }
         }
+        
         return {datas,status:response.status,message,currentPage,totalPages}
    }catch{
         return {datas:[],status:500,message:'Algo deu errado!',currentPage:1,totalPages:1}
