@@ -19,9 +19,11 @@ type ReturnCouponsDatas = {
 type Props = {
   nextPage:{currentPage:number},
   couponStatus:FilterCoupons
-  setPagesInfos:SetPages
+  setPagesInfos:SetPages,
+  refresh:Number,
+ 
 }
-export const useCouponDatas = ({setPagesInfos,nextPage,couponStatus}:Props):ReturnCouponsDatas=>{
+export const useCouponDatas = ({setPagesInfos,nextPage,couponStatus,refresh}:Props):ReturnCouponsDatas=>{
   const [coupons,setCoupons] = useState<State>({
       datas:[],status:0,message:''
     })
@@ -32,6 +34,7 @@ export const useCouponDatas = ({setPagesInfos,nextPage,couponStatus}:Props):Retu
         setPages:setPagesInfos,
         body:{nextPage:nextPage.currentPage,couponStatus}
       })
-    },[nextPage.currentPage,couponStatus,setPagesInfos])
+     
+    },[nextPage.currentPage,couponStatus,setPagesInfos,refresh])
     return {coupons:coupons.datas,status:coupons.status}
 }
