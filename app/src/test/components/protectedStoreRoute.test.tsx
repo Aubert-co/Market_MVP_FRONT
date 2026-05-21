@@ -9,9 +9,9 @@ import type { Store } from "@/types/store.types"
 const mockService = jest.spyOn(services,'serviceGetStores')
 const mockSaveStorage = jest.spyOn(storage,'saveStorageStore')
 const MockComponent = ()=><h1>Ola mundo</h1>
-const mockStore = {
+const mockStore = [{
     name:'lojinha',id:32,description:'lorem itpsu' ,photo:'photo'
-} satisfies Store
+}] satisfies Store[]
 describe('test',()=>{
     beforeEach(()=>{
         jest.clearAllMocks()
@@ -33,7 +33,7 @@ describe('test',()=>{
 
        await  waitFor(()=>{
             expect(getByText("Ola mundo")).toBeInTheDocument()
-            expect(mockSaveStorage).toHaveBeenCalledWith( mockStore )
+            expect(mockSaveStorage).toHaveBeenCalledWith( mockStore[0] )
         })
     })
 
@@ -102,9 +102,9 @@ describe('test',()=>{
             expect(mockSaveStorage).not.toHaveBeenCalled()
         })
     })
-     it("should not redirect to the store dashboard when the status is OK and the store id is 0",async()=>{
+     it("should not redirect to the store dashboard when the status is OK but the store data is empty",async()=>{
         mockService.mockResolvedValue({
-            datas:{name:'',id:0,description:'',photo:''},
+            datas:[],
             status:200,message:'tudo certo'
         })
         const {queryByText} = render(
