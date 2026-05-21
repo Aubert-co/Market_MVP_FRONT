@@ -73,7 +73,6 @@ export const Search  = ()=>{
     })
    
     useEffect(()=>{
-      console.log("useefect",values,"name",productName)
       usableFetch<Product[],BodySearch>({
         body:{name:productName , ...values},
         service:searchProduct,
