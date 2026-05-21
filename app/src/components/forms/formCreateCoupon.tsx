@@ -1,6 +1,6 @@
-import {  UserFormStyles } from "@/styles/forms.style"
+import {   UserFormStyles } from "@/styles/forms.style"
 import { InputWithLabel } from "./inputWithLabel"
-import { useRef, useState } from "react"
+import { useRef, useState, type SetStateAction } from "react"
 import { useBoxMessage } from "../../hooks/useBoxMessages"
 import { getMultiInputValues } from "@/utils"
 import { checkIsAValidNumber, isAValidString } from "@/utils/checkIsValid"
@@ -39,8 +39,9 @@ function validateInputs({ selectDiscount, discount, cupomCode, quantity }:Valida
 
 type Props = {
     setCloseDrawer:(props:null)=>void
+    setRefreshDatas:React.Dispatch<SetStateAction<number>>
 }
-export const FormCreateCoupon = ({setCloseDrawer}:Props)=>{
+export const FormCreateCoupon = ({setCloseDrawer,setRefreshDatas}:Props)=>{
     
     const [selectDiscount,setDiscount] = useState("fixed")
     const [expiresAt,setExpires] = useState("fivedays")
@@ -65,7 +66,12 @@ export const FormCreateCoupon = ({setCloseDrawer}:Props)=>{
         })
         
         if(status === 201){
+            setRefreshDatas((prev)=>prev+1)
             addMessage({content:"Cupom criado com sucesso",type:"success"})
+
+            setTimeout(()=>{
+                setCloseDrawer(null )
+            },3000)
             return
         }
         if(status === 409){
