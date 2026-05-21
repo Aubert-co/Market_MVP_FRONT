@@ -39,10 +39,10 @@ export const searchProduct = async({name="",category,minPrice,maxPrice,orderBy}:
         
         const response = await fetch(`${API_BASE_URL}/product/search?name=${name}&category=${category}&minPrice=${minPrice}&maxPrice=${maxPrice}&orderBy=${orderBy}`)
         
-        if(!response.ok){
-          throw new Error()
-        }
         const {datas,message} = await response.json()
+         if(!response.ok){
+          return {datas:[],message,status:response.status}
+        }
         return {datas,message,status:response.status}
     }catch{
         return {datas:[],status:500,message:'Algo deu errado!'}
