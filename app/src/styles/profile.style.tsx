@@ -258,11 +258,15 @@ text-align:center;
 }
 
 .box p {
-  font-size: 14px;
-  color: #111; 
-  font-weight: 600;
-  text-align: center;
-  margin: 2px 0 0 0; 
+  font-size: 0.85rem;
+  font-weight: 500; 
+
+  color: #4a5568; 
+
+  margin: 0;
+  line-height: 1.4;
+
+  transition: color 0.2s ease;
 }
   
 `
