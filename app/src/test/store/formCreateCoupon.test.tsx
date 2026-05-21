@@ -4,6 +4,7 @@ import * as services from "@/services/store/couponAdmin.service"
 
 const spyService = jest.spyOn(services,'createCoupon')
 const eventCloseDrawer = jest.fn()
+const setRefreshDatas = jest.fn()
 describe("component FormCreateCoupon",()=>{
     const body = {
         code:"DESCONTO15",
@@ -21,7 +22,7 @@ describe("component FormCreateCoupon",()=>{
         spyService.mockResolvedValue({status:201,message:''})
         
         const {container,getByPlaceholderText,getAllByTestId,getByText} = render(
-            <FormCreateCoupon setCloseDrawer={eventCloseDrawer}/>
+            <FormCreateCoupon setRefreshDatas={setRefreshDatas} setCloseDrawer={eventCloseDrawer}/>
         )
         const inputName = getByPlaceholderText("Ex: DESCONTO15")
         const [selectDiscount,selectDate] = getAllByTestId("select")
@@ -42,7 +43,7 @@ describe("component FormCreateCoupon",()=>{
 
         expect( spyService).toHaveBeenCalledTimes(1)
         expect( spyService).toHaveBeenCalledWith( body )
-
+        expect(setRefreshDatas).toHaveBeenCalledTimes(1)
       
     })
 })
@@ -63,7 +64,7 @@ describe("when quantity is invalid",()=>{
         spyService.mockResolvedValue({status:201,message:''})
         const quantity ="b3m"
         const {container,getByPlaceholderText,getAllByTestId,getByText} = render(
-            <FormCreateCoupon setCloseDrawer={eventCloseDrawer}/>
+            <FormCreateCoupon setRefreshDatas={setRefreshDatas} setCloseDrawer={eventCloseDrawer}/>
         )
         const inputName = getByPlaceholderText("Ex: DESCONTO15")
         const [selectDiscount,selectDate] = getAllByTestId("select")
@@ -83,14 +84,14 @@ describe("when quantity is invalid",()=>{
         },{timeout:1000})
 
         expect( spyService).not.toHaveBeenCalled()
-      
+        expect(setRefreshDatas).not.toHaveBeenCalled()
     })
     it("should prevent service call and return an error message if the quantity is 50 or greater",async()=>{
         const quantity = 50
         spyService.mockResolvedValue({status:201,message:''})
         
         const {container,getByPlaceholderText,getAllByTestId,getByText} = render(
-            <FormCreateCoupon setCloseDrawer={eventCloseDrawer}/>
+            <FormCreateCoupon setRefreshDatas={setRefreshDatas} setCloseDrawer={eventCloseDrawer}/>
         )
         const inputName = getByPlaceholderText("Ex: DESCONTO15")
         const [selectDiscount,selectDate] = getAllByTestId("select")
@@ -110,7 +111,7 @@ describe("when quantity is invalid",()=>{
         },{timeout:1000})
 
         expect( spyService).not.toHaveBeenCalled()
-      
+        expect(setRefreshDatas).not.toHaveBeenCalled()
     })
 })
 
@@ -130,7 +131,7 @@ describe("when code is invalid",()=>{
         spyService.mockResolvedValue({status:201,message:''})
         const code ="a".repeat(13)
         const {container,getByPlaceholderText,getAllByTestId,getByText} = render(
-            <FormCreateCoupon setCloseDrawer={eventCloseDrawer}/>
+            <FormCreateCoupon setRefreshDatas={setRefreshDatas} setCloseDrawer={eventCloseDrawer}/>
         )
         const inputName = getByPlaceholderText("Ex: DESCONTO15")
         const [selectDiscount,selectDate] = getAllByTestId("select")
@@ -150,13 +151,13 @@ describe("when code is invalid",()=>{
         },{timeout:1000})
 
         expect( spyService).not.toHaveBeenCalled()
-      
+        expect(setRefreshDatas).not.toHaveBeenCalled()
     })
     it("should prevent service call and return an error message if the code is empty",async()=>{
         spyService.mockResolvedValue({status:201,message:''})
         const code =""
         const {container,getByPlaceholderText,getAllByTestId,getByText} = render(
-            <FormCreateCoupon setCloseDrawer={eventCloseDrawer}/>
+            <FormCreateCoupon setRefreshDatas={setRefreshDatas} setCloseDrawer={eventCloseDrawer}/>
         )
         const inputName = getByPlaceholderText("Ex: DESCONTO15")
         const [selectDiscount,selectDate] = getAllByTestId("select")
@@ -176,7 +177,7 @@ describe("when code is invalid",()=>{
         },{timeout:1000})
 
         expect( spyService).not.toHaveBeenCalled()
-      
+        expect(setRefreshDatas).not.toHaveBeenCalled()
     })
    
 })
@@ -197,7 +198,7 @@ describe("when discount is invalid",()=>{
         spyService.mockResolvedValue({status:201,message:''})
         const discount = 65
         const {container,getByPlaceholderText,getAllByTestId,getByText} = render(
-            <FormCreateCoupon setCloseDrawer={eventCloseDrawer}/>
+            <FormCreateCoupon setRefreshDatas={setRefreshDatas} setCloseDrawer={eventCloseDrawer}/>
         )
         const inputName = getByPlaceholderText("Ex: DESCONTO15")
         const [selectDiscount,selectDate] = getAllByTestId("select")
@@ -217,13 +218,13 @@ describe("when discount is invalid",()=>{
         },{timeout:1000})
 
         expect( spyService).not.toHaveBeenCalled()
-      
+        expect(setRefreshDatas).not.toHaveBeenCalled()
     })
     it("should prevent service call and return an error message if discount is negative",async()=>{
         spyService.mockResolvedValue({status:201,message:''})
         const discount = -1
         const {container,getByPlaceholderText,getAllByTestId,getByText} = render(
-            <FormCreateCoupon setCloseDrawer={eventCloseDrawer}/>
+            <FormCreateCoupon setRefreshDatas={setRefreshDatas} setCloseDrawer={eventCloseDrawer}/>
         )
         const inputName = getByPlaceholderText("Ex: DESCONTO15")
         const [selectDiscount,selectDate] = getAllByTestId("select")
@@ -243,7 +244,7 @@ describe("when discount is invalid",()=>{
         },{timeout:1000})
 
         expect( spyService).not.toHaveBeenCalled()
-      
+        expect(setRefreshDatas).not.toHaveBeenCalled()
     })
    
 })
@@ -263,7 +264,7 @@ describe("services",()=>{
         spyService.mockResolvedValue({status:409,message:''})
        
         const {container,getByPlaceholderText,getAllByTestId,getByText} = render(
-            <FormCreateCoupon setCloseDrawer={eventCloseDrawer}/>
+            <FormCreateCoupon setRefreshDatas={setRefreshDatas} setCloseDrawer={eventCloseDrawer}/>
         )
         const inputName = getByPlaceholderText("Ex: DESCONTO15")
         const [selectDiscount,selectDate] = getAllByTestId("select")
@@ -284,12 +285,13 @@ describe("services",()=>{
         })
         expect( spyService).toHaveBeenCalledTimes(1)
         expect( spyService ).toHaveBeenCalledWith( body)
+        expect(setRefreshDatas).not.toHaveBeenCalled()
     })
      it("should return an error with message 'Limit of active coupons reached for this store.'",async()=>{
         spyService.mockResolvedValue({status:409,message:'Limit of active coupons reached for this store.'})
        
         const {container,getByPlaceholderText,getAllByTestId,getByText} = render(
-            <FormCreateCoupon setCloseDrawer={eventCloseDrawer}/>
+            <FormCreateCoupon setRefreshDatas={setRefreshDatas} setCloseDrawer={eventCloseDrawer}/>
         )
         const inputName = getByPlaceholderText("Ex: DESCONTO15")
         const [selectDiscount,selectDate] = getAllByTestId("select")
@@ -315,7 +317,7 @@ describe("services",()=>{
         spyService.mockResolvedValue({status:501,message:''})
        
         const {container,getByPlaceholderText,getAllByTestId,getByText} = render(
-            <FormCreateCoupon setCloseDrawer={eventCloseDrawer}/>
+            <FormCreateCoupon setRefreshDatas={setRefreshDatas} setCloseDrawer={eventCloseDrawer}/>
         )
         const inputName = getByPlaceholderText("Ex: DESCONTO15")
         const [selectDiscount,selectDate] = getAllByTestId("select")
@@ -336,5 +338,6 @@ describe("services",()=>{
         })
         expect( spyService).toHaveBeenCalledTimes(1)
         expect( spyService ).toHaveBeenCalledWith( body)
+        expect(setRefreshDatas).not.toHaveBeenCalled()
     })
 })
