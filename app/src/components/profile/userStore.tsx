@@ -47,20 +47,12 @@ export const ListStore =  ({store,formRef}:PropsListStore & PropsUserStore)=>{
         )
 }
 
-const getValidStore = (datas:any)=>{
-    if(Array.isArray(datas) && datas.length >0)return datas
 
-    if(datas.id && datas.id > 0)return datas
-
-    return []
-}
 export const UserStore =({formRef}:PropsUserStore)=>{
     const [ stores,setStores] = useState<StoreState>({
         datas:[],status:0,message:''
     })
    
-    const datas = getValidStore(stores.datas)
-    
     useEffect(()=>{
       usableFetch<Store[],unknown>({setDatas:setStores,service:serviceGetStores,body:{}})
     },[])
@@ -71,7 +63,7 @@ export const UserStore =({formRef}:PropsUserStore)=>{
             </div>
             <div  className="list-container">
             <RenderDataState<Store>
-                datas={ datas }
+                datas={ stores.datas }
                 status={stores.status}
                 emptyMessage={
                     <>
