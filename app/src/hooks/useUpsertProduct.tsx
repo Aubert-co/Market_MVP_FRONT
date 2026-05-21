@@ -35,34 +35,34 @@ export const  useUpsertProduct = ({type,valuesRef,closeModal,originalValues}:Pro
 
   const {nameRef,descriptionRef,priceRef,stockRef,categoryRef,imageRef} = valuesRef
  
-  const { setMessage, BoxMessage } = useBoxMessage({ styledType: "" })
+  const { addMessage, BoxMessage } = useBoxMessage({ styledType: "" })
 
 
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
      const [name,description,price,stock,category] = getMultiInputValues(nameRef,descriptionRef,priceRef,stockRef,categoryRef)
     if (!isAValidString(name)) {
-      setMessage({ content: "Digite um nome válido", type: "info" })
+      addMessage({ content: "Digite um nome válido", type: "info" })
       return
     }
     
     if (!isAValidString(description, 199)) {
-      setMessage({ content: "Digite uma descrição válida", type: "info" })
+      addMessage({ content: "Digite uma descrição válida", type: "info" })
       return
     }
 
     if (!checkIsAValidNumber(price)) {
-      setMessage({ content: "Digite um preço válido", type: "info" })
+      addMessage({ content: "Digite um preço válido", type: "info" })
       return
     }
 
     if (!checkIsAValidNumber(stock)) {
-      setMessage({ content: "Digite um estoque válido", type: "info" })
+      addMessage({ content: "Digite um estoque válido", type: "info" })
       return
     }
 
     if (!checkIsAValidCategory(category)) {
-      setMessage({ content: "Selecione uma categoria", type: "info" })
+      addMessage({ content: "Selecione uma categoria", type: "info" })
       return
     }
 
@@ -78,7 +78,7 @@ export const  useUpsertProduct = ({type,valuesRef,closeModal,originalValues}:Pro
       }
       if(!hasChanges(originalFields,{name,description,category,stock,price}) && !file){
      
-        setMessage({content:"Campos não foram alterados",type:'info'})
+        addMessage({content:"Campos não foram alterados",type:'info'})
         return;
       }
       const payload = buildUpdatePayload({
@@ -91,12 +91,12 @@ export const  useUpsertProduct = ({type,valuesRef,closeModal,originalValues}:Pro
       const {status} = await serviceUpdateProduct({...payload,id:originalValues.id,image:file})
       const {content,type:typeMessage} = renderMessage({action:'update',status})
 
-      setMessage({content,type:typeMessage})
+      addMessage({content,type:typeMessage})
       if(status === 201)closeModal(null)
       return;
     }
     if (!file ) {
-      setMessage({ content: "Adicione uma imagem", type: "info" })
+      addMessage({ content: "Adicione uma imagem", type: "info" })
       return
     } 
 
@@ -110,7 +110,7 @@ export const  useUpsertProduct = ({type,valuesRef,closeModal,originalValues}:Pro
         price
       })
       const { content,type:typeMessage} = renderMessage({action:"create",status})
-      setMessage({content,type:typeMessage})
+      addMessage({content,type:typeMessage})
       if(status === 201){
         closeModal(null)
       }
