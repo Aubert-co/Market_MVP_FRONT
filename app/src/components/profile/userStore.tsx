@@ -1,5 +1,5 @@
 import { usableFetch } from "@/services/fetchs"
-import { DATAS_STORE, serviceGetStores } from "@/services/store/store.services"
+import {  serviceGetStores } from "@/services/store/store.services"
 import { ListContainer } from "@/styles/profile.style"
 import type { Store } from "@/types/store.types"
 import { shortDescription } from "@/utils"
@@ -9,8 +9,9 @@ import { loadImage } from "@/utils"
 import { RenderDataState } from "@/components/shared/renderDataState"
 import { BoxSkeleton } from "../templates/skeleton"
 
+
 type StoreState = {
-    datas:Store,
+    datas:Store[],
     status:number
     message:string
 }
@@ -23,6 +24,7 @@ type PropsListStore = {
 export const ListStore =  ({store,formRef}:PropsListStore & PropsUserStore)=>{
     const navigate = useNavigate()
     const sendToStore = ()=>navigate('/loja')
+
     return(
         <>
             {store.map(({photo,description,name,id})=>{
@@ -45,14 +47,22 @@ export const ListStore =  ({store,formRef}:PropsListStore & PropsUserStore)=>{
         )
 }
 
+const getValidStore = (datas:any)=>{
+    if(Array.isArray(datas) && datas.length >0)return datas
 
+    if(datas.id && datas.id > 0)return datas
+
+    return []
+}
 export const UserStore =({formRef}:PropsUserStore)=>{
     const [ stores,setStores] = useState<StoreState>({
-        datas:DATAS_STORE,status:0,message:''
+        datas:[],status:0,message:''
     })
-
+   
+    const datas = getValidStore(stores.datas)
+    
     useEffect(()=>{
-      usableFetch<Store,unknown>({setDatas:setStores,service:serviceGetStores,body:{}})
+      usableFetch<Store[],unknown>({setDatas:setStores,service:serviceGetStores,body:{}})
     },[])
     return (
         <ListContainer>
@@ -61,7 +71,7 @@ export const UserStore =({formRef}:PropsUserStore)=>{
             </div>
             <div  className="list-container">
             <RenderDataState<Store>
-                datas={ stores.datas.id === 0 ? [] : [stores.datas]}
+                datas={ datas }
                 status={stores.status}
                 emptyMessage={
                     <>
@@ -73,7 +83,7 @@ export const UserStore =({formRef}:PropsUserStore)=>{
                     <BoxSkeleton className="list-image" classNameImg="list-item" length={1}/>
                 }
             >
-                <ListStore store={[stores.datas]} formRef={formRef}/>
+                <ListStore store={stores.datas} formRef={formRef}/>
             </RenderDataState>
             </div>
         </ListContainer>
