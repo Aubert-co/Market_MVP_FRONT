@@ -2,7 +2,7 @@ import { loadImage } from "@/utils/index";
 import type { Product } from "@/types/products.types";
 import { ListRatings } from "./listRatings";
 import { Collapse } from "../shared/collapse";
-import type { Message } from "../../hooks/useBoxMessages";
+import type { AddMessageParams } from "../../hooks/useBoxMessages";
 import { addToCart } from "@/services/cart.services";
 import { setItemsCheckout } from "@/storage/checkout.storage";
 import { useNavigate } from "react-router-dom";
@@ -18,21 +18,21 @@ type Props = {
       rating: number;
     };
   };
- setMessage: React.Dispatch<React.SetStateAction<Message>>
+ addMessage:({}:AddMessageParams)=>void
 }
-export const ListProductDetail = ({product,ratings,setMessage}:Props)=>{
+export const ListProductDetail = ({product,ratings,addMessage}:Props)=>{
     const navigate = useNavigate()
     const addCart  = async()=>{
         const {status} = await addToCart(product[0].id)
         if(status === 401){
-            setMessage({content:'Faça login para adicionar ao carrinho',type:'error'})
+            addMessage({content:'Faça login para adicionar ao carrinho',type:'error'})
             return
         }
         if(status >= 500){
-            setMessage({content:'Algo deu errado!',type:'error'})
+            addMessage({content:'Algo deu errado!',type:'error'})
             return;
         }
-        setMessage({content:'Adicionado ao carrinho com sucesso',type:'success'})
+        addMessage({content:'Adicionado ao carrinho com sucesso',type:'success'})
     }
     const redirectCheckout = ()=>{
         const [items] = product.map((val)=>{

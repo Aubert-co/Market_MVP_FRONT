@@ -10,7 +10,7 @@ const getItems = jest.spyOn(localS,'getItemsFromCart')
 const mockServices = jest.spyOn(services,'getUserCart')
 const mockDeleteService = jest.spyOn(services,'deleteFromCart')
 describe('Component useCart',()=>{
-    const setMessage = jest.fn()
+    const addMessage = jest.fn()
      const mockFormRef: React.RefObject<HTMLInputElement | null> = {
               current: {
                 value: '',
@@ -37,7 +37,7 @@ describe('Component useCart',()=>{
         })
         const {getByText,queryByText,container,queryAllByTestId} = render(
             <BrowserRouter>
-                <Cart setMessage={setMessage} formRef={mockFormRef}/>
+                <Cart addMessage={addMessage} formRef={mockFormRef}/>
             </BrowserRouter>
         )
       
@@ -55,8 +55,8 @@ describe('Component useCart',()=>{
         });
         
         
-        expect( setMessage ).toHaveBeenCalledTimes(1)
-        expect( setMessage ).toHaveBeenCalledWith({content:"Removido do carrinho com sucesso!",type:"success"})
+        expect( addMessage ).toHaveBeenCalledTimes(1)
+        expect( addMessage ).toHaveBeenCalledWith({content:"Removido do carrinho com sucesso!",type:"success"})
         
     
         expect( mockDeleteService ).toHaveBeenCalledTimes(1)
@@ -84,7 +84,7 @@ describe('Component useCart',()=>{
 
        const {getByText,queryByText,queryByTestId} = render(
             <BrowserRouter>
-                <Cart setMessage={setMessage} formRef={mockFormRef}/>
+                <Cart addMessage={addMessage} formRef={mockFormRef}/>
             </BrowserRouter>
         )
       
@@ -110,7 +110,7 @@ describe('Component useCart',()=>{
 
        const {getByText,queryByText,queryByTestId} = render(
             <BrowserRouter>
-                <Cart setMessage={setMessage} formRef={mockFormRef}/>
+                <Cart addMessage={addMessage} formRef={mockFormRef}/>
             </BrowserRouter>
         )
       
@@ -137,7 +137,7 @@ describe('Component useCart',()=>{
        
         const {getByText,queryByTestId,queryByText} = render(
             <BrowserRouter>
-                <Cart setMessage={setMessage} formRef={mockFormRef}/>
+                <Cart addMessage={addMessage} formRef={mockFormRef}/>
             </BrowserRouter>
         )
       

@@ -1,4 +1,4 @@
-import { useEffect, useState, type SetStateAction } from "react"
+import { useEffect, useState } from "react"
 import type { UserCart } from "@/types/cart.types"
 import {  CartList } from "@/components/cart/cartList"
 import { getUserCart } from "@/services/cart.services"
@@ -6,7 +6,7 @@ import { UpdateCartContext } from "@/context/cart.context"
 import { ListContainer } from "@/styles/profile.style"
 import { CartOverview } from "../cart/cartOverview"
 import { RenderDataState } from "@/components/shared/renderDataState"
-import type { Message } from "@/hooks/useBoxMessages"
+import type { AddMessageParams } from "@/hooks/useBoxMessages"
 import { Link } from "react-router-dom"
 import { usableFetch } from "@/services/fetchs"
 import { BoxSkeleton } from "../templates/skeleton"
@@ -18,12 +18,12 @@ type CartState = {
 }
 type Props = {
   formRef:React.RefObject<HTMLInputElement | null>,
-  setMessage: React.Dispatch<SetStateAction<Message>>
+  addMessage:({}:AddMessageParams)=>void
 
 }
 
 
-export const Cart = ({formRef,setMessage}:Props)=>{
+export const Cart = ({formRef,addMessage}:Props)=>{
     const [userCart,setUserCart] = useState<CartState>({
         datas:[],
         status:0
@@ -64,8 +64,8 @@ export const Cart = ({formRef,setMessage}:Props)=>{
                   <BoxSkeleton className="list-item" classNameImg="list-image" length={3}/>
                 }
               >
-              <CartOverview setMessage={setMessage} setUpdateCart={setUpdateCart} updateCart={updateCart}/>
-              <CartList setMessage={setMessage} cart={userCart.datas}/>
+              <CartOverview addMessage={addMessage} setUpdateCart={setUpdateCart} updateCart={updateCart}/>
+              <CartList addMessage={addMessage} cart={userCart.datas}/>
             </RenderDataState>
              
              
