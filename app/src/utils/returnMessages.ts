@@ -1,9 +1,9 @@
-import type { Message } from "@/hooks/useBoxMessages"
+import type { AddMessageParams } from "@/hooks/useBoxMessages"
 
 
 type Action = "create" | "update" 
 
-const statusMessages: Record<Action, Record<number, Message>> = {
+const statusMessages: Record<Action, Record<number, AddMessageParams>> = {
   create: {
     201: { content: "Produto criado com sucesso", type: "success" },
   },
@@ -16,12 +16,12 @@ type Params = {
     action:Action
     status:number
 }
-const defaultMessage: Message = {
+const defaultMessage: AddMessageParams = {
   content: "Algo deu errado!",
   type: "info"
 }
 
-export const renderMessage = ({action,status}:Params):Message=>{
+export const renderMessage = ({action,status}:Params):AddMessageParams=>{
     if(status === 401){
         return {content:"Acesso não autorizado",type:"info"}
     }
