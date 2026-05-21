@@ -24,7 +24,7 @@ export const serviceGetProducts = async({nextPage}:GetProductsIndex):Promise<Res
     }
 }
 export type BodySearch ={
-  name?:string,
+  name?:string | null,
   category?:string,
   minPrice?:string | number,
   maxPrice?:string | number,
@@ -32,17 +32,15 @@ export type BodySearch ={
   storeId?:number
 }
 
-export const searchProduct = async({name,category,minPrice,maxPrice,orderBy}:BodySearch):Promise<ResponseDatas<Product[]> >=>{
+export const searchProduct = async({name="",category,minPrice,maxPrice,orderBy}:BodySearch):Promise<ResponseDatas<Product[]> >=>{
     try{
         
-        const response = await fetch(`${API_BASE_URL}/product/search?name${name}&category=${category}&minPrice=${minPrice}&maxPrice=${maxPrice}&orderBy=${orderBy}`,{
-            method:'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+        if(category === "Todas")category = "";
+        
+        const response = await fetch(`${API_BASE_URL}/product/search?name=${name}&category=${category}&minPrice=${minPrice}&maxPrice=${maxPrice}&orderBy=${orderBy}`)
+        
         if(!response.ok){
-          return {datas:[],status:response.status,message:''}
+          throw new Error()
         }
         const {datas,message} = await response.json()
         return {datas,message,status:response.status}
