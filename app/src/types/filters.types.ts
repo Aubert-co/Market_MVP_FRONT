@@ -8,8 +8,8 @@ export type CategoryOption = Category | "Todas"
 
 export type Filter = {
     orderBy:OrderBy,
-    minPrice:number,
-    maxPrice:number,
+    minPrice:number | string,
+    maxPrice:number | string,
     category:CategoryOption
 }
 

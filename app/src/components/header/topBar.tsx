@@ -9,13 +9,13 @@ type Props = {
 }
 export const TopBar = ({navigationMode}:Props)=>{
     const navigate = useNavigate()
-    const {searchEvent} = useSearch({mode:navigationMode ?? 'navigate'})
+    const {searchEvent,searchProduct} = useSearch({mode:navigationMode ?? 'navigate'})
     return(
         <>
             <div className="logo">
                 <Link to={"/"}>SUPERSTORE</Link>
             </div>
-            <SearchBar searchEvent={searchEvent}/>
+            <SearchBar searchEvent={searchEvent} initialValue={searchProduct}/>
             <nav>
                 <i>
                     <FaShoppingCart data-testid="profile-cart" onClick={()=>navigate("/perfil/carrinho")}/>

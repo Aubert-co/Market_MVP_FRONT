@@ -4,11 +4,12 @@ import { BoxProducts } from "@/components/product/boxProducts"
 import { usableFetch } from "@/services/fetchs"
 import { searchProduct, type BodySearch } from "@/services/productsService"
 import type { Product } from "@/types/products.types"
-import type { Filter } from "@/types/filters.types"
+import type { Filter, OrderBy } from "@/types/filters.types"
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import {  useSearchParams } from "react-router-dom"
 import { Collapse } from "@/components/shared/collapse"
 import styled from "styled-components"
+import { checkIsAValidCategory, checkIsAValidNumber } from "@/utils/checkIsValid"
 
 type ProductState ={
   datas: Product[];
@@ -42,28 +43,50 @@ const SearchBox = styled.div`
     }
   }
 `;
-
+const getFilterParams = (searchParams:URLSearchParams)=>{
+  const category = searchParams.get("category")
+  const maxPrice = searchParams.get("maxPrice")
+  const minPrice =  searchParams.get("minPrice")
+  const orderBy = searchParams.get("orderBy")
+  const productName = searchParams.get("q")
+  const maxPriceNm = checkIsAValidNumber(maxPrice) ? Number(maxPrice) : ""
+  const minPriceNm = checkIsAValidNumber(minPrice) ? Number(minPrice) : ""
+  const od:OrderBy = orderBy === "asc" ? "asc" : "desc"
+  const matchCategories = checkIsAValidCategory(category) ? category : undefined
+  
+  return {
+    category:matchCategories ?? "Todas",
+    orderBy:od,productName,
+    maxPrice:maxPriceNm ?? 0,
+    minPrice:minPriceNm ?? 0
+  }
+}
 export const Search  = ()=>{
     const [products,setProducts] = useState<ProductState>({
         datas:[] as Product[],status:0,message:''
     })
-    const {product} = useParams()
+
+    const [searchParams] = useSearchParams()
+    const {minPrice,maxPrice,orderBy,category,productName} = getFilterParams(searchParams)
     const [values,setValues] = useState<Filter>({
-      minPrice:0,maxPrice:0,orderBy:'asc',category:'Todas'
+      minPrice,maxPrice,orderBy,category
     })
+   
     useEffect(()=>{
+      console.log("useefect",values,"name",productName)
       usableFetch<Product[],BodySearch>({
-      body:{name:product , ...values},
-      service:searchProduct,
-      setDatas:setProducts
+        body:{name:productName , ...values},
+        service:searchProduct,
+        setDatas:setProducts
       })
-    },[product,values])
+    },[productName,values,setValues])
+   
     return (
         <Container navigateMode="update">
             <SearchBox>
                 <div className="filtered">
                     <Collapse title="Filtrar">
-                        <FilterProducts setValues={setValues}/>
+                        <FilterProducts values={values} setValues={setValues}/>
                     </Collapse>
                 </div>
             

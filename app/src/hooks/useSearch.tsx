@@ -6,8 +6,17 @@ type Params = {
     initialValue?:string
 }
 export const useSearch = ({mode,initialValue}:Params)=>{
-    const [searchProduct,setSearchProduct] = useState<string>(initialValue ?? "")
+
+   
     const [searchParams, setSearchParams] = useSearchParams();
+    if(!initialValue && mode ==="update"){
+        const newParams = new URLSearchParams(searchParams)
+        const q = newParams.get("q")
+    
+        initialValue = q ?? ""
+    }
+    const [searchProduct,setSearchProduct] = useState<string>(initialValue ?? "")
+
     const navigate = useNavigate()
     const searchEvent = (search:string)=>{
 

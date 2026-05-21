@@ -2,9 +2,11 @@ import { InputWithLabel } from "@/components/forms/inputWithLabel"
 import { useSelect } from "@/hooks/useSelect"
 import {  categorySelectOptions } from "@/constants/filters"
 import type { Filter, OrderBy,CategoryOption,DatasSelect } from "@/types/filters.types"
-
-import { useRef, type SetStateAction } from "react"
+import {   useState, type SetStateAction } from "react"
 import styled from "styled-components"
+import { useSearchParams } from "react-router-dom"
+import { deleteUrlParams, setUrlParams } from "@/utils/urlParams"
+
 
 export const FilterProductsContainer = styled.form`
   width: 100%;                
@@ -86,44 +88,64 @@ export const FilterProductsContainer = styled.form`
   }
 `;
 type Props = {
-  setValues:React.Dispatch<SetStateAction<Filter>>
+  setValues:React.Dispatch<SetStateAction<Filter>>,
+  values:Filter
 }
 const DATASORDERBY = [{value:'asc',text:'menor preço'},{value:'desc',text:'maior preço'}] as DatasSelect<OrderBy>[];
 
 
-export const FilterProducts = ({setValues}:Props)=>{
+
+export const FilterProducts = ({setValues,values}:Props)=>{
+    const [,setSearchParams] = useSearchParams()
+   
+    const setCategoryParams = setUrlParams(setSearchParams,"category")
+    const setOrderByParams = setUrlParams(setSearchParams,"orderBy")
+    const setMaxPriceParams = setUrlParams(setSearchParams,"maxPrice")
+    const setMinPriceParams = setUrlParams(setSearchParams,"minPrice")
+    const deleteSearchParams = deleteUrlParams(setSearchParams)
     const {Select:SelectCategory,selected:category,setSelected:setCategory} = useSelect<CategoryOption>(
         {datas:categorySelectOptions,text:'Selecione uma categoria',className:"select-category",
-          name:"filter-category"
-        });
+          name:"filter-category",initialValue:values.category,
+          cbSelected:setCategoryParams
+    });
 
     const {Select:SelectOrderBy,selected:orderBy,setSelected:setOrder} = useSelect<OrderBy>(
-        {datas:DATASORDERBY,text:'Ordene por',className:"order-by",name:"filter-orderby"});
+        {datas:DATASORDERBY,text:'Ordene por',className:"order-by",name:"filter-orderby"
+          ,cbSelected:setOrderByParams
+        });
   
-    const minPriceRef = useRef<HTMLInputElement | null >(null)
-    const maxPriceRef = useRef<HTMLInputElement | null>(null)
+    const [minPrice,setMinPrice] = useState<number | string>(values.minPrice ?? "")
+    const [maxPrice,setMaxPrice] = useState<number | string >(values.maxPrice ?? "")
 
+    const onChangeMaxPrice = (value:string)=>{
+        setMaxPrice(value)
+        setMaxPriceParams(value)
+    }
+    const onChangeMinPrice = (value:string)=>{
+      setMinPrice(value)
+      setMinPriceParams(value)
+    }
+   
     const onClick = (e:React.FormEvent<HTMLFormElement>)=>{
       e.preventDefault()
       
-      const maxPrice = maxPriceRef.current?.value ?? '0'
-      const minPrice = minPriceRef.current?.value ?? '0'
-    
       setValues({
         category,
         orderBy,
         maxPrice:Number(maxPrice) , 
         minPrice:Number(minPrice) 
       })
-        
+      
     }
     const onClean = ()=>{
       setCategory("Todas")
-      setOrder("asc")
 
-    if (minPriceRef.current) minPriceRef.current.value = ''
-    if (maxPriceRef.current) maxPriceRef.current.value = ''
-    
+      deleteSearchParams(["category","maxPrice","orderBy","minPrice"])
+     
+      setOrder("asc")
+      setMinPrice("")
+      setMaxPrice("")
+     
     }
     return(
         <FilterProductsContainer onSubmit={onClick} className="filter-products">
@@ -132,11 +154,20 @@ export const FilterProducts = ({setValues}:Props)=>{
                 <SelectOrderBy/>
             </InputWithLabel>
             <InputWithLabel textLabel="Preço minimo:" inputName="min-price">
-                <input  placeholder="0" data-testid="min-price" type="number" ref={minPriceRef} name="min-price"/>
+                <input  placeholder="0" data-testid="min-price" type="number"
+                onChange={(e)=>onChangeMinPrice(e.target.value)} name="min-price"
+                value={minPrice}
+                />
             </InputWithLabel>
 
             <InputWithLabel textLabel="Preço maximo:" inputName="max-price">
-                <input placeholder="0" data-testid="max-price" name="max-price" type="number" ref={maxPriceRef}/>
+                <input placeholder="0" 
+                  data-testid="max-price" 
+                  name="max-price" 
+                  type="number" 
+                  onChange={(e)=>onChangeMaxPrice(e.target.value)}
+                  value={maxPrice}
+                  />
             </InputWithLabel>
             <InputWithLabel textLabel="Selecione uma categoria:" inputName="">
                 <SelectCategory/>
