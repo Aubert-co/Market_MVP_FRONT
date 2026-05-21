@@ -14,10 +14,10 @@ export const ProtectedStoreRoutes = () => {
     return <Navigate to="/login" replace />
   }
 
-  if (storeInfo.datas.id === 0) {
+  if (storeInfo.datas.length === 0) {
     return <Navigate to="/abrir-loja" replace />
   }
-  saveStorageStore(storeInfo.datas);
+  saveStorageStore(storeInfo.datas[0]);
 
   return <Outlet />
 }
