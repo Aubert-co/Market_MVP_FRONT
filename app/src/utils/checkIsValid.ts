@@ -51,8 +51,9 @@ const normalizeString = (str: string) =>
      .replace(/[\u0300-\u036f]/g, "") 
      .toLowerCase();
      
-export const checkIsAValidCategory = (category:string)=>{
- const normalizedInput = normalizeString(category);
+export const checkIsAValidCategory = (category:unknown):boolean=>{
+  if(typeof category !=="string")return false;
+  const normalizedInput = normalizeString(category);
 
   return categories.some(cat => normalizeString(cat) === normalizedInput);
 }
