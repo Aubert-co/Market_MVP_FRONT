@@ -12,10 +12,14 @@ export const availableCoupons = async():Promise<ResponseDatas<Coupom>>=>{
                 'Content-Type': 'application/json'
             }
         })
+        
+        let {datas,message}  = await response.json()
+        if(!datas){
+            datas = []
+        }
         if(!response.ok){
             return {datas:[],message:'',status:response.status}
         }
-        const {datas,message}  = await response.json()
         return {datas ,message,status:response.status}
     }catch{
         return {datas:[] ,message:'Algo deu errado!',status:500}
@@ -31,9 +35,6 @@ export const userAddCoupon = async(couponId:number):Promise<Response>=>{
             },
             body:JSON.stringify({couponId})
         })
-        if(!response.ok){
-            return {status:response.status,message:''}
-        }
         const {message} = await response.json()
         return {message,status:response.status}
     }catch{
