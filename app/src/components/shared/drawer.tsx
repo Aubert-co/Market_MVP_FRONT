@@ -10,13 +10,14 @@ const StyleDrawer = styled.div<{ $open: boolean }>`
   top: 0;
   right: 0;
 
-  width: 380px;
+  width: 380px; 
   max-width: 100%;
   height: 100vh;
 
   background-color: #ffffff;
-  border-left: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: -12px 0 24px rgba(0, 0, 0, 0.08);
+
+  border-left: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: -16px 0 32px rgba(0, 0, 0, 0.12);
 
   display: flex;
   flex-direction: column;
@@ -25,9 +26,12 @@ const StyleDrawer = styled.div<{ $open: boolean }>`
 
   transform: ${({ $open }) =>
     $open ? 'translateX(0)' : 'translateX(100%)'};
-  transition: transform 0.3s ease;
+
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 
   overflow-y: auto;
+
+  scroll-behavior: smooth;
 
 `;
 
