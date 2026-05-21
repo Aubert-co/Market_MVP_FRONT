@@ -14,16 +14,17 @@ import type { FilterCoupons } from "@/types/filters.types"
 import { ORDER_COUPON_STATUS } from "@/constants/filters"
 import  { useCouponSelect, useCouponsFilters } from "@/hooks/store/storeCoupons/useCouponsFilters"
 import  { usePagination } from "@/hooks/usePagination"
+import { useState } from "react"
 
 export const StoreCoupons = ()=>{
 
   const {setIsOpen,isOpen} = useSideBarOrDrawer()
- 
+  const [refresh,setRefresh] = useState(0)
   const {changePage,couponStatus} = useCouponsFilters()
   const {Pagination,setPagesInfos,pageInfos}= usePagination(changePage);
 
    const {coupons,status}  = useCouponDatas({
-    setPagesInfos,couponStatus,nextPage:pageInfos
+    setPagesInfos,couponStatus,nextPage:pageInfos,refresh
    })
   const {onChange,selectOption}= useCouponSelect()
   const titleDrawer = "Criar cupom"
@@ -50,7 +51,7 @@ export const StoreCoupons = ()=>{
             title={titleDrawer}
             onClose={setIsOpen}
             >
-              <FormCreateCoupon setCloseDrawer={setIsOpen}/>
+              <FormCreateCoupon setRefreshDatas={setRefresh} setCloseDrawer={setIsOpen}/>
           </Drawer>
 
         <main>
