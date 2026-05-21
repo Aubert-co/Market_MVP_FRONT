@@ -18,7 +18,7 @@ type StateCoupon = {
 
 
 export const Checkout = ()=>{
-    const {BoxMessage,setMessage} = useBoxMessage({styledType:'toast'})
+    const {BoxMessage,addMessage} = useBoxMessage({styledType:'toast'})
     const [datas,setDatas] = useState({
       items:[] as ItemsCheckout[]
     })
@@ -56,7 +56,7 @@ export const Checkout = ()=>{
           
           <div className="overview">
               <p > Total: R${totally.toFixed(2)}</p>
-              <FinishCheckout  setMessage={setMessage} couponId={coupon.item?.id}/>
+              <FinishCheckout  addMessage={addMessage} couponId={coupon.item?.id}/>
           </div>
           </ProductsCheckout>
        
