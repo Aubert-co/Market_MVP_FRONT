@@ -278,7 +278,8 @@ describe("store/product filters",()=>{
             category: "Todas",
             name: "Tenis",
             nextPage: 1,
-            priceOrder: "asc"
+            priceOrder: "asc",
+            stockOrder:"asc"
         })
     })
      it("should update the URL correctly with the page params",async()=>{
@@ -319,7 +320,8 @@ describe("store/product filters",()=>{
         expect(getByTestId("location")).toHaveTextContent("?page=2")
 
         expect(mockService).toHaveBeenLastCalledWith({
-            nextPage:2,category:"Todas",name:"",priceOrder:"asc"
+            nextPage:2,category:"Todas",name:"",priceOrder:"asc",
+            stockOrder:"asc"
         })
     })
     it("should change the url correctly with all params when inputs change",async()=>{
@@ -377,7 +379,7 @@ describe("store/product filters",()=>{
        
         expect( mockService ).toHaveBeenLastCalledWith({
             category,name:searchValue,priceOrder:orderBy,
-            nextPage
+            nextPage,stockOrder:"asc"
         })
     })
 })
