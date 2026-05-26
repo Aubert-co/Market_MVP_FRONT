@@ -1,4 +1,4 @@
-import type { CategoryOption ,DatasSelect, FilterCoupons, ProductSortOption, SelectOrderStatus} from "@/types/filters.types";
+import type { CategoryOption ,DatasSelect, FilterCoupons, OrderBy,  SelectOrderStatus} from "@/types/filters.types";
 
 export const categories = [
   "Roupas",
@@ -24,16 +24,20 @@ export const categorySelectOptions = allCategoriesOption.map((val)=>{
   return { text:val,value:val}
 }) as DatasSelect<CategoryOption>[]
 
-export const PRODUCT_SORT_ARRAY = [
-  "price_asc","price_desc","stock_asc","stock_desc"
-] satisfies ProductSortOption[];
+export const SORT_OPTIONS = [
+"asc","desc"
+] satisfies OrderBy[];
 
-export const PRODUCT_SORT_OPTIONS: DatasSelect<ProductSortOption>[] = [
-  { value: "price_asc", text: "Menor preço" },
-  { value: "price_desc", text: "Maior preço" },
-  { value: "stock_asc", text: "Menor estoque" },
-  { value: "stock_desc", text: "Maior estoque" },
+export const PRODUCT_SORT_OPTIONS: DatasSelect<OrderBy>[] = [
+  { value: "asc", text: "Menor preço" },
+  { value: "desc", text: "Maior preço" },
+  
 ];
+
+export const STOCK_SORT_OPTIONS: DatasSelect<OrderBy>[]=[
+  { value: "asc", text: "Menor estoque" },
+  { value: "desc", text: "Maior estoque" },
+]
 
 export const ORDER_STATUS_OPTIONS:SelectOrderStatus[] = [
   {text:'completo',value:'completed'},
