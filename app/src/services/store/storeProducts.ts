@@ -5,12 +5,12 @@ import type {   GetStoreProducts } from "@/types/storeDashboard.types";
 import { API_BASE_URL } from "@/configs/api";
 
 
-export const getStoreProducts = async({nextPage,category,orderby,name=""}:
+export const getStoreProducts = async({nextPage,category,priceOrder,name="",stockOrder}:
     GetStoreProducts):Promise<ResponseWithPages<Product[]>>=>{
          try{     
             if(category === "Todas")category = "";
             const store = getStorageStore()
-            const response = await fetch(`${API_BASE_URL}/stores/${store.id}/products?page=${nextPage}&category=${category}&orderBy=${orderby}&search=${name}`,{
+            const response = await fetch(`${API_BASE_URL}/stores/${store.id}/products?page=${nextPage}&category=${category}&orderBy=${priceOrder}&search=${name}&stock=${stockOrder}`,{
                 method:'GET',
                 headers: {'Content-Type': 'application/json'},
                 credentials:'include'

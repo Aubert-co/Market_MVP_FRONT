@@ -17,11 +17,11 @@ import { useStoreProducts } from "@/hooks/store/useStoreProducts"
 import { useSearch } from "@/hooks/useSearch"
 import { useProductDrawer } from "@/hooks/store/storeProduct/useProductDrawer"
 import { useUrlParams } from "@/hooks/store/storeProduct/useUrlParams"
-import {  useSelectCategory, useSelectProductOptions } from "@/hooks/store/storeProduct/useSelectFilters"
+import {  useSelectCategory, useSelectProductOptions, useSelectStockOptions } from "@/hooks/store/storeProduct/useSelectFilters"
 import { getStorageStore } from "@/storage/store.storage"
-import { categorySelectOptions, PRODUCT_SORT_OPTIONS } from "@/constants/filters"
+import { categorySelectOptions, PRODUCT_SORT_OPTIONS, STOCK_SORT_OPTIONS } from "@/constants/filters"
 import { Select } from "@/components/shared/select"
-import type { CategoryOption, ProductSortOption } from "@/types/filters.types"
+import type { CategoryOption, OrderBy } from "@/types/filters.types"
 
 
 
@@ -30,6 +30,7 @@ export const StoreProducts = ()=>{
     const {changePage,searchQuery,urlPage} = useUrlParams()
 
     const {onChangeProductOrderBy,orderProductBy} = useSelectProductOptions()
+    const  {onChangeStockOrderBy,stockSort} = useSelectStockOptions()
     const {categories,onChangeCategory} = useSelectCategory()
   
     const [productModal,setProductModal] = useState<{datas:Product[]}>({
@@ -44,7 +45,7 @@ export const StoreProducts = ()=>{
    
     const {products} = useStoreProducts({
         nextPage:pageInfos,category:categories,searchProduct,
-        setPagesInfos,orderby:orderProductBy
+        setPagesInfos,priceOrder:orderProductBy,stockOrder:stockSort
     })
     
     const {onClose:closeModalProduct,openModal:modalProduct,Modal:ModalListProduct} = useModal()
@@ -95,12 +96,19 @@ export const StoreProducts = ()=>{
                         onChange={onChangeCategory}
                         selected={categories}
                     />
-                    <Select<ProductSortOption>
+                    <Select<OrderBy>
                         datas={PRODUCT_SORT_OPTIONS}
                         name={"select-filter"}
-                        text={'Selecione um filtro'}
+                        text={'Ordenar por preço'}
                         selected={orderProductBy}
                         onChange={onChangeProductOrderBy}
+                    />
+                     <Select<OrderBy>
+                        datas={STOCK_SORT_OPTIONS}
+                        name={"select-filter-stock"}
+                        text={'Ordenar por estoque'}
+                        selected={stockSort}
+                        onChange={onChangeStockOrderBy}
                     />
                     {!isDrawerOpen && <button onClick={openCreateProductDrawer}>Criar Produto</button>}
                 </Controls>

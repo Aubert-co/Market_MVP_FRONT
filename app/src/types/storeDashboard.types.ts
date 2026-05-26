@@ -1,7 +1,7 @@
 import type { IconType } from "react-icons"
 import type { BaseCoupon } from "./coupons.types"
 import type { Product } from "./products.types"
-import type { Category, ProductSortOption } from "./filters.types"
+import type { Category, OrderBy } from "./filters.types"
 
 export type SideBarItem = {
   label: string
@@ -31,7 +31,8 @@ export type GetStoreProducts = {
   name?:unknown,
   category?:Category,
   nextPage?:number,
-  orderby?:ProductSortOption
+  priceOrder?:OrderBy,
+  stockOrder?:OrderBy
 }
 
 export type GetStoreOrders ={

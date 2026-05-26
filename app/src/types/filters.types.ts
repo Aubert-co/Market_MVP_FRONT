@@ -18,11 +18,6 @@ export type DatasSelect<T extends string | number> = {
     text: string;
 };
 
-export type ProductSortOption =
-  | "price_asc"
-  | "price_desc"
-  | "stock_asc"
-  | "stock_desc";
 
 export type SelectOrderStatus = {
   text:string,
