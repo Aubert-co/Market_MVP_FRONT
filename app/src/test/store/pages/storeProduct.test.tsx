@@ -116,11 +116,12 @@ describe("store/product filters",()=>{
             status:201,totalPages:5,currentPage:2,message:"ok"
         })
         const initialValuesUrl = {
-            page:2,category:"Roupas",orderby:"price_desc",searchValue:"testimg"
+            page:2,category:"Roupas",orderby:"desc",searchValue:"testimg",
+            stockOrder:"desc"
         }
          const { getByRole  } =  render(
             <MemoryRouter initialEntries={[
-                    `/store/products?categoria=${initialValuesUrl.category}&orderby=${initialValuesUrl.orderby}&q=${initialValuesUrl.searchValue}&page=${initialValuesUrl.page}`,
+                    `/store/products?categoria=${initialValuesUrl.category}&orderby=${initialValuesUrl.orderby}&q=${initialValuesUrl.searchValue}&page=${initialValuesUrl.page}&stock_order=${initialValuesUrl.stockOrder}`,
                     ]}>
                 <Routes>
                     <Route path="/store/products" element={<StoreProducts />} />
@@ -128,22 +129,25 @@ describe("store/product filters",()=>{
             </MemoryRouter>
         );
         const selectCategory = getByRole("combobox", { name: /selecione uma categoria/i })
-        const selectOrderby = getByRole("combobox",{name:/selecione um filtro/i}) 
-    
+        const selectOrderby = getByRole("combobox",{name:/Ordenar por preço/i}) 
+        const selectStockOrderby = getByRole("combobox",{name:/Ordenar por estoque/i}) 
+
         await waitFor(()=>{
             expect( mockService ).toHaveBeenCalledTimes(1)
             expect(mockService).toHaveBeenCalledWith({
                 nextPage:initialValuesUrl.page,
                 name:initialValuesUrl.searchValue,
                 category:initialValuesUrl.category,
-                orderby:initialValuesUrl.orderby
+                priceOrder:initialValuesUrl.orderby,
+                stockOrder:initialValuesUrl.stockOrder
             })
             expect(selectCategory).toHaveValue(initialValuesUrl.category);
             expect(selectOrderby).toHaveValue(initialValuesUrl.orderby)
+            expect(selectStockOrderby).toHaveValue(initialValuesUrl.stockOrder)
             expect(getByRole("button", { current: "page" })).toHaveTextContent(initialValuesUrl.page.toString());
         })
     })
-    it("should update the URL params when selecting a product order option",async()=>{
+    it("should update the URL params when selecting a product order option and a stock option",async()=>{
 
         mockGetStoreInfo.mockReturnValue({
             name:'Lojinha',photo:'lorem',description:'testing',id:43
@@ -163,16 +167,17 @@ describe("store/product filters",()=>{
             </MemoryRouter>
         );
       
-        const selectOrderby = getByRole("combobox",{name:/selecione um filtro/i}) 
-        
+        const selectOrderby = getByRole("combobox",{name:/Ordenar por preço/i}) 
+        const selectStockOrderby = getByRole("combobox",{name:/Ordenar por estoque/i}) 
 
         const user = userEvent.setup();
         
+        await user.selectOptions(selectStockOrderby,"Menor estoque")
         await user.selectOptions(selectOrderby, "Maior preço");
 
-        expect(selectOrderby).toHaveValue("price_desc");
+        expect(selectOrderby).toHaveValue("desc");
         
-        expect(getByTestId("location")).toHaveTextContent("?orderby=price_desc")
+        expect(getByTestId("location")).toHaveTextContent("?stock_order=asc&price_order=desc")
        
         
     })
@@ -273,7 +278,7 @@ describe("store/product filters",()=>{
             category: "Todas",
             name: "Tenis",
             nextPage: 1,
-            orderby: "price_asc"
+            priceOrder: "asc"
         })
     })
      it("should update the URL correctly with the page params",async()=>{
@@ -314,7 +319,7 @@ describe("store/product filters",()=>{
         expect(getByTestId("location")).toHaveTextContent("?page=2")
 
         expect(mockService).toHaveBeenLastCalledWith({
-            nextPage:2,category:"Todas",name:"",orderby:"price_asc"
+            nextPage:2,category:"Todas",name:"",priceOrder:"asc"
         })
     })
     it("should change the url correctly with all params when inputs change",async()=>{
@@ -342,13 +347,13 @@ describe("store/product filters",()=>{
         const user = userEvent.setup();
         const searchValue = "Tenis"
         const category = "Roupas"
-        const orderBy = "price_desc"
+        const orderBy = "desc"
         const nextPage = 3;
         const inputSearch = getByPlaceholderText("FAÇA UMA BUSCA")
         const btnSendSearch = getByText("BUSCAR")
       
         const selectCategory = getByRole("combobox", { name: /selecione uma categoria/i })
-        const selectOrderby = getByRole("combobox",{name:/selecione um filtro/i}) 
+        const selectOrderby = getByRole("combobox",{name:/Ordenar por preço/i}) 
         
         await waitFor(async()=>{
             const changePage = getByLabelText(`Ir para página ${nextPage}`)
@@ -367,11 +372,11 @@ describe("store/product filters",()=>{
         
         await user.click( btnSendSearch )
 
-        expect(getByTestId("location")).toHaveTextContent(`?page=${nextPage}&orderby=${orderBy}&categoria=${category}&q=${searchValue}`)
+        expect(getByTestId("location")).toHaveTextContent(`?page=${nextPage}&price_order=${orderBy}&categoria=${category}&q=${searchValue}`)
 
        
         expect( mockService ).toHaveBeenLastCalledWith({
-            category,name:searchValue,orderby:orderBy,
+            category,name:searchValue,priceOrder:orderBy,
             nextPage
         })
     })
