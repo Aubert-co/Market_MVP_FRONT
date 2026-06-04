@@ -88,9 +88,7 @@ export type TopVisitedProduct = {
     name:string,
     imageUrl:string,
     id:number,
-    _count:{
-      views:number
-    },
+    views:number,
     category:string
 }
 
@@ -106,23 +104,36 @@ export type LastOrders = {
 export type StatKey =
   | "views"
   | "revenue"
-  | "orders"
-  | "products"
-  | "coupons"
-  | "conversion";
+  | "countActiveProducts"
+  | "totalActiveCoupons"
+  | "productsInCart"
+  | "totalReviews"
+  | "averageRating";
 
 export type Stat = {
   id: number;
   label: string;
   value: string;
   icon:IconType
-  dataKey:StatKey
+  dataKey:StatKey,
+  hasError:boolean
 };
+export type TypeStats<T> = {
+  value:T,
+  hasError:boolean
+}
+
+
 export type BackendStats = {
-  views:number,
-  revenue:number,
-  orders:number,
-  products:number,
-  coupons:number,
-  conversion:number
+    views:TypeStats<number>,
+    revenue:TypeStats<number>,
+    openOrders:TypeStats<Order[]>,
+    countActiveProducts:TypeStats<number>,
+    totalActiveCoupons:TypeStats<number>,
+    reviews:{
+      averageRating:TypeStats<number>
+      totalReviews:TypeStats<number>
+    },
+    productsInCart:TypeStats<number>
+    topViewedProducts:TypeStats<TopVisitedProduct[]>
 }
