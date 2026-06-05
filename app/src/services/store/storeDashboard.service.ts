@@ -1,82 +1,76 @@
 import { API_BASE_URL } from "@/configs/api"
 import { getStorageStore } from "@/storage/store.storage"
 import type {  ResponseDatas } from "@/types/services.types"
-import type { BackendStats, GetStoreDashboard, TopVisitedProduct } from "@/types/storeDashboard.types"
+import type { BackendStats } from "@/types/storeDashboard.types"
 
-export const storeDashboardService = async():Promise<ResponseDatas<GetStoreDashboard[]>>=>{
-    try{
-        const store = getStorageStore()
-        const response = await fetch(`/store/dashboard/${store.id}`,{
-            credentials:'include'
-        })
-        const {message,datas} = await response.json()
-    
-        if(!response.ok){
-            return {message,
-                datas:[{
-                orders:{cancelled:0,completed:0,pending:0,lastPending:[]},
-                views:{total:0}
-            }] ,
-            status:response.status}
-        }
-        return {message,datas,status:response.status}
-    }catch{
-        return {message:'Algo deu errado!',
-            datas:[{
-            orders:{cancelled:0,completed:0,pending:0,lastPending:[]},
-            views:{total:0}
-        }] ,
-        status:500}
+
+
+export const dashboardStatsFallback: BackendStats = {
+  views: {
+    value: 0,
+    hasError: true
+  },
+  revenue: {
+    value: 0,
+    hasError: true
+  },
+  openOrders: {
+    value: [],
+    hasError: true
+  },
+  countActiveProducts: {
+    value: 0,
+    hasError: true
+  },
+  totalActiveCoupons: {
+    value: 0,
+    hasError: true
+  },
+  reviews: {
+    averageRating: {
+      value: 0,
+      hasError: true
+    },
+    totalReviews: {
+      value: 0,
+      hasError: true
     }
-
+  },
+  productsInCart: {
+    value: 0,
+    hasError: true
+  },
+  topViewedProducts:{
+    value:[],
+    hasError:true
+  }
 }
-
-export const topVisitedProducts = async():Promise<ResponseDatas<TopVisitedProduct[]>>=>{
-     try{
-        const store = getStorageStore()
-        const response = await fetch(`${API_BASE_URL}/stores/${store.id}/products/most-viewed`,{
-            method:'GET',
-            credentials:'include'
-        })
-       
-        if(!response.ok){
-            return {
-                message:"Algo deu errado",
-                status:500,
-                datas:[]
-            }
-        }
-        const {message,datas} = await response.json()
-
-        return {datas,message,status:response.status}
-    }catch{
-        return {
-            message:"Algo deu errado",
-            status:500,
-            datas:[]
-        }
-    }
-}
-
-
 
 export const dashboardStats = async():Promise<ResponseDatas<BackendStats>>=>{
   try{
-    const response = await fetch('',{
+    const storeId = getStorageStore()
+    const response = await fetch(`${API_BASE_URL}/store/dashboard/${storeId.id}`,{
       credentials:'include'
     })
+    
+    const {datas ,message} =await response.json()
     if(!response.ok){
-      return {message:'Algo deu errado',status:500,
-        datas:{revenue:0,views:0,orders:0,conversion:0,coupons:0,products:0}
+  
+      return {message,status:response.status,
+        datas:dashboardStatsFallback
       }
     }
-    const {datas,message} =await response.json()
+    if (!datas || Object.keys(datas).length === 0) {
+      return {
+        datas: dashboardStatsFallback,
+        message,
+        status: response.status,
+      }
+    }
+    return {datas , message , status:response.status}
 
-    return { datas, message , status:response.status}
-
-  }catch{
-    return {message:'Algo deu errado',status:500,datas:{
-      revenue:0,views:0,orders:0,conversion:0,coupons:0,products:0
-    }}
+  }catch(err:unknown){
+       
+    return {message:'Algo deu errado',status:500,datas:dashboardStatsFallback}
   }
 }

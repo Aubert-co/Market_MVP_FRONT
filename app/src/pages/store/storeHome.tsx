@@ -10,17 +10,16 @@ import { SectionHeader } from "@/components/shared/sectionHeader"
 import { Card, Grid } from "@/styles/shared.style"
 import { TopVisitedProducts } from "@/components/store/topVisitedProducts"  
 import { Link } from "react-router-dom"
-import { useStoreLastOrders } from "@/hooks/store/useStoreHome"
-import { useMostVisitedProducts } from "@/hooks/store/useMostVisitedProducts"
 import { useDashboardStats } from "@/hooks/store/useDashboardStas"
 
+
+const convertStatus = (hasError:boolean):number=> hasError ? 500 : 200
 
 export const StoreHome= () => {
 
   const {setIsOpen,isOpen} = useSideBarOrDrawer()
-  const {mostVisited,status:statusMostVisited} = useMostVisitedProducts()
-  const {orders,status} = useStoreLastOrders()
-  const {stats} = useDashboardStats()
+  
+  const {stats,openOrders,topVisitProducts} = useDashboardStats()
 
   return (
     <ContainerDashboard  isSidebarOpen={isOpen==="sidebar"}>
@@ -47,14 +46,14 @@ export const StoreHome= () => {
               <SectionHeader title="Últimas Ordens" 
                 action={<Link to={"/loja/pedidos"}>ver mais</Link>}/>
                 
-              <OrdersTable status={status} typeTable="mini_table" orders={orders} />
+              <OrdersTable status={convertStatus(openOrders.hasError)} typeTable="mini_table" orders={openOrders.value} />
             </Card>
 
             <Card>
               <SectionHeader title="Produtos mais visitados no mês" 
                 action={<Link to={"/loja/produtos"}>ver mais</Link>}
               />
-              <TopVisitedProducts products={mostVisited} status={statusMostVisited}/>
+              <TopVisitedProducts products={topVisitProducts.value} status={convertStatus(topVisitProducts.hasError)}/>
             </Card>
           </Grid>
         </Box>

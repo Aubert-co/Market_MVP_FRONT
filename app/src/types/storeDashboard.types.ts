@@ -137,3 +137,8 @@ export type BackendStats = {
     productsInCart:TypeStats<number>
     topViewedProducts:TypeStats<TopVisitedProduct[]>
 }
+
+export type FormatStats = Omit<BackendStats, "openOrders"|"reviews" | "topViewedProducts" > & {
+  totalReviews:TypeStats<number>
+  averageRating:TypeStats<number>
+}

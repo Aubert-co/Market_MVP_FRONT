@@ -16,7 +16,9 @@ const renderTopVisitedProducts = (
 ) => {
   
   return products.map((p) => {
-    const growth = p._count.views
+   const growth = Number.isNaN(p.views) || p.views == null
+    ? 0
+    : p.views
     return (
     
     <Card key={p.id}>
@@ -28,7 +30,7 @@ const renderTopVisitedProducts = (
       <Info>
         <Name>{p.name}</Name>
         <Visits>
-          {p._count.views} visitas
+          {p.views} visitas
         </Visits>
       </Info>
 

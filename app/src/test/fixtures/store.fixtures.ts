@@ -5,18 +5,14 @@ export const FixtureVisitedProducs:TopVisitedProduct[] = [{
     id: 1,
     name: "Camiseta Oversized Preta",
     imageUrl: "https://via.placeholder.com/150",
-    _count:{
-      views:3355
-    },
+    views:3355,
     category:"shirt"
   },
   {
     id: 2,
     name: "Tênis Esportivo Branco",
     imageUrl: "https://via.placeholder.com/150",
-    _count:{
-      views:399
-    },
+    views:399,
     category:"shirt"
 
   },
@@ -24,9 +20,7 @@ export const FixtureVisitedProducs:TopVisitedProduct[] = [{
     id: 3,
     name: "Relógio Digital Premium",
     imageUrl: "https://via.placeholder.com/150",
-    _count:{
-      views:300
-    },
+    views:300,
     category:"shoes"
   
   }

@@ -7,25 +7,35 @@ type Props = {
 }
 
 
-export const DashboardStats = ({stats}:Props) => {
+export const DashboardStats = ({ stats }: Props) => {
   return (
     <Container>
-      {
-      stats.map((stat) => {
+      {stats.map((stat) => {
         const Icon = stat.icon
+
         return (
-        <Card key={stat.id}>
-          <BoxIcon>
-            <Icon/>
-          </BoxIcon>
-          <strong>{stat.value}</strong>
-          <h3>{stat.label}</h3>
-        </Card>
-        )})
-      }
+          <Card className={"card-"+stat.dataKey} key={stat.id}>
+            <BoxIcon>
+              <Icon />
+            </BoxIcon>
+
+            {stat.hasError ? (
+              <>
+                <strong data-testid={"stats-error-"+stat.dataKey}>Erro</strong>
+                <p>Não foi possível carregar esta métrica.</p>
+              </>
+            ) : (
+              <>
+                <strong data-testid={"stats-"+stat.dataKey}>{stat.value}</strong>
+                <h3>{stat.label}</h3>
+              </>
+            )}
+          </Card>
+        )
+      })}
     </Container>
-  );
-};
+  )
+}
 
 export const BoxIcon = styled.div`
   width: 44px;

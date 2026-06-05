@@ -1,37 +1,57 @@
 import { DashboardStats } from "@/components/shared/dashboardStats"
-import { mapStats, Stats } from "@/constants/dashboardStats"
-import type { BackendStats } from "@/types/storeDashboard.types"
+import { formatValues, mapStats, Stats } from "@/constants/dashboardStats"
+import type {  FormatStats } from "@/types/storeDashboard.types"
+
 import { render } from "@testing-library/react"
 
 
-export const mockBackendStats: BackendStats = {
-  views: 1240,
-  revenue: 12540,
-  orders: 32,
-  products: 18,
-  coupons: 4,
-  conversion: 3.4
+export const mockBackendStats:FormatStats = {
+    views:{
+        hasError:false,
+        value:1200
+    },
+    countActiveProducts:{
+        hasError:false,
+        value:130
+    },
+    productsInCart:{
+        hasError:false,
+        value:500
+    },
+
+         averageRating:{
+        value:4.8,
+        hasError:false
+    },
+        totalReviews:{
+            value:50,
+            hasError:false,
+        },
+    
+    revenue:{
+        value:340,
+        hasError:false
+    },
+    totalActiveCoupons:{
+        value:4,
+        hasError:false
+    },
+   
+  
 }
 describe("component DashboardStats",()=>{
     it("should successfully render the data",()=>{
         const map = mapStats(mockBackendStats)
+        
         const {getByText,queryByText} = render(
             <DashboardStats stats={map}/>
         )
         Stats.forEach((stat) => {
-            const rawValue = mockBackendStats[stat.dataKey]
+            const value = mockBackendStats[stat.dataKey].value 
             expect(queryByText(stat.label)).toBeInTheDocument()
-            if (stat.dataKey === "conversion") {
-                const formatted = `${rawValue}%`
-                expect(getByText(formatted)).toBeInTheDocument()
-                return
-            }
-
+           
            if (stat.dataKey === "revenue") {
-                const formatted = new Intl.NumberFormat("pt-BR", {
-                    style: "currency",
-                    currency: "BRL",
-                }).format(rawValue)
+                const formatted = formatValues("revenue",value)
 
                 const escaped = formatted.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
 
@@ -41,7 +61,7 @@ describe("component DashboardStats",()=>{
 
                 return
             }
-            expect(getByText(String(rawValue))).toBeInTheDocument()
+            expect(getByText(String(value))).toBeInTheDocument()
         })
     })
    
