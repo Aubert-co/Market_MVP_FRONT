@@ -1,4 +1,4 @@
-export const datas = {
+export const storeDashboard = {
       views: {
         value: 1250,
         hasError: false,
@@ -35,7 +35,7 @@ export const datas = {
             productId: 2,
             total: 450,
             quantity: 1,
-            status: "PAID",
+            status: "PENDING",
             createdAt: Date.now(),
             price: 450,
           },
