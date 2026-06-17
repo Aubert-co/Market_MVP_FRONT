@@ -64,17 +64,12 @@ box-sizing: border-box;
   background-color: #fff; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
   transition: transform 0.3s, box-shadow 0.3s;
+  text-decoration: none;
 }
 
 .product:hover {
   transform: translateY(-5px); 
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
-}
-
-.product p {
-  margin: 10px;
-  color: #666;
-  font-size: 0.95rem;
 }
 
 .product a:hover {
@@ -85,7 +80,7 @@ box-sizing: border-box;
   background-color: #e0e0e0;
   width: 100%;          
   max-width: 300px;     
-  height: 250px;
+  height: 200px;
   border-radius: 10px 10px 0 0;
   overflow: hidden;    
 }
@@ -94,6 +89,57 @@ box-sizing: border-box;
   width: 100%;          
   height: 100%;        
   object-fit: cover;    
+}
+  .content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  padding: 16px;
+  text-align: left;
+}
+
+.product p {
+  margin: 0;
+}
+
+.item_name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgb(14, 20, 32);
+  line-height: 1.4;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.description {
+  color: #6b7280;
+  font-size: 0.9rem;
+  line-height: 1.5;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  min-height: 42px;
+}
+
+.rating {
+  margin-top: 4px;
+}
+
+.price {
+  margin-top: 6px;
+
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: rgb(14, 20, 32);
+
+  text-decoration: none;
 }
   `
 export const Header = styled.header`
@@ -259,3 +305,80 @@ i{
 }
  
 `;
+/**
+ * .content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  padding: 16px;
+  flex: 1;
+
+  text-align: left;
+}
+  .img {
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+    background: #f5f5f5;
+  }
+
+  .img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .product:hover .img img {
+    transform: scale(1.05);
+  }
+
+  .item_name {
+    padding: 12px 16px 0;
+    margin: 0;
+
+    color: rgb(14, 20, 32);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+    min-height: 48px;
+  }
+
+ 
+  .description {
+    margin: 0;
+    padding: 0 16px;
+
+    color: #6b7280;
+    font-size: 0.88rem;
+    line-height: 1.4;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+    min-height: 40px;
+  }
+  .price {
+    padding: 0 16px;
+    
+
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: rgb(14, 20, 32);
+  }
+  .rating {
+    padding: 6px 16px;
+    font-size: 0.9rem;
+    font-weight: 500;
+
+  }
+ */
