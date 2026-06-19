@@ -11,6 +11,7 @@ import { Card, Grid } from "@/styles/shared.style"
 import { TopVisitedProducts } from "@/components/store/topVisitedProducts"  
 import { Link } from "react-router-dom"
 import { useDashboardStats } from "@/hooks/store/useDashboardStas"
+import { getStorageStore } from "@/storage/store.storage"
 
 
 const convertStatus = (hasError:boolean):number=> hasError ? 500 : 200
@@ -19,11 +20,11 @@ export const StoreHome= () => {
 
   const {setIsOpen,isOpen} = useSideBarOrDrawer()
   
-  const {stats,openOrders,topVisitProducts} = useDashboardStats()
-
+  const {stats,openOrders,topVisitProducts,status} = useDashboardStats()
+  const storeInfo = getStorageStore()
   return (
     <ContainerDashboard  isSidebarOpen={isOpen==="sidebar"}>
-      <Sidebar storeName="test"
+      <Sidebar storeName={storeInfo.name}
         isOpen={isOpen === "sidebar"}
         items={selectMenuItem("Dashboard")}
         setOpen={setIsOpen}
@@ -36,7 +37,7 @@ export const StoreHome= () => {
           />
 
           <Box>
-              <DashboardStats stats={stats}/>
+              <DashboardStats status={status} stats={stats}/>
           </Box>
 
         
