@@ -3,11 +3,19 @@ import styled from "styled-components";
 
 
 type Props = {
-  stats:Stat[]
+  stats:Stat[],
+  status:number
 }
 
 
-export const DashboardStats = ({ stats }: Props) => {
+export const DashboardStats = ({ stats ,status}: Props) => {
+  if (status === 0) {
+    return (
+      <Container>
+        <LoadingText>Carregando...</LoadingText>
+      </Container>
+    )
+  }
   return (
     <Container>
       {stats.map((stat) => {
@@ -67,7 +75,15 @@ const Container = styled.div`
     grid-template-columns: 1fr;
   }
 `;
-
+const LoadingText = styled.p`
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 14px;
+  color: #888;
+  padding: 20px 0;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+`;
 const Card = styled.div`
   position: relative;
   background: #ffffff;
