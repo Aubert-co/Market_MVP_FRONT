@@ -36,7 +36,8 @@ export const searchProduct = async({name="",category,minPrice,maxPrice,orderBy}:
     try{
         
         if(category === "Todas")category = "";
-        
+        maxPrice = maxPrice ===0 ? "" : maxPrice
+        minPrice =  minPrice === 0 ? "" : minPrice
         const response = await fetch(`${API_BASE_URL}/product/search?name=${name}&category=${category}&minPrice=${minPrice}&maxPrice=${maxPrice}&orderBy=${orderBy}`)
         
         const {datas,message} = await response.json()
