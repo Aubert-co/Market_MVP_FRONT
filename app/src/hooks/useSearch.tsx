@@ -18,20 +18,22 @@ export const useSearch = ({mode,initialValue}:Params)=>{
     const [searchProduct,setSearchProduct] = useState<string>(initialValue ?? "")
 
     const navigate = useNavigate()
-    const searchEvent = (search:string)=>{
+    const searchEvent = (search:string,redirect?:boolean)=>{
 
-        if(mode === "navigate"){
+        if(mode === "navigate" && redirect){
             navigate({
                 pathname: "/buscas",
                 search: new URLSearchParams({ q: search }).toString()
             });
-            return;
+            
         }
-        const newParams = new URLSearchParams(searchParams);
-        newParams.set("q", search);
-        
-        setSearchParams(newParams);
-        setSearchProduct(search)
+        if(mode === "update"){
+            const newParams = new URLSearchParams(searchParams);
+            newParams.set("q", search);
+            
+            setSearchParams(newParams);
+            setSearchProduct(search)
+        }
     }
     return {
         searchProduct,setSearchProduct,
