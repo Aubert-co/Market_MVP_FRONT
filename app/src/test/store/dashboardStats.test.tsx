@@ -44,7 +44,7 @@ describe("component DashboardStats",()=>{
         const map = mapStats(mockBackendStats)
         
         const {getByText,queryByText} = render(
-            <DashboardStats stats={map}/>
+            <DashboardStats stats={map} status={201}/>
         )
         Stats.forEach((stat) => {
             const value = mockBackendStats[stat.dataKey].value 
