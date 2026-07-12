@@ -80,7 +80,7 @@ box-sizing: border-box;
   background-color: #e0e0e0;
   width: 100%;          
   max-width: 300px;     
-  height: 200px;
+  height: 260px;
   border-radius: 10px 10px 0 0;
   overflow: hidden;    
 }
