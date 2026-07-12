@@ -69,7 +69,7 @@ export const dashboardStats = async():Promise<ResponseDatas<BackendStats>>=>{
     }
     return {datas , message , status:response.status}
 
-  }catch(err:unknown){
+  }catch{
        
     return {message:'Algo deu errado',status:500,datas:dashboardStatsFallback}
   }
