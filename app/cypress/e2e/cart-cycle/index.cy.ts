@@ -33,7 +33,7 @@ describe("cicle productPage to profile/cart",()=>{
         cy.get('[aria-label="Quantidade de itens no carrinho"]')
             .should('contain', '2')
 
-        cy.get('[aria-label="Diminuir quantitdade"]')
+        cy.get('[aria-label="Diminuir quantidade"]')
         .click()
         cy.get('[aria-label="Quantidade de itens no carrinho"]')
             .should('contain', '1')

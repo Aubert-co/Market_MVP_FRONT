@@ -39,7 +39,7 @@ export  const UpdateCartQuantity =({id,quantity,setQuantity,stock}:Props)=>{
     }
     return(
         <div key={id} className="cart-update">
-            <button aria-label="Diminuir quantitdade" onClick={()=>click('decrease')}>
+            <button aria-label="Diminuir quantidade" onClick={()=>click('decrease')}>
                 -
             </button>
                 <p aria-label="Quantidade de itens no carrinho">{quantity}</p>
