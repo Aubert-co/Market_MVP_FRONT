@@ -27,7 +27,8 @@ export const useDashboardStats = ():ReturnUseStats=>{
       body:{}
     })
   },[])
-  return {stats:mappedStats,openOrders,status:stats.status,
+  return {
+    stats:mappedStats,openOrders,status:stats.status,
     topVisitProducts:topViewedProducts
   }
 }
