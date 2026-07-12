@@ -3,6 +3,7 @@ import { useRef } from "react"
 import { serviceLoginOrRegister } from "@/services/loginOrRegister"
 import { FormLoginOrRegister } from "@/components/forms/formLoginOrRegister";
 import type { AddMessageParams } from "@/hooks/useBoxMessages";
+import { StyleCreateStore } from "@/styles/registerPage";
 export type TypeSubmitLogin = {
     email:string,
     password:string,
@@ -35,5 +36,10 @@ export const Login = ()=>{
         submitUserDatas.setMessageParams({content:'Erro interno, tente novamente',type:'error'})
         
     }
-    return <FormLoginOrRegister type={"Login"} submitEvent={submitForm} formRef={formRef}></FormLoginOrRegister>
+    return (
+    <StyleCreateStore>
+          <FormLoginOrRegister type={"Login"} submitEvent={submitForm} formRef={formRef}></FormLoginOrRegister>
+    </StyleCreateStore>
+    )
+  
 }
