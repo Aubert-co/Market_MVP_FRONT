@@ -29,7 +29,7 @@ export const useStoreProducts = ({category,setPagesInfos,searchProduct,nextPage,
                 setPages:setPagesInfos,
                 
             })
-        },[searchProduct,category,nextPage.currentPage,priceOrder,setPagesInfos])
+        },[searchProduct,category,nextPage.currentPage,priceOrder,setPagesInfos,stockOrder])
 
     return {products}
 }
