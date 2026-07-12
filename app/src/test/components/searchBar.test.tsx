@@ -17,7 +17,7 @@ describe("component SearchBar",()=>{
         fireEvent.change(input,{target:{value:searchFor}})
         fireEvent.click( button )
 
-        expect(searchEvent).toHaveBeenCalledWith( searchFor )
+        expect(searchEvent).toHaveBeenCalledWith( searchFor,true )
         expect(searchEvent).toHaveBeenCalledTimes(1)
     })
     it("should not change the page when the input is null",()=>{

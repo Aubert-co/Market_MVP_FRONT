@@ -24,7 +24,7 @@ describe("hook useSearch",()=>{
     )
 
     act(() => {
-      result.current.searchEvent( value  )
+      result.current.searchEvent( value ,true )
     })
 
     expect(mockedUsedNavigate).toHaveBeenCalledWith({
