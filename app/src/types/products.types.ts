@@ -5,7 +5,8 @@ export type Product ={
     imageUrl:string,
     category:string,
     stock:number,
-    description:string
+    description:string,
+    averageRating?:number
 }
 
 export type ProductView = Omit<Product,|"description">& {
