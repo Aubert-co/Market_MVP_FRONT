@@ -34,7 +34,7 @@ export const getOrderStatus = (order:OrderStatus):string=>{
 
     return "pendente"
 }
-export const loadImage = (imageName:string)=>`/images/${imageName}`
+export const loadImage = (imageName:string)=>`https://cdn.aubertbarbosa.com/market/${imageName}`
 
 export const getUserTotally = ({items,discount,discountType}:UserTotally)=>{
   if(!items || items.length ===0)return 0 
