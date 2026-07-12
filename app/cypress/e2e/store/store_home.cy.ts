@@ -31,7 +31,7 @@ describe("page /loja",()=>{
         const {topViewedProducts,openOrders,reviews,...values} = storeDashboard
         const newObject = {totalReviews:reviews.totalReviews,averageRating:reviews.averageRating,...values}
         Object.entries(newObject).forEach(([key, data]) => {
-            let val = data.value 
+            const val = data.value 
             if(key ==="revenue"){
                 
                 cy.get(`[data-testid="stats-${key}"]`)
@@ -109,9 +109,9 @@ describe("page /loja",()=>{
         
         cy.wait("@getDashboard")
 
-        const {topViewedProducts,openOrders,reviews,...values} = storeDashboard
+        const {reviews,...values} = storeDashboard
         const newObject = {totalReviews:reviews.totalReviews,averageRating:reviews.averageRating,...values}
-        Object.entries(newObject).forEach(([key, data]) => {
+        Object.entries(newObject).forEach(([key]) => {
         
         
             cy.get(`[data-testid="stats-error-${key}"]`)
@@ -136,9 +136,9 @@ describe("page /loja",()=>{
         
         cy.wait("@getDashboard")
 
-        const {topViewedProducts,openOrders,reviews,...values} = storeDashboard
+        const {reviews,...values} = storeDashboard
         const newObject = {totalReviews:reviews.totalReviews,averageRating:reviews.averageRating,...values}
-        Object.entries(newObject).forEach(([key, data]) => {
+        Object.entries(newObject).forEach(([key]) => {
         
         
             cy.get(`[data-testid="stats-error-${key}"]`)
@@ -163,9 +163,9 @@ describe("page /loja",()=>{
         
         cy.wait("@getDashboard")
 
-        const {topViewedProducts,openOrders,reviews,...values} = storeDashboard
+        const {reviews,...values} = storeDashboard
         const newObject = {totalReviews:reviews.totalReviews,averageRating:reviews.averageRating,...values}
-        Object.entries(newObject).forEach(([key, data]) => {
+        Object.entries(newObject).forEach(([key]) => {
         
         
             cy.get(`[data-testid="stats-error-${key}"]`)
