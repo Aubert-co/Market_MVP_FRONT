@@ -15,6 +15,7 @@ import { ORDER_COUPON_STATUS } from "@/constants/filters"
 import  { useCouponSelect, useCouponsFilters } from "@/hooks/store/storeCoupons/useCouponsFilters"
 import  { usePagination } from "@/hooks/usePagination"
 import { useState } from "react"
+import { getStorageStore } from "@/storage/store.storage"
 
 export const StoreCoupons = ()=>{
 
@@ -28,7 +29,7 @@ export const StoreCoupons = ()=>{
    })
   const {onChange,selectOption}= useCouponSelect()
   const titleDrawer = "Criar cupom"
-  
+  const storeInfo = getStorageStore()
   const openStates = {
     sidebar: isOpen === "sidebar",
     drawer: isOpen === "drawer",
@@ -43,7 +44,7 @@ export const StoreCoupons = ()=>{
         <Sidebar 
           items={selectMenuItem("Cupons")}
           setOpen={setIsOpen}
-          storeName="testing"
+          storeName={storeInfo.name}
           isOpen={ openStates.sidebar }/>
 
           <Drawer
