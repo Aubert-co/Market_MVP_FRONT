@@ -14,6 +14,7 @@ import { NotFound } from "./not_found"
 import { Search } from "./search"
 import { Checkout } from "./checkout"
 import { ProtectedStoreRoutes } from "@/components/store/protectedStoreRoute"
+import TermsPage from "./terms"
 export const App = ()=>{
     return(
     <Router>
@@ -30,13 +31,14 @@ export const App = ()=>{
                 <Route path="*" element={<NotFound/>}/>
                 <Route path="/buscas/*" element={<Search/>}/>
                 <Route path="/pagamento" element={<Checkout/>}/>
+                <Route path="/termos-de-responsabilidade" element={<TermsPage/>}/>
                 
-                <Route element={<ProtectedStoreRoutes/>}>
+              
                     <Route path="/loja" element={<StoreHome/>}/>
                     <Route path="/loja/produtos" element={<StoreProducts/>}/>
                     <Route path="/loja/cupons" element={<StoreCoupons/>}/>
                     <Route path="/loja/pedidos" element={<StoreOrders/>}/>
-                </Route>
+            
            
             </Route>
         </Routes>
