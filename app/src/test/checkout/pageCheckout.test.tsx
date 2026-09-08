@@ -6,6 +6,7 @@ import { mockProducts } from "../fixtures/products"
 import type { ItemsCheckout } from "@/types/checkout.types"
 import { mockCoupons } from "../fixtures"
 import { BrowserRouter } from "react-router-dom"
+import { brlCurrency } from "@/utils"
 
 const newItems:ItemsCheckout[] = mockProducts.map((val)=>{
     return {...val,quantity:val.id+5}
@@ -23,9 +24,10 @@ describe("Page checkout",()=>{
             </BrowserRouter>
         )
         const total = newItems.reduce((acc, item) => acc + item.price * item.quantity, 0)
-            
+        
         await waitFor(()=>{
-            expect(getByText(`Total: R$${total.toFixed(2)}`)).toBeInTheDocument()
+            
+            expect(getByText(`Total ${brlCurrency(total).replace(/\u00A0/g, " ")}`)).toBeInTheDocument()
         })
     })
 })

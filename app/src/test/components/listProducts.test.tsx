@@ -2,7 +2,7 @@ import {  render } from "@testing-library/react";
 import  {BrowserRouter} from "react-router-dom"
 import { ListProducts } from "@/components/product/listProducts";
 import { mockProducts } from "../fixtures/products";
-import { loadImage } from "@/utils";
+import { brlCurrency, loadImage } from "@/utils";
 
 
 
@@ -26,7 +26,9 @@ describe("component ListProducts",()=>{
             expect(val).toHaveAttribute('href',`/produto/${mockProducts[index].id}`)
             expect(image[index]).toHaveAttribute('src',loadImage(mockProducts[index].imageUrl))
             expect(getByText(mockProducts[index].name)).toBeInTheDocument()
-            expect(getByText(`R$${mockProducts[index].price}`)).toBeInTheDocument( )
+            const expectedPrice = brlCurrency(mockProducts[index].price).replace(/\u00a0/g, ' ');
+
+            expect(getByText( expectedPrice )).toBeInTheDocument( )
 
         })
     })
@@ -46,7 +48,7 @@ describe("component ListProducts",()=>{
             expect(val).toHaveAttribute('href',`/produto/${mockProducts[index].id}`)
             expect(image[index]).toHaveAttribute('src',loadImage(mockProducts[index].imageUrl))
             expect(getByText(mockProducts[index].name)).toBeInTheDocument()
-            expect(queryByText(`R$${mockProducts[index].price}`)).not.toBeInTheDocument( )
+            expect(queryByText(brlCurrency(mockProducts[index].price))).not.toBeInTheDocument( )
 
         })
     })
