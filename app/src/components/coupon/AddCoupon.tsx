@@ -1,3 +1,4 @@
+import { PrimaryButton } from "@/styles/shared.style"
 import type { AddMessageParams } from "../../hooks/useBoxMessages"
 import { userAddCoupon } from "@/services/coupons.services"
 
@@ -28,5 +29,13 @@ export const AddCoupon = ({id,addMessage}:Props)=>{
         addMessage({content:'Algo deu errado!',type:'error'})
         
     }
-  return <button onClick={onClick} data-testid="add-coupon" className="btn-get-coupon">Pegar</button>
+  return <PrimaryButton 
+            $width="100%"
+            $bg="#ff4d4d"
+            $hoverBg="#e63939"
+            onClick={onClick} 
+            data-testid="add-coupon" 
+            className="btn-get-coupon">
+            Pegar
+        </PrimaryButton>
 }
