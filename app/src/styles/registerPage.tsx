@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyleCreateStore = styled.div`
 body {
-  font-family: 'Roboto', sans-serif;
+
   background-color: #f0f0f0;
   margin: 0;
   padding: 0;
@@ -69,11 +69,11 @@ body {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 .header-image {
-  width: 200px; /* Tamanho da imagem */
-  height: 200px; /* Tamanho da imagem */
-  border-radius: 50%; /* Tornando a imagem circular */
-  object-fit: cover; /* Ajusta a imagem para preencher o círculo sem distorção */
-  border: 3px solid #DDD; /* Borda opcional para o círculo */
+  width: 200px; 
+  height: 200px; 
+  border-radius: 50%; 
+  object-fit: cover; 
+  border: 3px solid #DDD; 
 }
 @media (max-width: 768px) {
   .benefit-box {

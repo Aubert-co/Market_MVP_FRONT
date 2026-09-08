@@ -2,7 +2,7 @@ import { ContainerDashboard } from "@/components/layouts/containerDashboard"
 import { usePagination } from "@/hooks/usePagination"
 import {  ProductTable } from "@/components/store/productTable"
 import { SearchBar } from "@/components/header/seachBar"
-import { Controls } from "@/styles/dashboardStore.style"
+import { Controls } from "@/styles/store/dashboard.style"
 import {  useState } from "react"
 import type { Product } from "@/types/products.types"
 import { selectMenuItem } from "@/constants/menuItems"
@@ -22,6 +22,7 @@ import { getStorageStore } from "@/storage/store.storage"
 import { categorySelectOptions, PRODUCT_SORT_OPTIONS, STOCK_SORT_OPTIONS } from "@/constants/filters"
 import { Select } from "@/components/shared/select"
 import type { CategoryOption, OrderBy } from "@/types/filters.types"
+import { PrimaryButton } from "@/styles/shared.style"
 
 
 
@@ -88,30 +89,46 @@ export const StoreProducts = ()=>{
 
                     />
                 <Controls>
-                    <SearchBar searchEvent={searchEvent} initialValue={searchQuery}/>
-                    <Select<CategoryOption>
+                    <SearchBar searchEvent={searchEvent} initialValue={searchQuery} />
+                    <div className="field-group">
+                        <label>Categoria</label>
+                        <Select<CategoryOption>
                         datas={categorySelectOptions}
                         name="select-category"
                         text="Selecione uma categoria"
                         onChange={onChangeCategory}
                         selected={categories}
-                    />
-                    <Select<OrderBy>
+                        />
+                    </div>
+
+                    <div className="field-group">
+                        <label>Preço</label>
+                        <Select<OrderBy>
                         datas={PRODUCT_SORT_OPTIONS}
-                        name={"select-filter"}
-                        text={'Ordenar por preço'}
+                        name="select-filter"
+                        text="Ordenar por preço"
                         selected={orderProductBy}
                         onChange={onChangeProductOrderBy}
-                    />
-                     <Select<OrderBy>
+                        />
+                    </div>
+
+                    <div className="field-group">
+                        <label>Estoque</label>
+                        <Select<OrderBy>
                         datas={STOCK_SORT_OPTIONS}
-                        name={"select-filter-stock"}
-                        text={'Ordenar por estoque'}
+                        name="select-filter-stock"
+                        text="Ordenar por estoque"
                         selected={stockSort}
                         onChange={onChangeStockOrderBy}
-                    />
-                    {!isDrawerOpen && <button onClick={openCreateProductDrawer}>Criar Produto</button>}
-                </Controls>
+                        />
+                    </div>
+
+                    {!isDrawerOpen && (
+                        <div className="field-group ">
+                            <PrimaryButton onClick={openCreateProductDrawer}>Criar Produto</PrimaryButton>
+                        </div>
+                    )}
+                    </Controls>
                 
                 <ProductTable openModal={showProductModal} products={products.datas}/>
                 <Pagination/>

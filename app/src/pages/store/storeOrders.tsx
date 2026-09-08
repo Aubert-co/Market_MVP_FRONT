@@ -2,7 +2,7 @@ import { ContainerDashboard } from "@/components/layouts/containerDashboard"
 import { usePagination } from "@/hooks/usePagination"
 import { OrdersTable } from "@/components/store/ordersTable"
 import { selectMenuItem } from "@/constants/menuItems"
-import {  Controls } from "@/styles/dashboardStore.style"
+import {  Controls } from "@/styles/store/dashboard.style"
 import Sidebar from "@/components/shared/sidebar"
 import { useSideBarOrDrawer } from "@/hooks/useSidebarOrDrawer"
 import { DashboardHeader } from "@/components/store/dashboardHeader"
@@ -64,9 +64,14 @@ export const StoreOrders = ()=>{
               subTitle="Gerencie e acompanhe todos os pedidos da sua loja"
             />
               <Controls>
-                <SearchBar searchEvent={searchEvent}/>
-                <Select />
-              </Controls>
+         
+                <SearchBar searchEvent={searchEvent} />
+
+                <div className="field-group">
+                  <label>Status do Pedido</label>
+                  <Select/>
+                </div>
+            </Controls>
               
               <OrdersTable openModal={showOrdersModal} status={status} typeTable="table" orders={orders}/>
               <Pagination />

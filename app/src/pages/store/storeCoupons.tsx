@@ -7,7 +7,7 @@ import { DashboardHeader } from "@/components/store/dashboardHeader"
 import { selectMenuItem } from "@/constants/menuItems"
 import { useCouponDatas } from "@/hooks/store/storeCoupons/useCouponDatas"
 import { useSideBarOrDrawer } from "@/hooks/useSidebarOrDrawer"
-import {  Controls } from "@/styles/dashboardStore.style"
+import {  Controls } from "@/styles/store/dashboard.style"
 import { PrimaryButton } from "@/styles/shared.style"
 import { Select } from "@/components/shared/select"
 import type { FilterCoupons } from "@/types/filters.types"
@@ -30,25 +30,23 @@ export const StoreCoupons = ()=>{
   const {onChange,selectOption}= useCouponSelect()
   const titleDrawer = "Criar cupom"
   const storeInfo = getStorageStore()
-  const openStates = {
-    sidebar: isOpen === "sidebar",
-    drawer: isOpen === "drawer",
-  }
-
+  
+  const isDrawerOpen = isOpen === "drawer";
+  const isSidebarOpen = isOpen === "sidebar";
   const createCoupon = ()=>{
     setIsOpen('drawer')
   }
 
   return (
-      <ContainerDashboard isSidebarOpen={ openStates.sidebar} >
+      <ContainerDashboard isSidebarOpen={ isSidebarOpen} >
         <Sidebar 
           items={selectMenuItem("Cupons")}
           setOpen={setIsOpen}
           storeName={storeInfo.name}
-          isOpen={ openStates.sidebar }/>
+          isOpen={ isSidebarOpen }/>
 
           <Drawer
-            isOpen={ openStates.drawer }
+            isOpen={ isDrawerOpen }
             title={titleDrawer}
             onClose={setIsOpen}
             >
@@ -61,7 +59,8 @@ export const StoreCoupons = ()=>{
               subTitle="Crie e acompanhe os cupons promocionais da sua loja"
             />
             <Controls>
-                <PrimaryButton onClick={createCoupon}>Criar Cupom</PrimaryButton>
+                <div className="field-group">
+                <label>Status do Cupom </label>
                 <Select<FilterCoupons>
                   datas={ORDER_COUPON_STATUS}
                   text="Filtrar por status"
@@ -69,6 +68,12 @@ export const StoreCoupons = ()=>{
                   onChange={onChange}
                   selected={selectOption}
                 />
+              </div>
+              { !isDrawerOpen && (
+                <PrimaryButton onClick={createCoupon}>Criar Cupom</PrimaryButton>
+              )
+              }
+ 
             </Controls>
             <CouponTable status={status} coupons={coupons}/>
             <Pagination/>

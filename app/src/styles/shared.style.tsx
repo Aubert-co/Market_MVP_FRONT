@@ -27,6 +27,7 @@ type BtnProps = {
   $bg?: string;
   $hoverBg?: string;
   $color?: string;
+  $width?:string;
 };
 export const PrimaryButton = styled.button<BtnProps>`
   margin-top: 1rem;
@@ -38,30 +39,37 @@ export const PrimaryButton = styled.button<BtnProps>`
   background: ${({ $bg }) => $bg || '#007BFF'};
   color: ${({ $color }) => $color || 'white'};
   transition: background 0.3s;
+  ${({ $width }) => $width && `width: ${$width};`}
   &:hover {
     background: ${({ $hoverBg }) => $hoverBg || '#0056b3'};
   }
 `;
 
-export const CompactButton = styled.button`
+type CompactBtnTypes = {
+  $bg?:string
+  $hover?:string
+  $active?:string
+  $color?:string
+}
+export const CompactButton = styled.button<CompactBtnTypes>`
    display: inline-block;
   padding: 0.4rem 1rem;
   font-size: 0.875rem; 
   font-weight: 500;
-  color: #ffffff;
-  background-color: #0070f3;
+  color:${({$color})=>$color || '#ffffff'} ;
+  background-color: ${({$bg})=>$bg || '#0070f3'} ;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.1s ease;
 
   &:hover {
-    background-color: #005bb5;
+    background-color:${({$hover})=>$hover || '#005bb5'}  ;
     transform: translateY(-1px);
   }
 
   &:active {
-    background-color: #004494;
+    background-color:${({$hover})=>$hover || '#004494'};
     transform: translateY(0);
   }
 `

@@ -4,10 +4,11 @@ import { Container } from "@/components/layouts/container"
 import { RenderDataState } from "@/components/shared/renderDataState"
 import { availableCoupons } from "@/services/coupons.services"
 import { usableFetch } from "@/services/fetchs"
-import { CouponCard } from "@/styles/coupomCart.style"
+import { CouponContainer} from "@/styles/coupomCart.style"
 import type { BaseCoupon } from "@/types/coupons.types"
 import { useEffect, useState } from "react"
 import { BoxSkeleton } from "@/components/templates/skeleton"
+
 
 type Coupons = BaseCoupon<number>[]
 type State = {
@@ -31,8 +32,8 @@ export const Coupon = ()=>{
   return(
         <Container>
           <BoxMessage/>
-          <CouponCard>
-            <div className="coupon-container">
+         
+            <CouponContainer>
               <RenderDataState<BaseCoupon<number>>
                   datas={coupons.datas}
                   status={coupons.status}
@@ -51,8 +52,8 @@ export const Coupon = ()=>{
                   addMessage={addMessage} 
                   datas={ coupons.datas }/>
               </RenderDataState>
-            </div>
-             </CouponCard>
+            </CouponContainer>
+             
         </Container>
     )
     

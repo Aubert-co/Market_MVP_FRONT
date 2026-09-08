@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 type PropsUserForm = {
   $minHeight?:string
+  $width?:string
 }
 export const UserFormStyles = styled.div<PropsUserForm>`
 
@@ -20,7 +21,7 @@ form {
 
   gap: 1.2rem;
 
-  width: 70%;
+  width: ${({$width})=> $width || "70%"};
   max-width: 420px;
 
   margin-top: 1.5rem;
@@ -80,7 +81,7 @@ select:focus {
   box-shadow: 0 0 0 2px rgba(14, 20, 32, 0.1);
 }
 
-/* FILE INPUT */
+
 input[type="file"] {
   font-size: 0.85rem;
   border-radius: 8px;

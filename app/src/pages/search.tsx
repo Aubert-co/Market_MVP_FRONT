@@ -40,6 +40,7 @@ const SearchBox = styled.div`
     }
     .filtered{
       width:100%;
+      margin-left:5%
     }
   }
 `;
