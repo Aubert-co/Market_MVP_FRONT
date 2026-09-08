@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { SearchBar } from "./seachBar"
 import { FaShoppingCart, FaUser } from "react-icons/fa"
 import { useSearch } from "@/hooks/useSearch"
+import { HeaderActionIcon, HeaderLogo, HeaderLogoLink, HeaderNav } from "@/styles/header.style"
 
 export type NavigateMode = "navigate" | "update"
 type Props = {
@@ -12,19 +13,21 @@ export const TopBar = ({navigationMode}:Props)=>{
     const {searchEvent,searchProduct} = useSearch({mode:navigationMode ?? 'navigate'})
     return(
         <>
-            <div className="logo">
-                <Link to={"/"}>SUPERSTORE</Link>
-            </div>
+            <HeaderLogo className="logo">
+                <HeaderLogoLink>
+                   <Link to={"/"}>SUPERSTORE</Link>
+                </HeaderLogoLink>
+            </HeaderLogo>
             <SearchBar searchEvent={searchEvent} initialValue={searchProduct}/>
-            <nav>
-                <i>
+            <HeaderNav>
+                <HeaderActionIcon>
                     <FaShoppingCart data-testid="profile-cart" onClick={()=>navigate("/perfil/carrinho")}/>
-                </i>
+                </HeaderActionIcon>
 
-                <i>
+                <HeaderActionIcon>
                   <FaUser data-testid="profile-orders" onClick={()=>navigate("/perfil/ordens")}/>
-                </i>
-            </nav>
+                </HeaderActionIcon>
+            </HeaderNav>
         </>
     )
 }
