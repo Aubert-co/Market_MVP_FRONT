@@ -45,7 +45,7 @@ const renderCategoryOptions = (categories: string[]) =>
 export const FormUpsertProduct = ({refs,submit,BoxMessage,type,onCancel}:Props)=>{
    
     return(
-        <UserFormStyles $minHeight="none"> 
+        <UserFormStyles $minHeight="none" $width="90%"> 
             <form onSubmit={submit}>
                 <BoxMessage/>
                 <InputWithLabel inputName="product_name" textLabel="Defina um nome que ajude os clientes a encontrarem seu produto">
