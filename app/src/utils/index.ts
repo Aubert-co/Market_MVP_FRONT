@@ -58,3 +58,9 @@ export const createUrlUpdater = (setSearchParams: SetSearchParams) => {
     });
   };
 };
+
+export const brlCurrency = (value:number)=>
+  value.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
