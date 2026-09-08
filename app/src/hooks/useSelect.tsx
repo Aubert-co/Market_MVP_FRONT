@@ -1,5 +1,6 @@
 import {   useState } from "react"
 import type { DatasSelect } from "@/types/filters.types";
+import { SelectInput } from "@/styles/store/index.style";
 
 
 export type Props<T extends string | number> = {
@@ -20,7 +21,7 @@ export const useSelect = <T extends string,>({datas,text,className,name,initialV
     }
     const Select = ()=>{
         return (
-       <select
+       <SelectInput
             name={name}
             className={className}
             value={selected ?? ""}
@@ -36,7 +37,7 @@ export const useSelect = <T extends string,>({datas,text,className,name,initialV
                 {val.text}
                 </option>
             ))}
-        </select>
+        </SelectInput>
         )
     }
     return {selected,setSelected,Select}
