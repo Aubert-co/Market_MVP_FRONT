@@ -12,7 +12,7 @@ export const FilterProductsContainer = styled.form`
   width: 100%;                
   max-width: 900px;         
 
-  padding: 14px 18px;
+  
   display: flex;
   flex-direction:column;
   gap: 16px;
@@ -35,17 +35,7 @@ export const FilterProductsContainer = styled.form`
     font-weight: 500;
   }
 
-  select,
-  input {
-    padding: 6px;
-    border-radius: 6px;
-    border: 1px solid #d0d0d0;
-    font-size: 14px;
-    max-width:90%;
-  }
-  select{
-    max-width:97%;
-  }
+
 
   .btn-actions {
     display: flex;
