@@ -1,5 +1,5 @@
 import type { Product } from "@/types/products.types";
-import { loadImage } from "@/utils";
+import { brlCurrency, loadImage } from "@/utils";
 
 import { ButtonsDiv, PrimaryButton } from "@/styles/shared.style";
 import styled from "styled-components";
@@ -30,7 +30,7 @@ export const ProductDetailModal = ({ products ,showEditModal}: ProductDetailsPro
             </div>
 
             <div className="price">
-            R$ {product.price}
+            {brlCurrency(product.price)}
             </div>
 
             <ButtonsDiv>
@@ -58,62 +58,111 @@ export const ProductDetailModal = ({ products ,showEditModal}: ProductDetailsPro
   );
 };
 
-const ModalContainer = styled.div`
 
-.product-modal {
-  display: flex;
-  gap: 20px;
-  padding: 20px;
-  max-width: 800px;
-  width: 100%;
-}
+export const ModalContainer = styled.div`
 
-.product-modal .image {
-  flex: 0 0 220px;
-  height: 220px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-radius: 12px;
-  background: #f5f5f5;
-}
+ 
 
-.product-modal .image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+  .product-modal {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+    max-width: 520px; /* Largura ajustada para o formato vertical */
+    width: 100%;
+    background: #ffffff;
+    border-radius: 16px;
+    margin: 0 auto;
+  }
 
-.product-modal .content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
 
-.product-modal .title {
-  font-size: 18px;
-  font-weight: 600;
-  margin: 0;
-}
+  .product-modal .image {
+    width: 100%;
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+  }
 
-.product-modal .description {
-  font-size: 14px;
-  color: #666;
-  line-height: 1.4;
-}
+  .product-modal .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
-.product-modal .meta {
-  display: flex;
-  gap: 15px;
-  font-size: 13px;
-  color: #888;
-}
 
-.product-modal .price {
-  font-size: 20px;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin-top: 10px;
-}`
+  .product-modal .content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+ 
+  .product-modal .title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  
+  .product-modal .meta {
+    display: flex;
+    gap: 8px;
+  }
+
+  .product-modal .meta span {
+    background: #f1f5f9;
+    color: #475569;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
+
+  .product-modal .description {
+    font-size: 0.95rem;
+    color: #475569;
+    line-height: 1.6;
+    margin: 4px 0 8px 0;
+    white-space: pre-wrap;
+  }
+
+
+  .product-modal .price {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 8px;
+  }
+
+
+  .product-modal .content > div:last-child {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+
+  button {
+    flex: 1;
+    height: 42px;
+    padding: 0 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+`;

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import type { Product } from "@/types/products.types"
-import { loadImage } from "@/utils/index"
+import { brlCurrency, loadImage } from "@/utils/index"
 import { Rating } from "../ratings"
 
 
@@ -25,7 +25,7 @@ export const RenderProductContent = ({type,averageRating,price}:ContentProps)=> 
         {averageRating != null && (
           <Rating value={averageRating} />
         )}
-     <p className="item_price" >R${price}</p>
+        <p className="item_price" >{brlCurrency(price)}</p>
      </>
   )
 }
