@@ -1,6 +1,6 @@
 import type { Product } from "@/types/products.types";
 import { BaseTable } from "../templates/baseTable";
-import { loadImage } from "@/utils/index";
+import { brlCurrency, loadImage } from "@/utils/index";
 import { CompactButton } from "@/styles/shared.style";
 
 
@@ -22,10 +22,14 @@ const Tbody = ({products,openModal}:Props)=>{
           {p.name}
         </td>
         <td data-label="Categoria">{p.category}</td>
-        <td data-label="Preço">R$ {p.price.toFixed(2)}</td>
+        <td data-label="Preço"> {brlCurrency(p.price)}</td>
         <td data-label="Estoque">{p.stock}</td>
         <td>
           <CompactButton 
+            $bg="#e2e8f0"         
+            $hover="#cbd5e1"     
+            $active="#94a3b8"
+            $color="#334155"
           aria-label={`Abrir modal do produto ${p.name}`}
           onClick={()=>openModal([p])
           }>...
