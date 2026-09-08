@@ -8,48 +8,71 @@ type Props = {
     stock:number
 }
 
-const QuantityControl = styled.div`
-
+export const QuantityControl = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 16px;
-  font-weight: 500;
+  gap: 6px;
 
-.input-quantity {
-  width: 50px;
-  height: 30px;
-  text-align: center;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 14px;
-  margin: 0 6px;
-  outline: none;
-  transition: border-color 0.2s;
-}
+  button {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background-color: #f8fafc;
+    color: #334155;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    user-select: none;
 
-.input-quantity:focus {
-  border-color: #0e1420; 
-}
+    &:hover {
+      background-color: #e2e8f0;
+      color: #0f172a;
+      border-color: #94a3b8;
+    }
 
- button {
-  width: 30px;
-  height: 30px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #f0f0f0;
-  cursor: pointer;
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.2s;
-}
+    &:active {
+      transform: scale(0.95);
+    }
 
- button:hover {
-  background-color: #e0e0e0;
-}
-`
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background-color: #f1f5f9;
+    }
+  }
+
+  .input-quantity {
+    width: 44px;
+    height: 32px;
+    text-align: center;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background-color: #ffffff;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #0f172a;
+    outline: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+   
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    -moz-appearance: textfield;
+
+    &:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+  }
+`;
 
 export const ChangeQuantity = ({quantity,id,setUpdate,stock}:Props)=>{
     const [newQuantity,setQuantity] = useState(quantity)
