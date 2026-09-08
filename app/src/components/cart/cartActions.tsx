@@ -22,7 +22,7 @@ const CartStyle = styled.div`
   border-radius: 12px;
   padding: 6px 12px;
   width: fit-content;
-  font-family: Arial, sans-serif;
+
 }
 
 .cart-update button {
