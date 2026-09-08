@@ -1,64 +1,122 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { PROMO_ARRAY } from '@/constants';
+import { useMemo } from 'react';
+
+
 
 
 export const PromoContainer = styled.div`
   display: flex;
-  gap: 16px;
-  padding: 20px;
+  gap: 20px;
+  padding: 16px 20px;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+
+  
 
   .promo-box {
     flex: 1;
-    padding: 20px;
-
-    border-radius: 12px;
-
-    background: linear-gradient(135deg, #ff7a18, #ff3d3d);
-    color: #fff;
-
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-
-    text-align: left;
-
+    padding: 24px 28px;
+    border-radius: 18px;
+    position: relative;
+    overflow: hidden;
     cursor: pointer;
-    transition: all 0.25s ease;
-
+    text-align: left;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+   
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 107, 0, 0.35) 0%, rgba(255, 255, 255, 0) 70%);
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+  
+    &:nth-child(2)::before {
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.35) 0%, rgba(255, 255, 255, 0) 70%);
+    }
   }
 
   .promo-box:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.22);
+
+    &::before {
+      transform: scale(1.3);
+      opacity: 0.8;
+    }
   }
 
   .promo-box h2 {
-    margin-bottom: 8px;
-    font-size: 1.2rem;
-    font-weight: 600;
+    margin: 0 0 6px 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.3px;
+    z-index: 1;
   }
 
   .promo-box p {
-    font-size: 0.9rem;
-    opacity: 0.9;
+    margin: 0;
+    font-size: 0.875rem;
+    color: #94a3b8;
+    line-height: 1.4;
+    font-weight: 400;
+    z-index: 1;
   }
-`
 
-export const RandonPromoBox = ()=>{
-  const navigate = useNavigate()
-  return PROMO_ARRAY
-    .sort(() => 0.5 - Math.random()).slice(0, 1)
-    .map((val)=>{
-      return (
-        <div className="promo-box" onClick={()=>navigate(`/buscas?${val.search}`)}>
-          <h2>{val.title}</h2>
-          <p>{val.content}</p>
-        </div>
-      )
-    })
-}
+  @media (max-width: 640px) {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px 16px;
+
+    .promo-box {
+      padding: 20px;
+    }
+  }
+`;
+
+export const RandomPromoBox: React.FC = () => {
+  const navigate = useNavigate();
+
+
+  const randomPromo = useMemo(() => {
+    if (!PROMO_ARRAY || PROMO_ARRAY.length === 0) return null;
+    const randomIndex = Math.floor(Math.random() * PROMO_ARRAY.length);
+    return PROMO_ARRAY[randomIndex];
+  }, []);
+
+  if (!randomPromo) return null;
+
+  return (
+    <div
+      key={randomPromo.id || randomPromo.search}
+      className="promo-box"
+      onClick={() => navigate(`/buscas?${randomPromo.search}`)}
+    >
+      <h2>{randomPromo.title}</h2>
+      <p>{randomPromo.content}</p>
+    </div>
+  );
+};
 
 export const PromoBox = ()=> {
   const navigate = useNavigate();
@@ -69,7 +127,7 @@ export const PromoBox = ()=> {
             <h2>Dezenas de Cupons</h2>
             <p>Pegue agora seu cupom!</p>
         </div>
-        <RandonPromoBox/>
+        <RandomPromoBox/>
     </PromoContainer>
   );
 }
