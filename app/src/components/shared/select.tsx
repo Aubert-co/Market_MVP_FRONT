@@ -1,3 +1,4 @@
+import { SelectInput } from "@/styles/store/index.style";
 import type { DatasSelect } from "@/types/filters.types";
 
 export type Props<T extends string | number> = {
@@ -10,7 +11,7 @@ export type Props<T extends string | number> = {
 };
 
 export const Select = <T extends string,>({datas,text,className,onChange,name,selected}:Props<T>)=>{
-    return <select
+    return <SelectInput
         name={name}
         className={className}
         value={selected ?? ""}
@@ -26,7 +27,7 @@ export const Select = <T extends string,>({datas,text,className,onChange,name,se
             {val.text}
             </option>
         ))}
-    </select>
+    </SelectInput>
     
         
 }

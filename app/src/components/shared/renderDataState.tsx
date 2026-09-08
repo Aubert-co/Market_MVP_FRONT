@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import styled from "styled-components"
 
 
 export type DataState<T> ={
@@ -38,20 +39,40 @@ export const RenderDataState = <T,>({
 
     if (hasError) {
         return (
-            <div className="text error">
+            <MessageContainer className="text error">
                 <h1 data-testid="render-error">{errorMessage}</h1>
-            </div>
+            </MessageContainer>
         );
     }
 
     if (isEmpty) {
         return (
-            <div className="text error">
+            <MessageContainer className="text error">
                 <h1 data-testid="render-empty">{emptyMessage}</h1>
-            </div>
+            </MessageContainer>
         );
     }
 
 
     return <>{children}</>;
 }
+
+export const MessageContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    padding: 24px;
+    text-align: center;
+
+    h1 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #666;
+    }
+
+    &.error h1 {
+        color: #d32f2f;
+    }
+`;
