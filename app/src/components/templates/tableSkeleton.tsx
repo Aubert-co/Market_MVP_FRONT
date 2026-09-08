@@ -1,4 +1,4 @@
-import { Table } from "@/styles/tables.style";
+import { Table } from "@/styles/store/tables.style";
 import styled, { keyframes } from "styled-components";
 
   const shimmer = keyframes`
