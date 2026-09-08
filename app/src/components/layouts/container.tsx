@@ -1,4 +1,5 @@
-import {  ContainerStyle, Header, Main } from "@/styles/index.style"
+import {   Header } from "@/styles/header.style"
+import { ContainerStyle,Main } from "@/styles/index.style"
 import { TopBar, type NavigateMode } from "../header/topBar"
 import type React from "react"
 

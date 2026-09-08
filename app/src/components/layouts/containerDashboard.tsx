@@ -1,5 +1,5 @@
 import type React from "react"
-import { StoreDashboard } from "@/styles/dashboardStore.style"
+import { StoreDashboard } from "@/styles/store/dashboard.style"
 
 
 type Props={
