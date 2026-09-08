@@ -10,7 +10,7 @@ import { ProductsCheckout } from "@/styles/checkout.style"
 import { FinishCheckout } from "@/components/checkout/finishCheckout"
 import { useBoxMessage } from "@/hooks/useBoxMessages"
 import type { ItemsCheckout } from "@/types/checkout.types"
-import { getUserTotally } from "@/utils"
+import { brlCurrency, getUserTotally } from "@/utils"
 
 type StateCoupon = {
   item:BaseCoupon<number>
@@ -55,7 +55,7 @@ export const Checkout = ()=>{
           <SelectCoupon setCoupon={setCoupon}/>
           
           <div className="overview">
-              <p > Total: R${totally.toFixed(2)}</p>
+              <p > Total {brlCurrency(totally)}</p>
               <FinishCheckout  addMessage={addMessage} couponId={coupon.item?.id}/>
           </div>
           </ProductsCheckout>
