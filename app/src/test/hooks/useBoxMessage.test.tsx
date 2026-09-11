@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { fireEvent, render, waitFor } from "@testing-library/react";
-import { useBoxMessage } from "@/hooks/useBoxMessages";
+import { useBoxMessage } from "@/hooks/messages/useBoxMessages";
 
 
 
@@ -13,7 +13,7 @@ describe("BoxMessage",()=>{
   
     it("should render for 3 seconds by default when no duration is provided",async()=>{
         const TestComponent= () => {
-            const { addMessage,BoxMessage } = useBoxMessage({styledType:'toast'})
+            const { addMessage,BoxMessage } = useBoxMessage()
             const onClick = ()=>{
                 addMessage({content:'lorem ipstu',type:'info'})
             }
@@ -43,7 +43,7 @@ describe("BoxMessage",()=>{
     })
    it("should render the div with type 'error' correctly",async()=>{
         const TestComponent= () => {
-            const { addMessage,BoxMessage } = useBoxMessage({styledType:''})
+            const { addMessage,BoxMessage } = useBoxMessage()
             const onClick = ()=>{
                 addMessage({content:'lorem ipstu',type:'error'})
             }
@@ -72,7 +72,7 @@ describe("BoxMessage",()=>{
     })
     it("should render the div with type 'success' correctly",async()=>{
         const TestComponent= () => {
-            const { addMessage,BoxMessage } = useBoxMessage({styledType:''})
+            const { addMessage,BoxMessage } = useBoxMessage()
             const onClick = ()=>{
                 addMessage({content:'lorem ipstu',type:'success'})
             }
@@ -101,7 +101,7 @@ describe("BoxMessage",()=>{
     })
     it("should not render the same message",async()=>{
         const TestComponent= () => {
-            const { addMessage,BoxMessage } = useBoxMessage({styledType:''})
+            const { addMessage,BoxMessage } = useBoxMessage()
             const onClick = ()=>{
                 addMessage({content:'lorem ipstu',type:'success'})
                 addMessage({content:'lorem ipstu2',type:'success'})

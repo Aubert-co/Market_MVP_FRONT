@@ -5,10 +5,18 @@ import { userCartMocks } from "../fixtures"
 import * as localS from "@/storage/cart.storage"
 import { act } from "react"
 import { BrowserRouter } from "react-router-dom"
+import { MessageProvider } from "@/context/message.context"
 
 const getItems = jest.spyOn(localS,'getItemsFromCart')
 const mockServices = jest.spyOn(services,'getUserCart')
 const mockDeleteService = jest.spyOn(services,'deleteFromCart')
+jest.mock("@/hooks/messages/useToastMessage", () => ({
+  useToastMessage: jest.fn(),
+}));
+
+import { useToastMessage } from "@/hooks/messages/useToastMessage";
+
+
 describe('Component useCart',()=>{
     const addMessage = jest.fn()
      const mockFormRef: React.RefObject<HTMLInputElement | null> = {
@@ -19,6 +27,10 @@ describe('Component useCart',()=>{
             };
     beforeEach(()=>{
         jest.clearAllMocks()
+        jest.mocked(useToastMessage).mockReturnValue({
+                    addMessage,
+                    messages: [],
+                });
     })
     it("should render the content correctly when the status is 200 and has data",async()=>{
         mockServices.mockResolvedValue({
@@ -37,7 +49,9 @@ describe('Component useCart',()=>{
         })
         const {getByText,queryByText,container,queryAllByTestId} = render(
             <BrowserRouter>
-                <Cart addMessage={addMessage} formRef={mockFormRef}/>
+                <MessageProvider>
+                    <Cart  formRef={mockFormRef}/>
+                </MessageProvider>
             </BrowserRouter>
         )
       
@@ -84,7 +98,9 @@ describe('Component useCart',()=>{
 
        const {getByText,queryByText,queryByTestId} = render(
             <BrowserRouter>
-                <Cart addMessage={addMessage} formRef={mockFormRef}/>
+                 <MessageProvider>
+                    <Cart  formRef={mockFormRef}/>
+                </MessageProvider>
             </BrowserRouter>
         )
       
@@ -110,7 +126,9 @@ describe('Component useCart',()=>{
 
        const {getByText,queryByText,queryByTestId} = render(
             <BrowserRouter>
-                <Cart addMessage={addMessage} formRef={mockFormRef}/>
+                <MessageProvider>
+                    <Cart  formRef={mockFormRef}/>
+                </MessageProvider>
             </BrowserRouter>
         )
       
@@ -137,7 +155,9 @@ describe('Component useCart',()=>{
        
         const {getByText,queryByTestId,queryByText} = render(
             <BrowserRouter>
-                <Cart addMessage={addMessage} formRef={mockFormRef}/>
+                 <MessageProvider>
+                    <Cart  formRef={mockFormRef}/>
+                </MessageProvider>
             </BrowserRouter>
         )
       

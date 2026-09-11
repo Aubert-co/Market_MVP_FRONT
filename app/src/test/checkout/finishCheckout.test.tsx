@@ -4,6 +4,11 @@ import * as storage from "@/storage/checkout.storage"
 import { mockProducts } from "../fixtures/products"
 import * as services from '@/services/checkout.services'
 import type { ItemsCheckout } from "@/types/checkout.types"
+jest.mock("@/hooks/messages/useToastMessage", () => ({
+  useToastMessage: jest.fn(),
+}));
+
+import { useToastMessage } from "@/hooks/messages/useToastMessage";
 
 const serviceCreateOrder = jest.spyOn( services ,'serviceCreateOrder')
 const getItemsCheckout = jest.spyOn(storage,'getItemsCheckout')
@@ -15,13 +20,17 @@ describe("component FinishCheckout",()=>{
     const addMessage = jest.fn()
     beforeEach(()=>{
         jest.clearAllMocks()
+        jest.mocked(useToastMessage).mockReturnValue({
+            addMessage,
+            messages: [],
+        });
     })
     it("should successfully call the service and message",async()=>{
         getItemsCheckout.mockReturnValue( newItems )
         serviceCreateOrder.mockResolvedValue({status:201,message:'lorem iptsu'})
         const couponId = 3933
         const {getByText} = render(
-            <FinishCheckout couponId={couponId} addMessage={addMessage}/>
+            <FinishCheckout couponId={couponId} />
         )
         
         const btnFinish = getByText("Finalizar")
@@ -44,7 +53,7 @@ describe("component FinishCheckout",()=>{
         serviceCreateOrder.mockResolvedValue({status:201,message:'lorem iptsu'})
         const couponId = 3933
         const {getByText} = render(
-            <FinishCheckout couponId={couponId} addMessage={addMessage}/>
+            <FinishCheckout couponId={couponId} />
         )
         
         const btnFinish = getByText("Finalizar")
@@ -61,7 +70,7 @@ describe("component FinishCheckout",()=>{
         serviceCreateOrder.mockResolvedValue({status:401,message:'lorem iptsu'})
         const couponId = 3933
         const {getByText} = render(
-            <FinishCheckout couponId={couponId} addMessage={addMessage}/>
+            <FinishCheckout couponId={couponId} />
         )
         
         const btnFinish = getByText("Finalizar")
@@ -80,7 +89,7 @@ describe("component FinishCheckout",()=>{
         serviceCreateOrder.mockResolvedValue({status:500,message:'lorem iptsu'})
         const couponId = 3933
         const {getByText} = render(
-            <FinishCheckout couponId={couponId} addMessage={addMessage}/>
+            <FinishCheckout couponId={couponId}/>
         )
         
         const btnFinish = getByText("Finalizar")

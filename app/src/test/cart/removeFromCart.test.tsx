@@ -4,6 +4,14 @@ import * as services from '@/services/cart.services'
 import * as storages from '@/storage/cart.storage' 
 import { UpdateCartContext } from "@/context/cart.context";
 import type { Response } from "@/types/services.types";
+import { MessageProvider } from "@/context/message.context";
+
+jest.mock("@/hooks/messages/useToastMessage", () => ({
+  useToastMessage: jest.fn(),
+}));
+
+import { useToastMessage } from "@/hooks/messages/useToastMessage";
+
 
 const deleteFromCart = jest.spyOn(services,'deleteFromCart')
 
@@ -13,16 +21,22 @@ describe("Component RemoveFromCart",()=>{
     const setUpdateCart = jest.fn()
     beforeEach(()=>{
         jest.clearAllMocks()
+        jest.mocked(useToastMessage).mockReturnValue({
+                addMessage,
+                messages: [],
+            });
     })
     it("should remove an item from the cart successfully",async()=>{
         deleteFromCart.mockResolvedValue({status:200,message:'ee'}as Response) 
         const {getByTestId} =render(
-            <UpdateCartContext.Provider value={{
+            <MessageProvider>
+                <UpdateCartContext.Provider value={{
                 setUpdateCart,
                 updateCart:true
-            }}>
-                <RemoveFromCart id={1} addMessage={addMessage}/>
+                }}>
+                <RemoveFromCart id={1} />
             </UpdateCartContext.Provider>
+            </MessageProvider>
         )
         const btn = getByTestId("delete-item")
 
@@ -41,12 +55,14 @@ describe("Component RemoveFromCart",()=>{
     it("should not remove the item if the user is not logged in",async()=>{
         deleteFromCart.mockResolvedValue({status:401,message:'ee'}as Response) 
         const {getByTestId} =render(
-            <UpdateCartContext.Provider value={{
+            <MessageProvider>
+                <UpdateCartContext.Provider value={{
                 setUpdateCart,
                 updateCart:true
             }}>
-                <RemoveFromCart id={1} addMessage={addMessage}/>
+                <RemoveFromCart id={1} />
             </UpdateCartContext.Provider>
+            </MessageProvider>
         )
         const btn = getByTestId("delete-item")
 
@@ -67,12 +83,14 @@ describe("Component RemoveFromCart",()=>{
      it("should not remove the item if the status is 500",async()=>{
         deleteFromCart.mockResolvedValue({status:500,message:'ee'}as Response) 
         const {getByTestId} =render(
-            <UpdateCartContext.Provider value={{
+            <MessageProvider>
+                <UpdateCartContext.Provider value={{
                 setUpdateCart,
                 updateCart:true
             }}>
-                <RemoveFromCart id={1} addMessage={addMessage}/>
+                <RemoveFromCart id={1} />
             </UpdateCartContext.Provider>
+            </MessageProvider>
         )
         const btn = getByTestId("delete-item")
 
@@ -93,12 +111,14 @@ describe("Component RemoveFromCart",()=>{
     it("should not remove the item if the service throws an error",async()=>{
         deleteFromCart.mockRejectedValue({status:500,message:'ee'}as Response) 
         const {getByTestId} =render(
-            <UpdateCartContext.Provider value={{
+            <MessageProvider>
+                <UpdateCartContext.Provider value={{
                 setUpdateCart,
                 updateCart:true
             }}>
-                <RemoveFromCart id={1} addMessage={addMessage}/>
+                <RemoveFromCart id={1} />
             </UpdateCartContext.Provider>
+            </MessageProvider>
         )
         const btn = getByTestId("delete-item")
 

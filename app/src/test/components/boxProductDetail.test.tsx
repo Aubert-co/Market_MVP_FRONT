@@ -3,7 +3,7 @@ import { BoxProductDetail } from "@/components/product/boxProductDetail"
 import { render } from "@testing-library/react"
 
 describe("Component ListProductDetail",()=>{
-    const addMessage = jest.fn()
+
     it("should render 'Produto não encontrado' when product is empty and status is valid",()=>{
         const {queryByTestId,queryByText} = render(
             <BoxProductDetail 
@@ -14,7 +14,7 @@ describe("Component ListProductDetail",()=>{
                 comments:[]
             }}
             status={200} 
-            addMessage={addMessage}/>
+           />
         )
         expect(queryByText("Produto não encontrado")).toBeInTheDocument()
         expect(queryByTestId("comments")).not.toBeInTheDocument()
@@ -25,7 +25,7 @@ describe("Component ListProductDetail",()=>{
         const {queryByTestId,queryByText} = render(
             <BoxProductDetail datas={
             {product:[],ratings:{_avg:{rating:0},_count:{rating:0}},reviews:[],comments:[]}}
-            status={500} addMessage={addMessage}/>
+            status={500}/>
         )
         expect(queryByText("Produto não encontrado")).not.toBeInTheDocument()
         expect(queryByText("Ocorreu um erro ao carregar os dados.")).toBeInTheDocument()
@@ -36,7 +36,7 @@ describe("Component ListProductDetail",()=>{
         const {queryByTestId,queryByText} = render(
             <BoxProductDetail datas={
             {product:[],ratings:{_avg:{rating:0},_count:{rating:0}},reviews:[],comments:[]}}
-            status={0} addMessage={addMessage}/>
+            status={0}/>
         )
         expect(queryByTestId("skeleton")).toBeInTheDocument()
         expect(queryByText("Produto não encontrado")).not.toBeInTheDocument()

@@ -3,15 +3,17 @@ import { UpdateCartContext } from "@/context/cart.context"
 import { fireEvent, render } from "@testing-library/react"
 import * as storage from '@/storage/cart.storage'
 import { CartActions } from "@/components/cart/cartActions"
+import { MessageProvider } from "@/context/message.context"
 
 const decreaseStorage = jest.spyOn(storage,'updateItemCart')
 describe('Component UpdateCartQuantity',()=>{
     const setUpdateCart = jest.fn()
     const id = 3
     const setQuantity =jest.fn()
-    const addMessage = jest.fn()
+    
     beforeEach(()=>{
         jest.clearAllMocks()
+        
     })
     it("should decrease and increase the quantity correctly",()=>{
         const quantity = 3
@@ -21,13 +23,14 @@ describe('Component UpdateCartQuantity',()=>{
             }
         })
         const {getByText}= render(
-
+            <MessageProvider>
               <UpdateCartContext.Provider value={{
                             setUpdateCart,
                             updateCart:true
                         }}>
-                            <CartActions stock={10} id={id} quantity={quantity} addMessage={addMessage}/>
+                            <CartActions stock={10} id={id} quantity={quantity} />
                 </UpdateCartContext.Provider>
+            </MessageProvider>
         )
 
         const decrease = getByText("-")

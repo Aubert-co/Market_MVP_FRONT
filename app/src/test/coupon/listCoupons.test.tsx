@@ -2,12 +2,28 @@ import { ListCoupons } from "@/components/coupon/listCoupons"
 import { fireEvent, render, waitFor } from "@testing-library/react"
 import { mockCoupons } from "../fixtures"
 import * as services from '../../services/coupons.services'
+import { MessageProvider } from "@/context/message.context"
+jest.mock("@/hooks/messages/useToastMessage", () => ({
+  useToastMessage: jest.fn(),
+}));
+
+import { useToastMessage } from "@/hooks/messages/useToastMessage";
+
+
 const mockMessage = jest.fn()
 const spyServices = jest.spyOn(services,'userAddCoupon')
 describe("component ListCoupons",()=>{
+    beforeEach(()=>{
+          jest.mocked(useToastMessage).mockReturnValue({
+                    addMessage:mockMessage,
+                    messages: [],
+                });
+    })
     it("should render the data correctly",async()=>{
         const {getAllByTestId , getAllByText,getByText} =render(
-            <ListCoupons datas={mockCoupons} addMessage={mockMessage}/>
+           <MessageProvider>
+             <ListCoupons datas={mockCoupons} />
+           </MessageProvider>
         )
 
         mockCoupons.map((val,index)=>{

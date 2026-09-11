@@ -4,15 +4,26 @@ import { fireEvent, render, waitFor } from "@testing-library/react";
 
 
 const spyService =  jest.spyOn(coupon,'userAddCoupon')
+jest.mock("@/hooks/messages/useToastMessage", () => ({
+  useToastMessage: jest.fn(),
+}));
+
+import { useToastMessage } from "@/hooks/messages/useToastMessage";
+
+
 const addMessage =jest.fn()
 describe("component AddCoupon",()=>{
     beforeEach(()=>{
         jest.clearAllMocks()
+        jest.mocked(useToastMessage).mockReturnValue({
+            addMessage,
+            messages: [],
+        });
     })
     it("should return a successful message when the service returns success",async()=>{
         spyService.mockResolvedValue({status:201,message:'Sucess'})
         const {getByText} = render(
-            <AddCoupon id={3} addMessage={addMessage}/>
+            <AddCoupon id={3} />
         )
         
         const btn = getByText("Pegar")
@@ -28,7 +39,7 @@ describe("component AddCoupon",()=>{
      it("should return an info message when the service returns 'This user already possesses the coupon'",async()=>{
         spyService.mockResolvedValue({status:404,message:'This user already possesses the coupon.'})
         const {getByText} = render(
-            <AddCoupon id={3} addMessage={addMessage}/>
+            <AddCoupon id={3} />
         )
         
         const btn = getByText("Pegar")
@@ -44,7 +55,7 @@ describe("component AddCoupon",()=>{
      it("should return an info message when the service returns 'Limit of active coupons reached.",async()=>{
         spyService.mockResolvedValue({status:404,message:"Limit of active coupons reached."})
         const {getByText} = render(
-            <AddCoupon id={3} addMessage={addMessage}/>
+            <AddCoupon id={3} />
         )
         
         const btn = getByText("Pegar")
@@ -60,7 +71,7 @@ describe("component AddCoupon",()=>{
     it("should return an error message when the service returns 'Something went wrong",async()=>{
         spyService.mockResolvedValue({status:404,message:"Something went wrong"})
         const {getByText} = render(
-            <AddCoupon id={3} addMessage={addMessage}/>
+            <AddCoupon id={3} />
         )
         
         const btn = getByText("Pegar")
