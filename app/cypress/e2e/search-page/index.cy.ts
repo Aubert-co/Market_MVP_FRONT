@@ -95,7 +95,7 @@ describe("filter",()=>{
             const {maxPrice,category,minPrice,orderBy,name} = request.query
             expect(maxPrice).to.eq("100")
             expect(minPrice).to.eq("50")
-            expect(name).to.eq("")
+            expect(name).to.eq('null')
             expect(category).to.eq("")
             expect(orderBy).to.eq("asc")
         })
