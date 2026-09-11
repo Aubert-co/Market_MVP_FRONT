@@ -1,15 +1,15 @@
 import type { BaseCoupon } from "@/types/coupons.types";
 import assets from '@/assets/coupon.png'
-import type { AddMessageParams } from "../../hooks/useBoxMessages"
+
 import { AddCoupon } from "./AddCoupon";
 import { CouponDetails, CouponItem, CouponRow,Label,Divider,Value,CouponHeader } from "@/styles/coupomCart.style";
 
 
 type Props = {
   datas:BaseCoupon<number>[],
-  addMessage:({content,type}:AddMessageParams)=>void
+ 
 }
-export const ListCoupons = ({ datas,addMessage }: Props) => {
+export const ListCoupons = ({ datas }: Props) => {
   return (
  
       <>
@@ -53,7 +53,7 @@ export const ListCoupons = ({ datas,addMessage }: Props) => {
 
           <Divider />
 
-          <AddCoupon id={val.id} addMessage={addMessage} />
+          <AddCoupon id={val.id} />
         </CouponDetails>
       </CouponItem>
       ))}

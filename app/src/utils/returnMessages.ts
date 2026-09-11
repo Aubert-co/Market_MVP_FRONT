@@ -1,4 +1,5 @@
-import type { AddMessageParams } from "@/hooks/useBoxMessages"
+import type { AddMessageParams } from "@/types/messages.types"
+
 
 
 type Action = "create" | "update" 

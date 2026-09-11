@@ -1,12 +1,13 @@
-import { loadImage } from "@/utils/index";
+import { brlCurrency, loadImage } from "@/utils/index";
 import type { Product } from "@/types/products.types";
 import { ListRatings } from "./listRatings";
 import { Collapse } from "../shared/collapse";
-import type { AddMessageParams } from "../../hooks/useBoxMessages";
+
 import { addToCart } from "@/services/cart.services";
 import { setItemsCheckout } from "@/storage/checkout.storage";
 import { useNavigate } from "react-router-dom";
 import { PrimaryButton } from "@/styles/shared.style";
+import { useToastMessage } from "@/hooks/messages/useToastMessage";
 
 type Props = {
     product:Product[],
@@ -18,10 +19,11 @@ type Props = {
       rating: number;
     };
   };
- addMessage:({content,type}:AddMessageParams)=>void
+
 }
-export const ListProductDetail = ({product,ratings,addMessage}:Props)=>{
+export const ListProductDetail = ({product,ratings}:Props)=>{
     const navigate = useNavigate()
+    const {addMessage} =  useToastMessage()
     const addCart  = async()=>{
         const {status} = await addToCart(product[0].id)
         if(status === 401){
@@ -59,7 +61,7 @@ export const ListProductDetail = ({product,ratings,addMessage}:Props)=>{
                     </div>
                     <div className="product-stocks">
                         <p>Em estoque {val.stock}</p>
-                        <h3>Preço ${val.price}</h3>
+                        <h3>{brlCurrency(val.price)}</h3>
                     </div>
                     <div className="actions">
                         <PrimaryButton onClick={addCart}>Adicionar ao carrinho</PrimaryButton>

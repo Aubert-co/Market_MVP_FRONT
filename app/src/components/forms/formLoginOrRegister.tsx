@@ -6,7 +6,7 @@ import {  UserFormStyles } from "@/styles/forms.style";
 import { isAValidString, isValidEmail } from "@/utils/checkIsValid";
 import type { TypeSubmitRegister } from "@/pages/register";
 import type { TypeSubmitLogin } from "@/pages/login";
-import { useBoxMessage } from "../../hooks/useBoxMessages";
+import { useBoxMessage } from "../../hooks/messages/useBoxMessages";
 import { PasswordInput } from "./passwordInput";
 import { InputWithLabel } from "./inputWithLabel";
 import { PrimaryButton } from "@/styles/shared.style";
@@ -35,7 +35,7 @@ export const FormLoginOrRegister = ({submitEvent,type,formRef}:PropsForm)=>{
   const refUserPassword = useRef<HTMLInputElement>(null);
   const refRepeatUserPassword = useRef<HTMLInputElement>(null);
   const titleText = type === "Login" ? "Login" : "Cadastro"
-  const {addMessage,BoxMessage} = useBoxMessage({styledType:""})
+  const {addMessage,BoxMessage} = useBoxMessage()
   
   const handleSubmit = (e:React.FormEvent<HTMLFormElement>):void=>{
     e.preventDefault()

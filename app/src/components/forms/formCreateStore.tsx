@@ -4,7 +4,7 @@ import { getValidImageFile, isAValidString } from "@/utils/checkIsValid"
 import { getMultiInputValues } from "@/utils"
 import {  UserFormStyles } from "@/styles/forms.style"
 import { InputWithLabel } from "./inputWithLabel"
-import { useBoxMessage } from "../../hooks/useBoxMessages"
+import { useBoxMessage } from "../../hooks/messages/useBoxMessages"
 import type { PropsFormCreateStore } from "@/types/store.types";
 import { useNavigate } from "react-router-dom"
 import { PrimaryButton } from "@/styles/shared.style"
@@ -13,7 +13,7 @@ export const FormCreateStore = ({formRef}:PropsFormCreateStore)=>{
     const nameRef = useRef<HTMLInputElement>(null)
     const descriptionRef = useRef<HTMLTextAreaElement>(null)
     const imageRef = useRef<HTMLInputElement>(null);
-    const { BoxMessage,addMessage} = useBoxMessage({styledType:""});
+    const { BoxMessage,addMessage} = useBoxMessage();
     const navigate = useNavigate()
     const submit = async(e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()

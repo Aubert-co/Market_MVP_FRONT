@@ -1,4 +1,4 @@
-import { useBoxMessage } from "./useBoxMessages"
+import { useBoxMessage } from "./messages/useBoxMessages"
 import { getMultiInputValues } from "@/utils"
 import { checkIsAValidCategory, isAValidString ,checkIsAValidNumber,getValidImageFile, buildUpdatePayload, hasChanges} from "@/utils/checkIsValid"
 
@@ -35,7 +35,7 @@ export const  useUpsertProduct = ({type,valuesRef,closeModal,originalValues}:Pro
 
   const {nameRef,descriptionRef,priceRef,stockRef,categoryRef,imageRef} = valuesRef
  
-  const { addMessage, BoxMessage } = useBoxMessage({ styledType: "" })
+  const { addMessage, BoxMessage } = useBoxMessage()
 
 
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {

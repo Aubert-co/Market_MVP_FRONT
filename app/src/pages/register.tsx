@@ -2,17 +2,18 @@ import {useRef} from "react";
 import { useNavigate } from "react-router-dom";
 import { serviceLoginOrRegister } from "@/services/loginOrRegister";
 import { FormLoginOrRegister } from "@/components/forms/formLoginOrRegister";
-import type { AddMessageParams } from "@/hooks/useBoxMessages";
+
 import { StyleCreateStore } from "@/styles/registerPage";
 import { BoxBenefits } from "@/components/boxBenefits";
 import { adLinkRegister, adTextRegister, benefitsRegister } from "@/constants/benefitsRegister";
+import type { AddMessageParams } from "@/types/messages.types";
 
 
 
 export type TypeSubmitRegister ={
     email:string,
     password:string,
-    setMessageParams:(msg:AddMessageParams,duration?:number)=>void,
+    setMessageParams:(msg:AddMessageParams)=>void,
     name:string
 
 }

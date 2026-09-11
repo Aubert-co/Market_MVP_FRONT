@@ -1,7 +1,7 @@
 import {   UserFormStyles } from "@/styles/forms.style"
 import { InputWithLabel } from "./inputWithLabel"
 import { useRef, useState, type SetStateAction } from "react"
-import { useBoxMessage } from "../../hooks/useBoxMessages"
+import { useBoxMessage } from "../../hooks/messages/useBoxMessages"
 import { getMultiInputValues } from "@/utils"
 import { checkIsAValidNumber, isAValidString } from "@/utils/checkIsValid"
 
@@ -48,7 +48,7 @@ export const FormCreateCoupon = ({setCloseDrawer,setRefreshDatas}:Props)=>{
     const discountRef = useRef(null)
     const cupomCodeRef = useRef(null)
     const quantityRef = useRef(null)
-    const {BoxMessage,addMessage}= useBoxMessage({styledType:''})
+    const {BoxMessage,addMessage}= useBoxMessage()
 
     const onSubmit =async (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()

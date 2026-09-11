@@ -1,13 +1,14 @@
 import { serviceCreateOrder, type CreateOrder } from "@/services/checkout.services"
 import { getItemsCheckout } from "@/storage/checkout.storage"
-import type { AddMessageParams } from "../../hooks/useBoxMessages"
-import { PrimaryButton } from "@/styles/shared.style"
 
+import { PrimaryButton } from "@/styles/shared.style"
+import { useToastMessage } from "@/hooks/messages/useToastMessage"
 type Props = {
     couponId?:number,
-    addMessage:({type,content}:AddMessageParams)=>void,
+
 }
-export const FinishCheckout = ({couponId,addMessage}:Props)=>{
+export const FinishCheckout = ({couponId}:Props)=>{
+    const {addMessage} = useToastMessage()
      const onClick = async()=>{
         const items = getItemsCheckout()
         if(!items ||  items.length === 0 ){

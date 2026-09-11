@@ -2,18 +2,18 @@ import type { ProductDetails } from "@/types/productDetail.types"
 import { Collapse } from "../shared/collapse"
 import { ListComments } from "./listComments"
 import { ListProductDetail } from "./listProductDetail"
-import type { AddMessageParams } from "../../hooks/useBoxMessages"
+
 import { RenderDataState } from "@/components/shared/renderDataState"
 import type { Product } from "@/types/products.types"
 import { BoxSkeleton } from "../templates/skeleton"
 
 type Props ={
     datas:ProductDetails,
-    addMessage: ({content,type}:AddMessageParams)=>void,
+    
     status:number
 }
 
-export const BoxProductDetail = ({datas,addMessage,status}:Props)=>{
+export const BoxProductDetail = ({datas,status}:Props)=>{
     return (
         <>
         <RenderDataState<Product>
@@ -24,7 +24,7 @@ export const BoxProductDetail = ({datas,addMessage,status}:Props)=>{
         skeleton={<BoxSkeleton classNameImg="product-image" className="product-detail"
         length={1}/>}
         >
-                <ListProductDetail addMessage={addMessage}
+                <ListProductDetail 
                     ratings={datas.ratings}
                     product={datas.product}/>
                                 

@@ -1,14 +1,13 @@
 import { removeItemFromCart } from "@/storage/cart.storage"
 import React from "react"
-import type { AddMessageParams } from "../../hooks/useBoxMessages"
 import { deleteFromCart } from "@/services/cart.services"
-
+import {useToastMessage} from '@/hooks/messages/useToastMessage'
 type PropsRemove = {
-    addMessage: ({content,type}:AddMessageParams)=>void,
+    
     setUpdateCart: React.Dispatch<React.SetStateAction<boolean>>
 }
-export const useRemoveFromCart = ({addMessage,setUpdateCart}:PropsRemove)=>{
-    
+export const useRemoveFromCart = ({setUpdateCart}:PropsRemove)=>{
+    const {addMessage} = useToastMessage()
     const onClick = async(values:Array<number>)=>{
         try {
         

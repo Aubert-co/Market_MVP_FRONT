@@ -2,13 +2,10 @@ import { ListCheckoutItems } from "@/components/checkout/listCheckoutItems"
 import { SelectCoupon } from "@/components/checkout/selectCoupon"
 import { Container } from "@/components/layouts/container"
 import { getItemsCheckout } from "@/storage/checkout.storage"
-
 import { useEffect,useState } from "react"
 import type { BaseCoupon } from "@/types/coupons.types"
 import { ProductsCheckout } from "@/styles/checkout.style"
-
 import { FinishCheckout } from "@/components/checkout/finishCheckout"
-import { useBoxMessage } from "@/hooks/useBoxMessages"
 import type { ItemsCheckout } from "@/types/checkout.types"
 import { brlCurrency, getUserTotally } from "@/utils"
 
@@ -18,7 +15,7 @@ type StateCoupon = {
 
 
 export const Checkout = ()=>{
-    const {BoxMessage,addMessage} = useBoxMessage({styledType:'toast'})
+  
     const [datas,setDatas] = useState({
       items:[] as ItemsCheckout[]
     })
@@ -46,7 +43,7 @@ export const Checkout = ()=>{
    
     return (
         <Container>
-          <BoxMessage/>
+          
           <ProductsCheckout>
               <div className="list-buy">
                   <ListCheckoutItems setUpdate={setUpdate} datas={datas.items}/>
@@ -56,7 +53,7 @@ export const Checkout = ()=>{
           
           <div className="overview">
               <p > Total {brlCurrency(totally)}</p>
-              <FinishCheckout  addMessage={addMessage} couponId={coupon.item?.id}/>
+              <FinishCheckout  couponId={coupon.item?.id}/>
           </div>
           </ProductsCheckout>
        

@@ -6,7 +6,7 @@ import { UpdateCartContext } from "@/context/cart.context"
 import { ListContainer } from "@/styles/profile.style"
 import { CartOverview } from "../cart/cartOverview"
 import { RenderDataState } from "@/components/shared/renderDataState"
-import type { AddMessageParams } from "@/hooks/useBoxMessages"
+
 import { Link } from "react-router-dom"
 import { usableFetch } from "@/services/fetchs"
 import { BoxSkeleton } from "../templates/skeleton"
@@ -18,12 +18,12 @@ type CartState = {
 }
 type Props = {
   formRef:React.RefObject<HTMLInputElement | null>,
-  addMessage:({content,type}:AddMessageParams)=>void
+ 
 
 }
 
 
-export const Cart = ({formRef,addMessage}:Props)=>{
+export const Cart = ({formRef}:Props)=>{
     const [userCart,setUserCart] = useState<CartState>({
         datas:[],
         status:0
@@ -64,8 +64,8 @@ export const Cart = ({formRef,addMessage}:Props)=>{
                   <BoxSkeleton className="list-item" classNameImg="list-image" length={3}/>
                 }
               >
-              <CartOverview addMessage={addMessage} setUpdateCart={setUpdateCart} updateCart={updateCart}/>
-              <CartList addMessage={addMessage} cart={userCart.datas}/>
+              <CartOverview  setUpdateCart={setUpdateCart} updateCart={updateCart}/>
+              <CartList  cart={userCart.datas}/>
             </RenderDataState>
              
              

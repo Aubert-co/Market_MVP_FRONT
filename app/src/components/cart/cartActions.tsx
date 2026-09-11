@@ -2,13 +2,12 @@ import { UpdateCartQuantity } from "./updateCartQuantity"
 import { RemoveFromCart } from "./removeFromCart"
 import  {  useState } from "react"
 import styled from "styled-components"
-import type { AddMessageParams } from "../../hooks/useBoxMessages"
+
 
 
 type Props = {
   id:number,
   quantity:number,
-  addMessage:({type,content}:AddMessageParams)=>void,
   stock:number
 }
 const CartStyle = styled.div`
@@ -64,12 +63,12 @@ const CartStyle = styled.div`
   transform: scale(1.1);
 }
 `
-export const CartActions = ({id,quantity,addMessage,stock}:Props)=>{
+export const CartActions = ({id,quantity,stock}:Props)=>{
     const [updatedQuantity,setQuantity] = useState( quantity )
   
     return (
         <CartStyle>
-            <RemoveFromCart id={id} addMessage={addMessage}/>
+            <RemoveFromCart id={id}/>
             <UpdateCartQuantity stock={stock} id={id} quantity={updatedQuantity} setQuantity={setQuantity}/>
         </CartStyle>
     )

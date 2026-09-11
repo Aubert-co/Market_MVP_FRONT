@@ -1,20 +1,19 @@
 import { UpdateCartContext} from "@/context/cart.context"
 import  { useContext } from "react"
 import { FaTrash } from "react-icons/fa"
-import type { AddMessageParams } from "../../hooks/useBoxMessages"
+
 import { useRemoveFromCart } from "./useRemoveFromCart"
 
 type Props ={
     id:number,
-    addMessage:({type,content}:AddMessageParams)=>void
+    
 }
 
 
 
-export const RemoveFromCart = ({id,addMessage}:Props)=>{
+export const RemoveFromCart = ({id}:Props)=>{
     const {setUpdateCart} = useContext(UpdateCartContext)!
     const {onClick} = useRemoveFromCart({
-        addMessage,
         setUpdateCart:setUpdateCart
     })
     const click = ()=>{

@@ -1,4 +1,3 @@
-import { useBoxMessage } from "@/hooks/useBoxMessages"
 import { Container } from "@/components/layouts/container"
 import { BoxProductDetail } from "@/components/product/boxProductDetail"
 import { useSyncCart } from "@/hooks/useSyncCart"
@@ -17,7 +16,7 @@ type ProductState = {
 }
 export const ProductDetail = ()=>{
     const {productid} = useParams()
-    const {BoxMessage,addMessage} = useBoxMessage({styledType:'toast'})
+   
     
     useSyncCart()
     const [ products , setProducts] = useState<ProductState>({
@@ -48,9 +47,9 @@ export const ProductDetail = ()=>{
     return(
         <Container>
             <ProductStyle>
-                <BoxMessage/>
+             
                 
-                <BoxProductDetail addMessage={addMessage} status={products.status} datas={products.datas} />
+                <BoxProductDetail  status={products.status} datas={products.datas} />
             </ProductStyle>
         </Container>
     )

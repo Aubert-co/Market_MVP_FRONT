@@ -2,8 +2,9 @@ import { useNavigate } from "react-router-dom"
 import { useRef } from "react"
 import { serviceLoginOrRegister } from "@/services/loginOrRegister"
 import { FormLoginOrRegister } from "@/components/forms/formLoginOrRegister";
-import type { AddMessageParams } from "@/hooks/useBoxMessages";
+
 import { StyleCreateStore } from "@/styles/registerPage";
+import type { AddMessageParams } from "@/types/messages.types";
 export type TypeSubmitLogin = {
     email:string,
     password:string,

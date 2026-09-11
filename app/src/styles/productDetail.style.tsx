@@ -142,47 +142,7 @@ export const ProductStyle = styled.div`
     }
   }
 
-  .message_success,
-  .message_error,
-  .message_info {
-    position: fixed;
-    top: 24px;  
-    right: 24px;
-    padding: 14px 20px;
-    border-radius: 12px;
-    color: #ffffff;
-    font-size: 0.875rem;
-    font-weight: 600;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-    z-index: 9999; 
-    animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .message_success {
-    background-color: #10b981; 
-  }
-
-  .message_error {
-    background-color: #ef4444; 
-  }
-
-  .message_info {
-    background-color: #3b82f6; 
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-10px) scale(0.96);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-  }
+  
 
   @media (max-width: 700px) {
     .product-detail {
@@ -202,15 +162,6 @@ export const ProductStyle = styled.div`
       text-align: center;
     }
 
-    .message_success,
-    .message_error,
-    .message_info {
-      top: 12px;
-      right: 12px;
-      left: 12px;
-      text-align: center;
-      justify-content: center;
-    }
   }
 `;
 

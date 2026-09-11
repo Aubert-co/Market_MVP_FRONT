@@ -1,4 +1,3 @@
-import { useBoxMessage } from "@/hooks/useBoxMessages"
 import { ListCoupons } from "@/components/coupon/listCoupons"
 import { Container } from "@/components/layouts/container"
 import { RenderDataState } from "@/components/shared/renderDataState"
@@ -18,7 +17,7 @@ type State = {
 
 
 export const Coupon = ()=>{
-  const {BoxMessage,addMessage}  =useBoxMessage({styledType:'toast'})
+ 
   const [coupons,setCoupons] = useState<State>({
     datas:[] as Coupons,status:0
   })
@@ -31,7 +30,7 @@ export const Coupon = ()=>{
   },[])
   return(
         <Container>
-          <BoxMessage/>
+     
          
             <CouponContainer>
               <RenderDataState<BaseCoupon<number>>
@@ -49,7 +48,7 @@ export const Coupon = ()=>{
                   >
               
                 <ListCoupons 
-                  addMessage={addMessage} 
+               
                   datas={ coupons.datas }/>
               </RenderDataState>
             </CouponContainer>

@@ -1,12 +1,13 @@
 import { PrimaryButton } from "@/styles/shared.style"
-import type { AddMessageParams } from "../../hooks/useBoxMessages"
-import { userAddCoupon } from "@/services/coupons.services"
 
+import { userAddCoupon } from "@/services/coupons.services"
+import { useToastMessage } from "@/hooks/messages/useToastMessage"
 type Props = {
     id:number,
-    addMessage:({content,type}:AddMessageParams)=>void
+
 }
-export const AddCoupon = ({id,addMessage}:Props)=>{
+export const AddCoupon = ({id}:Props)=>{
+    const {addMessage} = useToastMessage()
     const onClick = async()=>{
         const { message,status } = await userAddCoupon(id)
         

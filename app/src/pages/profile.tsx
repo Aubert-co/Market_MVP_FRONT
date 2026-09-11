@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 import { Container } from "@/components/layouts/container"
 import { ProfileStyle } from "@/styles/profile.style";
 import { UserOrdersComponent } from "@/components/profile/userOrders";
-import { useBoxMessage } from "@/hooks/useBoxMessages";
+
 import { useSyncCart } from "@/hooks/useSyncCart";
 import { PROFILE_OPTIONS } from "@/constants/profile";
 
@@ -14,7 +14,7 @@ export const Profile = () => {
   const redirect = useNavigate()
   const {action} = useParams()
   const goToForm = useRef<HTMLInputElement>(null)
-  const {BoxMessage,addMessage} = useBoxMessage({styledType:"toast"})
+  
   useSyncCart()
   const scrollToForm = () => {
     if (goToForm.current) {
@@ -42,7 +42,7 @@ export const Profile = () => {
   }
   return (
     <Container>
-        <BoxMessage/>
+        
         <ProfileStyle>
           <h1 style={{ color: '#4B5563' }}>Perfil</h1>
           <div className="boxes">
@@ -56,7 +56,7 @@ export const Profile = () => {
   
         </ProfileStyle>
       {action === "ordens" && <UserOrdersComponent />}
-      {action ==="carrinho" && <Cart addMessage={addMessage} formRef={goToForm}/>}
+      {action ==="carrinho" && <Cart  formRef={goToForm}/>}
       {action === "cupons" && <UserCoupons formRef={goToForm} />}
       {action === "loja"  && <UserStore formRef={goToForm}/>}
     </Container>

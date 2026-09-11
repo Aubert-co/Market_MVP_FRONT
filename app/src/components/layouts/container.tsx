@@ -2,6 +2,7 @@ import {   Header } from "@/styles/header.style"
 import { ContainerStyle,Main } from "@/styles/index.style"
 import { TopBar, type NavigateMode } from "../header/topBar"
 import type React from "react"
+import { MessageProvider } from "@/context/message.context"
 
 type Props={
     children:React.ReactNode
@@ -15,7 +16,9 @@ export const Container = ({children,navigateMode}:Props)=>{
         </Header>
      
         <Main>
-            {children}
+            <MessageProvider >
+                {children}
+            </MessageProvider>
         </Main>
         
     </ContainerStyle>
