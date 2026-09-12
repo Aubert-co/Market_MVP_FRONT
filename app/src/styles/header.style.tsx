@@ -44,7 +44,7 @@ export const HeaderLogoImage = styled.img`
   height: auto;
 `
 
-export const HeaderLogoLink = styled.a`
+export const HeaderLogoLink = styled.div`
   a{
   text-decoration: none;
   font-weight: bold;
