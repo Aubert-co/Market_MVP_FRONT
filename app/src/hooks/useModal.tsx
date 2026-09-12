@@ -2,16 +2,23 @@ import { CloseButton, PanelHeader } from "@/styles/shared.style";
 import { useCallback, useEffect, useState, type ReactNode } from "react";;
 import styled from "styled-components";
 
-
-const Overlay = styled.div`
+type OverlayProps ={
+  $location?: 'center' | 'bottom'
+}
+const Overlay = styled.div<OverlayProps>`
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);  
+
+  background: rgba(0, 0, 0, 0.5);
+
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  z-index: 1300;
-  backdrop-filter: blur(4px);       
+
+  z-index: ${({ $location }) =>
+    $location === "bottom" ? "9999" : "1300"};
+
+  backdrop-filter: blur(4px);
 `;
 
 const Container = styled.div`
@@ -44,20 +51,26 @@ type ModalProps = {
   children: ReactNode;
 };
 
-
-export function useModal() {
+type Props = {
+  modalLocation?:'center' | 'bottom'
+  cbClose?:()=>void;
+  cbOpen?:()=>void
+}
+export function useModal({modalLocation,cbClose,cbOpen}:Props) {
     const [isOpen, setIsOpen] = useState(false);
 
-    const onClose = useCallback(() => {
+    const closeModal = useCallback(() => {
         setIsOpen(false);
+        cbClose?.()
     }, []);
     const openModal = useCallback(()=>{
         setIsOpen(true);
+        cbOpen?.()
     },[])
     const Modal = ({  title, children }: ModalProps) =>{
     useEffect(() => {
         function handleEsc(event: KeyboardEvent) {
-        if (event.key === "Escape") onClose();
+        if (event.key === "Escape") closeModal();
         }
 
         if (isOpen) {
@@ -75,8 +88,9 @@ export function useModal() {
 
     return (
        <Overlay
-          onClick={onClose}
+          onClick={closeModal}
           role="presentation"
+          $location={modalLocation}
         >
           <Container
             role="dialog"
@@ -88,7 +102,7 @@ export function useModal() {
               <h2 id="modal-title">{title}</h2>
 
               <CloseButton
-                onClick={onClose}
+                onClick={closeModal}
                 aria-label="Fechar modal"
               >
                 &times;
@@ -103,7 +117,7 @@ export function useModal() {
   return {
   
     Modal,
-    onClose,
+    closeModal,
     openModal
   };
 }
