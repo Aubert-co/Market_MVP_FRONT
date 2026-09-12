@@ -2,7 +2,7 @@ import type React from "react";
 import { useRef, type JSX } from "react";
 import { Link } from "react-router-dom"
 import { getMultiInputValues } from "@/utils";
-import {  UserFormStyles } from "@/styles/forms.style";
+import {  UserFormStyles ,Checkbox,Terms } from "@/styles/forms.style";
 import { isAValidString, isValidEmail } from "@/utils/checkIsValid";
 import type { TypeSubmitRegister } from "@/pages/register";
 import type { TypeSubmitLogin } from "@/pages/login";
@@ -10,6 +10,7 @@ import { useBoxMessage } from "../../hooks/messages/useBoxMessages";
 import { PasswordInput } from "./passwordInput";
 import { InputWithLabel } from "./inputWithLabel";
 import { PrimaryButton } from "@/styles/shared.style";
+
 
 type TypeForm = "Login" | "Register"
 type PropsTypeForm = {
@@ -96,13 +97,42 @@ export const FormLoginOrRegister = ({submitEvent,type,formRef}:PropsForm)=>{
               
               </InputWithLabel>
 
-              {type === "Register" &&
-               <InputWithLabel textLabel="Repita sua senha!" inputName="repeatPassword">
-                <PasswordInput 
-                id="repeatPassword" 
-                refPassword={refRepeatUserPassword}
-                placeholder={"Igual a do campo senha"}/>
-               </InputWithLabel>}
+            {type === "Register" && (
+                <>
+                  <InputWithLabel
+                    textLabel="Repita sua senha!"
+                    inputName="repeatPassword"
+                  >
+                    <PasswordInput
+                      id="repeatPassword"
+                      refPassword={refRepeatUserPassword}
+                      placeholder="Igual a do campo senha"
+                    />
+                  </InputWithLabel>
+
+                  
+                  <InputWithLabel
+                    textLabel="aceite os termos"
+                    inputName="acceptTerms"
+                  >
+                    <Terms>
+                      <Checkbox
+                        type="checkbox"
+                        name="acceptTerms"
+                        required
+                      />
+
+                      <span>
+                        Li e aceito os{" "}
+                        <a href="/termos" target="_blank" rel="noreferrer">
+                          Termos de Uso
+                        </a>
+                      </span>
+                    </Terms>
+                  </InputWithLabel>
+                 
+                </>
+              )}
           
               <PrimaryButton data-testid="btn_send" type="submit">{'Enviar'}</PrimaryButton>
               <LoginOrRegister option={type}/>

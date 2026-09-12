@@ -111,3 +111,16 @@ input[type="file"]::file-selector-button:hover {
 }
 `
 
+export const Checkbox = styled.input`
+  &[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #3b82f6;
+  }
+`;
+export const Terms = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
