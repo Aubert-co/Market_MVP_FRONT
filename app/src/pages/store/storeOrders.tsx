@@ -39,7 +39,7 @@ export const StoreOrders = ()=>{
     const {searchEvent,searchProduct:searchOrder} = useSearch({mode:'update'})
     const {orders,status} = useStoreOrders({setPagesInfos,orderStatus:selected,nextPage:pageInfos.currentPage,search:searchOrder})
     const {setIsOpen,isOpen} = useSideBarOrDrawer()
-    const {Modal:ModalShowOrder,openModal} = useModal()
+    const {Modal:ModalShowOrder,openModal} = useModal({modalLocation:'center'})
     
     const showOrdersModal = (datas:Order[])=>{
       openModal()

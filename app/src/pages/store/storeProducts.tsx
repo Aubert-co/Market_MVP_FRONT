@@ -49,7 +49,7 @@ export const StoreProducts = ()=>{
         setPagesInfos,priceOrder:orderProductBy,stockOrder:stockSort
     })
     
-    const {onClose:closeModalProduct,openModal:modalProduct,Modal:ModalListProduct} = useModal()
+    const {closeModal:closeModalProduct,openModal:modalProduct,Modal:ModalListProduct} = useModal({modalLocation:"center"})
     
     const {drawerType,openCreateProductDrawer,openUpdateProductDrawer,upsertProduct} = useProductDrawer({
         closeModalProduct,
