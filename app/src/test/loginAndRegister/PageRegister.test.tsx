@@ -21,7 +21,7 @@ describe("should handle service response",()=>{
     })
     it("should display the success message when the service returns status 201",async()=>{
         serviceMoked.mockResolvedValue({status:201,message:'Sucess'})
-        const {queryByPlaceholderText,getByText,container}= render(
+        const {queryByPlaceholderText,getByText,container,getByRole}= render(
                  
                    <Router>
                    <Routes>
@@ -38,12 +38,14 @@ describe("should handle service response",()=>{
         const byPassword = queryByPlaceholderText("Digite uma senha forte!") as HTMLInputElement
         const repeatPassword = queryByPlaceholderText("Igual a do campo senha") as HTMLInputElement
         const btnSubmit = getByText("Enviar") as HTMLButtonElement
+        const checkBoxTerms = getByRole("checkbox")
 
         expect(byEmail).toBeInTheDocument()
         fireEvent.change(byName,{target:{value:name}})
         fireEvent.change(byEmail,{target:{value:email}})
         fireEvent.change(byPassword,{target:{value:password}})
         fireEvent.change(repeatPassword,{target:{value:password }})
+        fireEvent.click(checkBoxTerms)
         await act(async()=>{
             fireEvent.click(btnSubmit)
         })
@@ -58,7 +60,7 @@ describe("should handle service response",()=>{
     })
     it("should display the error message when the service returns status 422",async()=>{
         serviceMoked.mockResolvedValue({status:422,message:'Sucess'})
-        const {queryByPlaceholderText,getByText,container}= render(
+        const {queryByPlaceholderText,getByText,container,getByRole}= render(
                  
                    <Router>
                    <Routes>
@@ -75,12 +77,13 @@ describe("should handle service response",()=>{
         const byPassword = queryByPlaceholderText("Digite uma senha forte!") as HTMLInputElement
         const repeatPassword = queryByPlaceholderText("Igual a do campo senha") as HTMLInputElement
         const btnSubmit = getByText("Enviar") as HTMLButtonElement
-
+        const checkBoxTerms = getByRole("checkbox")
         expect(byEmail).toBeInTheDocument()
         fireEvent.change(byName,{target:{value:name}})
         fireEvent.change(byEmail,{target:{value:email}})
         fireEvent.change(byPassword,{target:{value:password}})
         fireEvent.change(repeatPassword,{target:{value:password }})
+        fireEvent.click(checkBoxTerms)
         await act(async()=>{
             fireEvent.click(btnSubmit)
         })
@@ -94,7 +97,7 @@ describe("should handle service response",()=>{
     })
      it("should display the success message when the service returns status 409",async()=>{
         serviceMoked.mockResolvedValue({status:409,message:'Sucess'})
-        const {queryByPlaceholderText,getByText,container}= render(
+        const {queryByPlaceholderText,getByText,container,getByRole}= render(
                  
                    <Router>
                    <Routes>
@@ -111,12 +114,14 @@ describe("should handle service response",()=>{
         const byPassword = queryByPlaceholderText("Digite uma senha forte!") as HTMLInputElement
         const repeatPassword = queryByPlaceholderText("Igual a do campo senha") as HTMLInputElement
         const btnSubmit = getByText("Enviar") as HTMLButtonElement
+        const checkBoxTerms = getByRole("checkbox")
 
         expect(byEmail).toBeInTheDocument()
         fireEvent.change(byName,{target:{value:name}})
         fireEvent.change(byEmail,{target:{value:email}})
         fireEvent.change(byPassword,{target:{value:password}})
         fireEvent.change(repeatPassword,{target:{value:password }})
+        fireEvent.click(checkBoxTerms)
         await act(async()=>{
             fireEvent.click(btnSubmit)
         })
@@ -130,7 +135,7 @@ describe("should handle service response",()=>{
     })
     it("should display the success message when the service returns status 500",async()=>{
         serviceMoked.mockResolvedValue({status:500,message:'Sucess'})
-        const {queryByPlaceholderText,getByText,container}= render(
+        const {queryByPlaceholderText,getByText,container,getByRole}= render(
                  
                    <Router>
                    <Routes>
@@ -147,12 +152,14 @@ describe("should handle service response",()=>{
         const byPassword = queryByPlaceholderText("Digite uma senha forte!") as HTMLInputElement
         const repeatPassword = queryByPlaceholderText("Igual a do campo senha") as HTMLInputElement
         const btnSubmit = getByText("Enviar") as HTMLButtonElement
+        const checkBoxTerms = getByRole("checkbox")
 
         expect(byEmail).toBeInTheDocument()
         fireEvent.change(byName,{target:{value:name}})
         fireEvent.change(byEmail,{target:{value:email}})
         fireEvent.change(byPassword,{target:{value:password}})
         fireEvent.change(repeatPassword,{target:{value:password }})
+        fireEvent.click(checkBoxTerms)
         await act(async()=>{
             fireEvent.click(btnSubmit)
         })
@@ -179,7 +186,7 @@ describe("when the input are invalids",()=>{
     })
     it("should not call the service and show an error message when the name is empty",async()=>{
         serviceMoked.mockResolvedValue({status:201,message:'Sucess'})
-        const {queryByPlaceholderText,getByText,container}= render(
+        const {queryByPlaceholderText,getByText,container,getByRole}= render(
                  
                    <Router>
                    <Routes>
@@ -196,12 +203,14 @@ describe("when the input are invalids",()=>{
         const byPassword = queryByPlaceholderText("Digite uma senha forte!") as HTMLInputElement
         const repeatPassword = queryByPlaceholderText("Igual a do campo senha") as HTMLInputElement
         const btnSubmit = getByText("Enviar") as HTMLButtonElement
+        const checkBoxTerms = getByRole("checkbox")
 
         expect(byEmail).toBeInTheDocument()
         fireEvent.change(byName,{target:{value:invalidName}})
         fireEvent.change(byEmail,{target:{value:email}})
         fireEvent.change(byPassword,{target:{value:password}})
         fireEvent.change(repeatPassword,{target:{value:password }})
+        fireEvent.click(checkBoxTerms)
         await act(async()=>{
             fireEvent.click(btnSubmit)
         })
@@ -214,7 +223,7 @@ describe("when the input are invalids",()=>{
     })
     it("should not call the service and show an error message when the name is shorter than 4",async()=>{
         serviceMoked.mockResolvedValue({status:201,message:'Sucess'})
-        const {queryByPlaceholderText,getByText,container}= render(
+        const {queryByPlaceholderText,getByText,container,getByRole}= render(
                  
                    <Router>
                    <Routes>
@@ -231,12 +240,14 @@ describe("when the input are invalids",()=>{
         const byPassword = queryByPlaceholderText("Digite uma senha forte!") as HTMLInputElement
         const repeatPassword = queryByPlaceholderText("Igual a do campo senha") as HTMLInputElement
         const btnSubmit = getByText("Enviar") as HTMLButtonElement
+        const checkBoxTerms = getByRole("checkbox")
 
         expect(byEmail).toBeInTheDocument()
         fireEvent.change(byName,{target:{value:'e3ae'}})
         fireEvent.change(byEmail,{target:{value:email}})
         fireEvent.change(byPassword,{target:{value:password}})
         fireEvent.change(repeatPassword,{target:{value:password }})
+        fireEvent.click(checkBoxTerms)
         await act(async()=>{
             fireEvent.click(btnSubmit)
         })
@@ -249,7 +260,7 @@ describe("when the input are invalids",()=>{
     })
     it("should not call the service and show an error message when the password is invalid",async()=>{
         serviceMoked.mockResolvedValue({status:201,message:'Sucess'})
-        const {queryByPlaceholderText,getByText,container}= render(
+        const {queryByPlaceholderText,getByText,container,getByRole}= render(
                  
                    <Router>
                    <Routes>
@@ -266,12 +277,14 @@ describe("when the input are invalids",()=>{
         const byPassword = queryByPlaceholderText("Digite uma senha forte!") as HTMLInputElement
         const repeatPassword = queryByPlaceholderText("Igual a do campo senha") as HTMLInputElement
         const btnSubmit = getByText("Enviar") as HTMLButtonElement
-
+        const checkBoxTerms = getByRole("checkbox")
         expect(byEmail).toBeInTheDocument()
+
         fireEvent.change(byName,{target:{value:'e3ase'}})
         fireEvent.change(byEmail,{target:{value:email}})
         fireEvent.change(byPassword,{target:{value:''}})
         fireEvent.change(repeatPassword,{target:{value:password }})
+        fireEvent.click(checkBoxTerms)
         await act(async()=>{
             fireEvent.click(btnSubmit)
         })
@@ -284,7 +297,7 @@ describe("when the input are invalids",()=>{
     })
     it("should not call the service and show an error message when the password and repeat password do not match",async()=>{
         serviceMoked.mockResolvedValue({status:201,message:'Sucess'})
-        const {queryByPlaceholderText,getByText,container}= render(
+        const {queryByPlaceholderText,getByText,container,getByRole}= render(
                  
                    <Router>
                    <Routes>
@@ -301,12 +314,14 @@ describe("when the input are invalids",()=>{
         const byPassword = queryByPlaceholderText("Digite uma senha forte!") as HTMLInputElement
         const repeatPassword = queryByPlaceholderText("Igual a do campo senha") as HTMLInputElement
         const btnSubmit = getByText("Enviar") as HTMLButtonElement
+        const checkBoxTerms = getByRole("checkbox")
 
         expect(byEmail).toBeInTheDocument()
         fireEvent.change(byName,{target:{value:'e3ase'}})
         fireEvent.change(byEmail,{target:{value:email}})
         fireEvent.change(byPassword,{target:{value:'1234567'}})
         fireEvent.change(repeatPassword,{target:{value:'123456' }})
+        fireEvent.click(checkBoxTerms)
         await act(async()=>{
             fireEvent.click(btnSubmit)
         })
