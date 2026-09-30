@@ -10,10 +10,11 @@ import { hasSeenCookieNotice, setCookieNoticeSeen } from "@/storage/cookies.stor
 
 type Props={
     children:React.ReactNode
-    navigateMode?: NavigateMode
+    navigateMode?: NavigateMode,
+    showHeader?:boolean
 }
-export const Container = ({children,navigateMode}:Props)=>{
-    const {Modal,openModal,closeModal} = useModal({modalLocation:'center',cbClose:setCookieNoticeSeen})
+export const Container = ({children,navigateMode,showHeader=true}:Props)=>{
+    const {Modal,openModal,closeModal} = useModal({modalLocation:'bottom',cbClose:setCookieNoticeSeen})
     useEffect(()=>{
         if(!hasSeenCookieNotice()){
             openModal()
@@ -23,10 +24,10 @@ export const Container = ({children,navigateMode}:Props)=>{
     
     return(
     <ContainerStyle>
-        <Header>
+       { showHeader && (<Header>
             <TopBar navigationMode={navigateMode}/>
-        </Header>
-     
+        </Header>)
+        }
         <Main>
             <MessageProvider >
                 <Modal title="Uso de cookies"> 
