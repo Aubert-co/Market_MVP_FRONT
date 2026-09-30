@@ -4,11 +4,12 @@ import { Cart } from "@/components/profile/userCart";
 import { UserStore } from "@/components/profile/userStore";
 import { useEffect, useRef } from "react";
 import { Container } from "@/components/layouts/container"
-import { ProfileStyle } from "@/styles/profile.style";
+import { ProfileStyle,ProfileBox } from "@/styles/profile.style";
 import { UserOrdersComponent } from "@/components/profile/userOrders";
 
 import { useSyncCart } from "@/hooks/useSyncCart";
 import { PROFILE_OPTIONS } from "@/constants/profile";
+
 
 export const Profile = () => {
   const redirect = useNavigate()
@@ -47,10 +48,14 @@ export const Profile = () => {
           <h1 style={{ color: '#4B5563' }}>Perfil</h1>
           <div className="boxes">
           {PROFILE_OPTIONS.map((item) => (
-            <div className="box" key={item.label} onClick={()=>onChangeActions(item.page)}>
+            <ProfileBox
+              key={item.label}
+              isActive={action === item.page}
+              onClick={() => onChangeActions(item.page)}
+            >
               <img src={item.img} alt={item.label} />
               <p>{item.label}</p>
-            </div>
+            </ProfileBox>
           ))}
         </div>
   

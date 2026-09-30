@@ -4,40 +4,22 @@ import type { UserOrders } from "@/types/orders.types"
 import { useEffect, useState } from "react"
 import { userOrders } from "@/services/userProfile.services"
 import { usableFetch } from "@/services/fetchs"
-
-import type { DiscountType } from "@/types/coupons.types"
-import { loadImage } from "@/utils"
 import { BoxSkeleton } from "../templates/skeleton"
+import { PrimaryButton } from "@/styles/shared.style"
+import { ListUserOrders } from "./orders/listUserOrders"
+import { useNavigate } from "react-router-dom"
+
+
+
 type State = {
   datas: UserOrders[]
   status:number
    
 }
-type PropsList ={
-  orders:UserOrders[]
-}
-const getDiscount = (coupon?:DiscountType)=>coupon === "fixed" ? "R$" :"%"
-export const ListUserOrders = ({orders}:PropsList)=>{
-  return orders.map((val)=>{
-    return(
-      <div className="list-item" key={val.id}>
-        <div className="list-image">
-          <img src={loadImage(val.product.imageUrl)} alt="" />
-        </div>
-        <div className="list-info">
-            <p className="name"><strong>Produto:</strong> {val.product.name}</p>
-            <p><strong>Preço:</strong> R$ {val.price.toFixed(2)}</p>
-            <p><strong>Quantidade:</strong> {val.quantity}</p>
-            <p><strong>Total:</strong> R$ {val.total.toFixed(2)}</p>
-            {val.coupon?.discount && <p> <strong>Desconto:</strong>{val.coupon.discount}{getDiscount(val.coupon.discountType)} </p>}
-          </div>
-      </div>
-    )
-  })
-}
+
 export const UserOrdersComponent = ()=>{
   const [orders,setDatas] = useState<State>({datas:[],status:0})
-
+  const navigate = useNavigate()
   useEffect(()=>{
     usableFetch<UserOrders[],unknown>({
       service:userOrders,
@@ -46,6 +28,7 @@ export const UserOrdersComponent = ()=>{
     })
       
   },[])
+  const redictOrderDetails = (id:number)=>navigate(`/minhas-compras/detalhes/${id}`)
   return( 
   <ListContainer>
       <div className="text">
@@ -64,7 +47,10 @@ export const UserOrdersComponent = ()=>{
                 <BoxSkeleton className="list-item" classNameImg="list-image" length={3}/>
               }
               >
-                <ListUserOrders orders={orders.datas}/>
+                <ListUserOrders orderDetails={redictOrderDetails} orders={orders.datas}/>
+                <PrimaryButton onClick={()=>navigate('/minhas-compras')}>
+                  Ver todas as compras
+                </PrimaryButton>
               </RenderDataState>
       </div>
   </ListContainer>

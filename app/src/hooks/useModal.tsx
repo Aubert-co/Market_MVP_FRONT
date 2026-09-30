@@ -12,7 +12,8 @@ const Overlay = styled.div<OverlayProps>`
   background: rgba(0, 0, 0, 0.5);
 
   display: flex;
-  align-items: flex-end;
+  align-items: ${({ $location }) =>
+    $location === "bottom" ? "flex-end" : "center"};
   justify-content: center;
 
   z-index: ${({ $location }) =>

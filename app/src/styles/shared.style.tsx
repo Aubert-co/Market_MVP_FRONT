@@ -23,18 +23,21 @@ export const CloseButton = styled.button`
     color: #000;
   }
 `;
+
+type Cursor = "pointer" | "not-allowed"
 type BtnProps = {
   $bg?: string;
   $hoverBg?: string;
   $color?: string;
   $width?:string;
+  $cursor?:Cursor;
 };
 export const PrimaryButton = styled.button<BtnProps>`
   margin-top: 1rem;
   padding: 0.8rem 1.5rem;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
+  cursor: ${({$cursor})=> $cursor || 'pointer'};
   font-size: 1rem;
   background: ${({ $bg }) => $bg || '#007BFF'};
   color: ${({ $color }) => $color || 'white'};

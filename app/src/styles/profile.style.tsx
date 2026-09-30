@@ -217,9 +217,7 @@ export const ProfileStyle = styled.div`
   text-align: center;
   width: 100%;
 
-
   &, * {
-
     box-sizing: border-box;
   }
 
@@ -248,38 +246,48 @@ export const ProfileStyle = styled.div`
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
   }
 
-  .box {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 20px 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    width: 160px;
-    height: 170px;
-    margin: 0;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  @media (max-width: 640px) {
+    .boxes {
+      width: 100%;
+      padding: 16px;
+      gap: 12px;
+    }
   }
+`;
 
-  .box:hover {
+export const ProfileBox = styled.div<{ isActive?: boolean }>`
+  background: ${({ isActive }) => (isActive ? "#eff6ff" : "#ffffff")};
+  border: 1px solid ${({ isActive }) => (isActive ? "#3b82f6" : "#e2e8f0")};
+  border-radius: 16px;
+  padding: 20px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 160px;
+  height: 170px;
+  margin: 0;
+  box-shadow: ${({ isActive }) =>
+    isActive ? "0 12px 24px rgba(59, 130, 246, 0.12)" : "0 2px 8px rgba(0, 0, 0, 0.02)"};
+
+  &:hover {
     transform: translateY(-6px);
     border-color: #3b82f6;
     box-shadow: 0 12px 24px rgba(59, 130, 246, 0.12);
+    background: #eff6ff;
   }
 
-  .box:hover img {
+  &:hover img {
     transform: scale(1.08);
   }
 
-  .box:hover p {
+  &:hover p {
     color: #2563eb;
   }
 
-  .box img {
+  img {
     width: 72px;
     height: 72px;
     object-fit: contain;
@@ -287,29 +295,21 @@ export const ProfileStyle = styled.div`
     transition: transform 0.25s ease;
   }
 
-  .box p {
+  p {
     font-size: 0.875rem;
     font-weight: 600;
-    color: #334155;
+    color: ${({ isActive }) => (isActive ? "#2563eb" : "#334155")};
     margin: 0;
     line-height: 1.3;
     transition: color 0.2s ease;
   }
 
   @media (max-width: 640px) {
-    .boxes {
-      width: 100%;
-      padding: 16px;
-      gap: 12px;
-    }
+    width: calc(50% - 6px);
+    height: 150px;
+    padding: 16px 8px;
 
-    .box {
-      width: calc(50% - 6px);
-      height: 150px;
-      padding: 16px 8px;
-    }
-
-    .box img {
+    img {
       width: 56px;
       height: 56px;
     }

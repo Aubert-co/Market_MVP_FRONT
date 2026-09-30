@@ -3,7 +3,7 @@ import { Register } from "./register"
 import { Login } from "./login"
 import { Index } from "."
 import { ProductDetail } from "./productDetail"
-import { Profile } from "./profile"
+import { Profile } from "./profile/profile"
 import { CreateStore } from "./store/createStore"
 import { StoreHome } from "./store/storeHome"
 import { StoreProducts } from "./store/storeProducts"
@@ -15,6 +15,8 @@ import { Search } from "./search"
 import { Checkout } from "./checkout"
 import { ProtectedStoreRoutes } from "@/components/store/protectedStoreRoute"
 import TermsPage from "./terms"
+import { Orders } from "./profile/orders"
+import { OrderDetails } from "./profile/orderDetails"
 
 
 export const App = ()=>{
@@ -35,6 +37,8 @@ export const App = ()=>{
                 <Route path="/pagamento" element={<Checkout/>}/>
                 <Route path="/termos" element={<TermsPage/>}/>
                 
+                <Route path="/minhas-compras" element={<Orders/>}/>
+                <Route path="/minhas-compra/detalhes/:orderId" element={<OrderDetails/>}/>
                 <Route element={<ProtectedStoreRoutes/>}>
                     <Route path="/loja" element={<StoreHome/>}/>
                     <Route path="/loja/produtos" element={<StoreProducts/>}/>
