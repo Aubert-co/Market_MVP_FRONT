@@ -1,7 +1,7 @@
-import type { UserTotally } from "@/types/checkout.types";
-import type { DiscountType } from "@/types/coupons.types";
-import type { UserOrders } from "@/types/orders.types";
-import type { OrderStatus } from "@/types/storeDashboard.types";
+import type { UserTotally } from "@/modules/checkout/types/checkout.types";
+import type { DiscountType } from "@/modules/coupons/types/coupons.types";
+import type { UserOrders } from "@/modules/orders/types/orders.types";
+import type { OrderStatus } from "@/modules/store/types/storeDashboard.types";
 
 export type RefValue =
   React.RefObject<

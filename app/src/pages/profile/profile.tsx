@@ -1,14 +1,15 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { UserCoupons } from "@/components/profile/userCoupons";
-import { Cart } from "@/components/profile/userCart";
-import { UserStore } from "@/components/profile/userStore";
+import { UserCoupons } from "@/modules/coupons/user/components/userCoupons";
+
+import { UserStore } from "@/modules/store/user/components/userStore";
 import { useEffect, useRef } from "react";
 import { Container } from "@/components/layouts/container"
 import { ProfileStyle,ProfileBox } from "@/styles/profile.style";
-import { UserOrdersComponent } from "@/components/profile/userOrders";
+import { UserOrdersComponent } from "@/modules/orders/user/components/userOrders";
 
-import { useSyncCart } from "@/hooks/useSyncCart";
+import { useSyncCart } from "@/modules/cart/hooks/useSyncCart";
 import { PROFILE_OPTIONS } from "@/constants/profile";
+import { Cart } from "@/modules/cart/components/userCart";
 
 
 export const Profile = () => {

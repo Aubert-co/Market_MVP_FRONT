@@ -1,6 +1,6 @@
-import type { BaseCoupon } from "@/types/coupons.types";
-import type { UserCart } from "@/types/cart.types";
-import type { ProductOrder } from "@/types/storeDashboard.types";
+import type { BaseCoupon } from "@/modules/coupons/types/coupons.types";
+import type { UserCart } from "@/modules/cart/types/types";
+import type { ProductOrder } from "@/modules/store/types/storeDashboard.types";
 export const mockCoupons: BaseCoupon<number>[] = [
   {
     id:1,
