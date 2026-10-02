@@ -1,8 +1,8 @@
-import { adLinkStore,adTextStore,benefitsCreateStore } from "@/constants/benefitsRegister";
-import { BoxBenefits } from "../boxBenefits";
-import { StyleCreateStore } from "@/styles/registerPage";
-import type { PropsFormCreateStore } from "@/types/store.types";
-import { FormCreateStore } from "../forms/formCreateStore";
+import { adLinkStore,adTextStore,benefitsCreateStore } from "@/modules/auth/constants/benefitsRegister";
+import { StyleCreateStore } from "@/modules/auth/styles/registerPage";
+import type { PropsFormCreateStore } from "@/modules/store/user/types/store.types";
+import { BoxBenefits } from "@/modules/auth/components/boxBenefits";
+import { FormCreateStore } from "./formCreateStore";
 
 
 export const BoxCreateStore = ({formRef}:PropsFormCreateStore)=>{

@@ -1,7 +1,7 @@
 import type { IconType } from "react-icons"
-import type { BaseCoupon } from "./coupons.types"
-import type { Product } from "./products.types"
-import type { Category, OrderBy } from "./filters.types"
+import type { BaseCoupon } from "@/modules/coupons/types/coupons.types"
+import type { Product } from "@/modules/products/user/types"
+import type { Category, OrderBy } from "@/types/filters.types"
 
 export type SideBarItem = {
   label: string

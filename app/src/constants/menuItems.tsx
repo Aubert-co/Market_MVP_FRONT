@@ -1,4 +1,4 @@
-import type { SideBarItem } from "@/types/storeDashboard.types"
+import type { SideBarItem } from "@/modules/store/types/storeDashboard.types"
 import { FaBox, FaClipboardList, FaTags, FaUsers } from "react-icons/fa"
 
 export const sideBarMenuItems:SideBarItem[] = [

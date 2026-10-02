@@ -1,7 +1,7 @@
 import { API_BASE_URL } from "@/configs/api"
-import { getStorageStore } from "@/storage/store.storage"
+import { getStorageStore } from "@/modules/store/user/storage/store.storage"
 import type {  ResponseDatas } from "@/types/services.types"
-import type { BackendStats } from "@/types/storeDashboard.types"
+import type { BackendStats } from "../types/storeDashboard.types"
 
 
 

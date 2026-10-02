@@ -1,6 +1,6 @@
 import { DashboardStats } from "@/components/shared/dashboardStats"
-import { formatValues, mapStats, Stats } from "@/constants/dashboardStats"
-import type {  FormatStats } from "@/types/storeDashboard.types"
+import { formatValues, mapStats, Stats } from "@/modules/store/constants/dashboardStats"
+import type {  FormatStats } from "../types/storeDashboard.types"
 
 import { render } from "@testing-library/react"
 

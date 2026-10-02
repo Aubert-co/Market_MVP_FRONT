@@ -1,17 +1,17 @@
 import { ContainerDashboard } from "@/components/layouts/containerDashboard"
 import Sidebar from "@/components/shared/sidebar"
-import { DashboardHeader } from "@/components/store/dashboardHeader"
+import { DashboardHeader } from "@/modules/store/components/dashboardHeader"
 import { DashboardStats } from "@/components/shared/dashboardStats"
-import { OrdersTable } from "@/components/store/ordersTable"
+import { OrdersTable } from "@/modules/orders/store/components/ordersTable"
 import { selectMenuItem } from "@/constants/menuItems"
 import { useSideBarOrDrawer } from "@/hooks/useSidebarOrDrawer"
 import { Box } from "@/styles/store/dashboard.style"
 import { SectionHeader } from "@/components/shared/sectionHeader"
 import { Card, Grid } from "@/styles/shared.style"
-import { TopVisitedProducts } from "@/components/store/topVisitedProducts"  
 import { Link } from "react-router-dom"
-import { useDashboardStats } from "@/hooks/store/useDashboardStas"
-import { getStorageStore } from "@/storage/store.storage"
+import { useDashboardStats } from "@/modules/orders/store/hooks/useDashboardStas"
+import { getStorageStore } from "@/modules/store/user/storage/store.storage"
+import { TopVisitedProducts } from "@/modules/products/store/components/topVisitedProducts"
 
 
 const convertStatus = (hasError:boolean):number=> hasError ? 500 : 200

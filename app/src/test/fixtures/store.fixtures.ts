@@ -1,5 +1,5 @@
-import type { BaseCoupon } from "@/types/coupons.types";
-import type { Order, TopVisitedProduct } from "@/types/storeDashboard.types";
+import type { BaseCoupon } from "@/modules/coupons/types/coupons.types";
+import type { Order, TopVisitedProduct } from "@/modules/store/types/storeDashboard.types";
 
 export const FixtureVisitedProducs:TopVisitedProduct[] = [{
     id: 1,

@@ -1,6 +1,6 @@
 import { usableFetch } from "@/services/fetchs"
-import {  serviceGetStores } from "@/services/store/store.services"
-import type { Store } from "@/types/store.types"
+import {  serviceGetStores } from "@/modules/store/user/services/store.services"
+import type { Store } from "@/modules/store/user/types/store.types"
 import { useEffect, useState } from "react"
 
 type State = {

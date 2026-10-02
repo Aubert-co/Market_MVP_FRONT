@@ -1,7 +1,7 @@
-import { FormCreateStore } from "@/components/forms/formCreateStore"
 import {  fireEvent, render ,waitFor} from "@testing-library/react"
-import * as service from '@/services/store/store.services'
+import * as service from '@/modules/store/user/services/store.services'
 import { BrowserRouter } from "react-router-dom"
+import { FormCreateStore } from "../components/formCreateStore"
 
 
 const mockedService = jest.spyOn(service,'serviceCreateStore')

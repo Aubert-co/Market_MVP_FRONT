@@ -1,6 +1,6 @@
 import { Toggle } from "./toggle"
 import { SiderStyle } from "@/styles/store/sidebar.style"
-import type { SideBarItem } from "@/types/storeDashboard.types"
+import type { SideBarItem } from "@/modules/store/types/storeDashboard.types"
 import { Link } from "react-router-dom"
 import { FaSignOutAlt } from "react-icons/fa";
 

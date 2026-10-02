@@ -1,4 +1,4 @@
-import type {  Stat, FormatStats } from "@/types/storeDashboard.types";
+import type {  Stat, FormatStats } from "../types/storeDashboard.types";
 
 import { FaDollarSign, FaShoppingCart, FaBox, FaTicketAlt, FaEye, FaStar, FaComments } from "react-icons/fa";
 

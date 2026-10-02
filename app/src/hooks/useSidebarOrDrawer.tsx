@@ -1,4 +1,4 @@
-import type { OpenSideBarOuDrawer } from "@/types/storeDashboard.types"
+import type { OpenSideBarOuDrawer } from "@/modules/store/types/storeDashboard.types"
 import { useState } from "react"
 
 export const useSideBarOrDrawer = ()=>{

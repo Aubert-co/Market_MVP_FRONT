@@ -1,5 +1,5 @@
 import { KEY_STORE } from "@/constants";
-import type { Store } from "@/types/store.types";
+import type { Store } from "@/modules/store/user/types/store.types";
 
 
 

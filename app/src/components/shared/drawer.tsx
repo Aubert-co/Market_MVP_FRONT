@@ -1,5 +1,5 @@
 import { PanelHeader,CloseButton } from "@/styles/shared.style";
-import type { OpenSideBarOuDrawer } from "@/types/storeDashboard.types"
+import type { OpenSideBarOuDrawer } from "@/modules/store/types/storeDashboard.types"
 import styled from "styled-components"
 
 

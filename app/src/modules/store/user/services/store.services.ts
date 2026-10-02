@@ -1,6 +1,6 @@
 import { API_BASE_URL } from "@/configs/api";
 import type { Response, ResponseDatas } from "@/types/services.types";
-import type { Store } from '@/types/store.types'
+import type { Store } from '@/modules/store/user/types/store.types'
 
 
 type CreateStore = Omit<Store,"photo" | "id"> &{

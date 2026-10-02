@@ -1,5 +1,5 @@
 import { Container } from "@/components/layouts/container"
-import { BoxCreateStore } from "@/components/store/boxCreateStore"
+import { BoxCreateStore } from "../components/boxCreateStore"
 import { useRef } from "react"
 
 export const CreateStore = ()=>{

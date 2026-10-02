@@ -1,4 +1,4 @@
-import type { UpsertProducts } from "@/types/storeDashboard.types";
+import type { UpsertProducts } from "@/modules/store/types/storeDashboard.types";
 import { categories } from "../constants/filters";
 
 

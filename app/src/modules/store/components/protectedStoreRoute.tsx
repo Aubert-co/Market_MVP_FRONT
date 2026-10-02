@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from "react-router-dom"
-import { useGetStoreInfo } from "@/hooks/store/useGetStoreInfo"
-import { saveStorageStore } from "@/storage/store.storage"
+import { useGetStoreInfo } from "@/modules/store/user/hooks/useGetStoreInfo"
+import { saveStorageStore } from "@/modules/store/user/storage/store.storage"
 
 export const ProtectedStoreRoutes = () => {
 

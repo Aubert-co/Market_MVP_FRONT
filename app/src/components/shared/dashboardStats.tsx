@@ -1,4 +1,4 @@
-import type {  Stat } from "@/types/storeDashboard.types";
+import type {  Stat } from "@/modules/store/types/storeDashboard.types";
 import styled from "styled-components";
 
 

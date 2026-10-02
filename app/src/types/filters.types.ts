@@ -1,5 +1,5 @@
 import type { categories } from "@/constants/filters"
-import type { OrderStatus } from "./storeDashboard.types"
+import type { OrderStatus } from "@/modules/store/types/storeDashboard.types"
 
 export type OrderBy = 'asc' | 'desc' 
 

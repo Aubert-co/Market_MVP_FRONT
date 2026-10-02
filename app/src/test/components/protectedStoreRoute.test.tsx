@@ -1,9 +1,9 @@
-import { ProtectedStoreRoutes } from "@/components/store/protectedStoreRoute"
+import { ProtectedStoreRoutes } from "@/modules/store/components/protectedStoreRoute"
 import { render, waitFor } from "@testing-library/react"
-import * as services from '@/services/store/store.services'
+import * as services from '@/modules/store/user/services/store.services'
 import { MemoryRouter, Routes, Route } from "react-router-dom"
-import * as storage from '@/storage/store.storage'
-import type { Store } from "@/types/store.types"
+import * as storage from '@/modules/store/user/storage/store.storage'
+import type { Store } from "@/modules/store/user/types/store.types"
 
 
 const mockService = jest.spyOn(services,'serviceGetStores')

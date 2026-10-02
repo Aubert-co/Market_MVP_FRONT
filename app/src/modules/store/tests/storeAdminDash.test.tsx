@@ -1,12 +1,12 @@
-import {StoreHome} from "@/pages/store/storeHome"
+import {StoreHome} from "@/modules/store/page/storeHome"
 import { render } from "@testing-library/react"
 import { BrowserRouter } from "react-router-dom"
 
-import * as dashboardStats from "@/hooks/store/useDashboardStas"
-import { mapStats } from "@/constants/dashboardStats"
+import * as dashboardStats from "@/modules/orders/store/hooks/useDashboardStas"
+import { mapStats } from "@/modules/store/constants/dashboardStats"
 import { mockBackendStats } from "./dashboardStats.test"
 import userEvent from "@testing-library/user-event"
-import { FixtureOrders, FixtureVisitedProducs } from "../fixtures/store.fixtures"
+import { FixtureOrders, FixtureVisitedProducs } from "@/test/fixtures/store.fixtures"
 
 
 const spyDashboardStats = jest.spyOn(dashboardStats,'useDashboardStats')

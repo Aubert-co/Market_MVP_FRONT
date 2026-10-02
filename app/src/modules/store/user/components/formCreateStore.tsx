@@ -1,11 +1,11 @@
 import { useRef } from "react"
-import { serviceCreateStore } from "@/services/store/store.services"
+import { serviceCreateStore } from "@/modules/store/user/services/store.services"
 import { getValidImageFile, isAValidString } from "@/utils/checkIsValid"
 import { getMultiInputValues } from "@/utils"
 import {  UserFormStyles } from "@/styles/forms.style"
-import { InputWithLabel } from "./inputWithLabel"
-import { useBoxMessage } from "../../hooks/messages/useBoxMessages"
-import type { PropsFormCreateStore } from "@/types/store.types";
+import { InputWithLabel } from "@/components/forms/inputWithLabel"
+import { useBoxMessage } from "@/hooks/messages/useBoxMessages"
+import type { PropsFormCreateStore } from "@/modules/store/user/types/store.types";
 import { useNavigate } from "react-router-dom"
 import { PrimaryButton } from "@/styles/shared.style"
 
