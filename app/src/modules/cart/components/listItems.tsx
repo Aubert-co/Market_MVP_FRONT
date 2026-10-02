@@ -1,5 +1,5 @@
-import type { UserCart } from "@/types/cart.types"
-import { CartActions } from "./cartActions"
+import type { UserCart } from "@/modules/cart/types/types"
+import { CartActions } from "./actions"
 
 import { loadImage } from "@/utils"
 

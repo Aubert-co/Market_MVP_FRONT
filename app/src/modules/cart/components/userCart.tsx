@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react"
-import type { UserCart } from "@/types/cart.types"
-import {  CartList } from "@/components/cart/cartList"
-import { getUserCart } from "@/services/cart.services"
-import { UpdateCartContext } from "@/context/cart.context"
+import type { UserCart } from "@/modules/cart/types/types"
+import {  CartList } from "@/modules/cart/components/listItems"
+import { getUserCart } from "@/modules/cart/services/services"
+import { UpdateCartContext } from "@/modules/cart/context/cart.context"
 import { ListContainer } from "@/styles/profile.style"
-import { CartOverview } from "../cart/cartOverview"
+import { CartOverview } from "@/modules/cart/components/overview"
 import { RenderDataState } from "@/components/shared/renderDataState"
 
 import { Link } from "react-router-dom"
 import { usableFetch } from "@/services/fetchs"
-import { BoxSkeleton } from "../templates/skeleton"
+import { BoxSkeleton } from "@/components/templates/skeleton"
 
 
 type CartState = {

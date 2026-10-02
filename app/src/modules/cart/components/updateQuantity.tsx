@@ -1,5 +1,5 @@
-import { UpdateCartContext } from "@/context/cart.context";
-import { updateItemCart } from "@/storage/cart.storage";
+import { UpdateCartContext } from "@/modules/cart/context/cart.context";
+import { updateItemCart } from "@/modules/cart/storage/storage";
 
 import type React from "react"
 import { useContext } from "react";

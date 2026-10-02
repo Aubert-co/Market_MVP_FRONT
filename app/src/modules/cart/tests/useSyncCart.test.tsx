@@ -1,9 +1,9 @@
-import { useSyncCart } from "@/hooks/useSyncCart"
+import { useSyncCart } from "@/modules/cart/hooks/useSyncCart"
 import { render } from "@testing-library/react"
-import * as services from '@/services/cart.services'
-import * as storage from '@/storage/cart.storage'
+import * as services from '@/modules/cart/services/services'
+import * as storage from '@/modules/cart/storage/storage'
 import { act } from "react"
-import { userCartMocks } from "../fixtures"
+import { userCartMocks } from "@/test/fixtures"
 import { FIVE_MINUTES } from "@/constants"
 
 const  [cart] = userCartMocks

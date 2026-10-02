@@ -1,8 +1,8 @@
-import { RemoveFromCart } from "@/components/cart/removeFromCart";
+import { RemoveFromCart } from "@/modules/cart/components/removeFromCart";
 import { fireEvent, render, waitFor } from "@testing-library/react";
-import * as services from '@/services/cart.services'
-import * as storages from '@/storage/cart.storage' 
-import { UpdateCartContext } from "@/context/cart.context";
+import * as services from '@/modules/cart/services/services'
+import * as storages from '@/modules/cart/storage/storage' 
+import { UpdateCartContext } from "@/modules/cart/context/cart.context";
 import type { Response } from "@/types/services.types";
 import { MessageProvider } from "@/context/message.context";
 

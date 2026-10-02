@@ -1,6 +1,6 @@
-import { removeItemFromCart } from "@/storage/cart.storage"
+import { removeItemFromCart } from "@/modules/cart/storage/storage"
 import React from "react"
-import { deleteFromCart } from "@/services/cart.services"
+import { deleteFromCart } from "@/modules/cart/services/services"
 import {useToastMessage} from '@/hooks/messages/useToastMessage'
 type PropsRemove = {
     

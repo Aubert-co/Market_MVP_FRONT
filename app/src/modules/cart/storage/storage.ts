@@ -1,5 +1,5 @@
 import { CART_KEY } from "@/constants"
-import type { UserCart } from "@/types/cart.types"
+import type { UserCart } from "@/modules/cart/types/types"
 
 
 

@@ -1,7 +1,7 @@
-import { UpdateCartQuantity } from "@/components/cart/updateCartQuantity"
-import { UpdateCartContext } from "@/context/cart.context"
+import { UpdateCartQuantity } from "@/modules/cart/components/updateQuantity"
+import { UpdateCartContext } from "@/modules/cart/context/cart.context"
 import { fireEvent, render } from "@testing-library/react"
-import * as storage from '@/storage/cart.storage'
+import * as storage from '@/modules/cart/storage/storage'
 
 const decreaseStorage = jest.spyOn(storage,'updateItemCart')
 describe('Component UpdateCartQuantity',()=>{

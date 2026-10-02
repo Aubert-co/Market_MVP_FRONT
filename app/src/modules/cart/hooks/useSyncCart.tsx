@@ -1,6 +1,6 @@
 import { FIVE_MINUTES } from "@/constants"
-import { syncCart } from "@/services/cart.services"
-import { getItemsFromCart } from "@/storage/cart.storage"
+import { syncCart } from "@/modules/cart/services/services"
+import { getItemsFromCart } from "@/modules/cart/storage/storage"
 import { useEffect } from "react"
 
 

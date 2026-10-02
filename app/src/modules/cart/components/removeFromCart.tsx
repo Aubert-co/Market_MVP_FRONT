@@ -1,8 +1,8 @@
-import { UpdateCartContext} from "@/context/cart.context"
+import { UpdateCartContext} from "@/modules/cart/context/cart.context"
 import  { useContext } from "react"
 import { FaTrash } from "react-icons/fa"
 
-import { useRemoveFromCart } from "./useRemoveFromCart"
+import { useRemoveFromCart } from "../hooks/useRemoveFromCart"
 
 type Props ={
     id:number,

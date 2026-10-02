@@ -1,7 +1,7 @@
-import { getItemsFromCart, saveCart,updateItemCart ,removeItemFromCart} from "@/storage/cart.storage"
+import { getItemsFromCart, saveCart,updateItemCart ,removeItemFromCart} from "@/modules/cart/storage/storage"
 import { CART_KEY } from "@/constants"
-import { userCartMocks } from "../fixtures"
-import * as storages from '@/storage/cart.storage'
+import { userCartMocks } from "@/test/fixtures"
+import * as storages from '@/modules/cart/storage/storage'
 
 const getItem = jest.spyOn(window.localStorage.__proto__,'getItem')
 const setItem = jest.spyOn(window.localStorage.__proto__,'setItem')

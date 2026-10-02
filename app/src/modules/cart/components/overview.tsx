@@ -1,11 +1,11 @@
-import type {UpdateCartState} from "@/context/cart.context"
-import { getItemsFromCart } from "@/storage/cart.storage"
+import type {UpdateCartState} from "@/modules/cart/context/cart.context"
+import { getItemsFromCart } from "@/modules/cart/storage/storage"
 import { useEffect ,useState} from "react"
 import styled from "styled-components"
 
-import { useRemoveFromCart } from "./useRemoveFromCart"
-import { setItemsCheckout } from "@/storage/checkout.storage"
-import type { ItemsCheckout } from "@/types/checkout.types"
+import { useRemoveFromCart } from "../hooks/useRemoveFromCart"
+import { setItemsCheckout } from "@/modules/checkout/storage/checkout.storage"
+import type { ItemsCheckout } from "@/modules/checkout/types/checkout.types"
 import { useNavigate } from "react-router-dom"
 import { CompactButton } from "@/styles/shared.style"
 

@@ -1,4 +1,4 @@
-import { UpdateCartQuantity } from "./updateCartQuantity"
+import { UpdateCartQuantity } from "./updateQuantity"
 import { RemoveFromCart } from "./removeFromCart"
 import  {  useState } from "react"
 import styled from "styled-components"

@@ -1,6 +1,6 @@
 import { API_BASE_URL } from "@/configs/api";
-import { getItemsFromCart, saveCart } from "@/storage/cart.storage"
-import type { UserCart } from "@/types/cart.types"
+import { getItemsFromCart, saveCart } from "@/modules/cart/storage/storage"
+import type { UserCart } from "@/modules/cart/types/types"
 import type {  Response, ResponseDatas } from "@/types/services.types";
 
 

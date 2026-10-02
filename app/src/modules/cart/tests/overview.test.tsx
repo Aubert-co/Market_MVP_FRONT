@@ -1,8 +1,8 @@
-import { CartOverview } from "@/components/cart/cartOverview"
+import { CartOverview } from "@/modules/cart/components/overview"
 import { fireEvent, render } from "@testing-library/react"
-import * as storages from '@/storage/cart.storage'
-import { userCartMocks } from "../fixtures"
-import * as cleanCart from '@/components/cart/useRemoveFromCart'
+import * as storages from '@/modules/cart/storage/storage'
+import { userCartMocks } from "@/test/fixtures"
+import * as cleanCart from '@/modules/cart/hooks/useRemoveFromCart'
 import { BrowserRouter } from "react-router-dom"
 
 const onClick  = jest.fn()
