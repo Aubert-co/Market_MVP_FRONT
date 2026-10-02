@@ -1,0 +1,56 @@
+import { Container } from "@/components/layouts/container"
+import { BoxProductDetail } from "../components/boxProductDetail"
+import { useSyncCart } from "@/modules/cart/hooks/useSyncCart"
+import { usableFetch } from "@/services/fetchs"
+import { productDetail, type ProductDetailBody } from "../services/productDetail.service"
+
+import { ProductStyle } from "@/modules/products/user/styles/productDetail.style"
+import type { ProductDetails } from "../types"
+
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+
+type ProductState = {
+    datas:ProductDetails,
+    status:number
+}
+export const ProductDetail = ()=>{
+    const {productid} = useParams()
+   
+    
+    useSyncCart()
+    const [ products , setProducts] = useState<ProductState>({
+        datas:{
+            product:[] ,
+            comments:[],
+            reviews:[],
+            ratings:{
+                _avg:{},
+                _count:{
+                    rating:0
+                }
+            },
+            
+        },
+        status:0
+    })
+    useEffect(()=>{
+        if(productid){
+           usableFetch<ProductDetails,ProductDetailBody>({
+            setDatas:setProducts,
+            service:productDetail,
+            body:{productId:productid}
+           })
+        }
+    },[productid])
+  
+    return(
+        <Container>
+            <ProductStyle>
+             
+                
+                <BoxProductDetail  status={products.status} datas={products.datas} />
+            </ProductStyle>
+        </Container>
+    )
+}
