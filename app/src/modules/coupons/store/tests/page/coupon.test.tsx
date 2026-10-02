@@ -2,10 +2,10 @@ import {   render, waitFor } from "@testing-library/react"
 import { couponsFixture } from "@/test/fixtures/store.fixtures"
 import { MemoryRouter, Routes, Route } from "react-router-dom";
 import userEvent from "@testing-library/user-event"
-import * as storageStore from "@/storage/store.storage"
+import * as storageStore from "@/modules/store/user/storage/store.storage"
 import { useLocation } from "react-router-dom";
-import { StoreCoupons } from "@/pages/store/storeCoupons";
-import * as services from "@/services/store/couponAdmin.service"
+import { StoreCoupons } from "@/modules/coupons/store/page/coupon";
+import * as services from "@/modules/coupons/store/service/service"
 
 function LocationDisplay() {
   const location = useLocation();

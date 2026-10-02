@@ -1,6 +1,6 @@
 import { fireEvent, render, waitFor } from "@testing-library/react"
-import { FormCreateCoupon } from "@/components/forms/formCreateCoupon"
-import * as services from "@/services/store/couponAdmin.service"
+import { FormCreateCoupon } from "@/modules/coupons/store/components/formCreateCoupon"
+import * as services from "@/modules/coupons/store/service/service"
 
 const spyService = jest.spyOn(services,'createCoupon')
 const eventCloseDrawer = jest.fn()

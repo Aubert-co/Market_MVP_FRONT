@@ -1,5 +1,5 @@
 import { API_BASE_URL } from "@/configs/api"
-import type { BaseCoupon } from "@/types/coupons.types"
+import type { BaseCoupon } from "@/modules/coupons/types/coupons.types"
 import type { Response, ResponseDatas } from "@/types/services.types"
 
 type Coupom = BaseCoupon<number>[]
@@ -37,5 +37,27 @@ export const userAddCoupon = async(couponId:number):Promise<Response>=>{
         return {message,status:response.status}
     }catch{
         return {message:'Algo deu errado!',status:500}
+    }
+}
+
+export const userCoupons = async():Promise<ResponseDatas<BaseCoupon<number>[]>>=>{
+  
+    try{
+      const response = await fetch(`${API_BASE_URL}/coupons`,{
+        method:'GET',
+        credentials:'include',
+        headers: {
+        'Content-Type': 'application/json'
+        }
+      })
+      if(!response.ok){
+        return {status:response.status,message:'',datas:[]}
+      }
+      const {datas} = await response.json()
+      
+      return {datas,message:'Success',status:response.status}
+        
+    }catch{
+      return {status:500,message:'Algo deu errado',datas:[] as BaseCoupon<number>[]}
     }
 }

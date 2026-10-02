@@ -1,5 +1,5 @@
-import { Coupon } from "@/pages/coupon"
-import * as service from "@/services/coupons.services"
+import { Coupon } from "@/modules/coupons/user/page/coupon"
+import * as service from "@/modules/coupons/user/services/service"
 import { render, waitFor } from "@testing-library/react"
 import { BrowserRouter as Router ,Routes,Route} from "react-router-dom"
 

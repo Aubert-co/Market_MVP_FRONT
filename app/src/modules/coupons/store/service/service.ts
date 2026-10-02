@@ -1,6 +1,6 @@
 import { API_BASE_URL } from "@/configs/api"
-import { getStorageStore } from "@/storage/store.storage"
-import type { BaseCoupon } from "@/types/coupons.types"
+import { getStorageStore } from "@/modules/store/user/storage/store.storage"
+import type { BaseCoupon } from "@/modules/coupons/types/coupons.types"
 import type { FilterCoupons } from "@/types/filters.types"
 import type { Response, ResponseWithPages } from "@/types/services.types"
 

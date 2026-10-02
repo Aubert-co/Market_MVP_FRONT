@@ -1,13 +1,13 @@
-import type { BaseCoupon } from "@/types/coupons.types"
+import type { BaseCoupon } from "@/modules/coupons/types/coupons.types"
 import { useEffect, useState } from "react"
 
 import couponImg from '@/assets/coupon.png'
 import { ListContainer } from "@/styles/profile.style"
 import { usableFetch } from "@/services/fetchs"
-import { userCoupons } from "@/services/userProfile.services"
+import { userCoupons } from "../services/service"
 import { Link } from "react-router-dom"
 import { RenderDataState } from "@/components/shared/renderDataState"
-import { BoxSkeleton } from "../templates/skeleton"
+import { BoxSkeleton } from "@/components/templates/skeleton"
 
 type StateCoupon = {
     datas:BaseCoupon<number>[],

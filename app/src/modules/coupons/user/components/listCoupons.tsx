@@ -1,8 +1,7 @@
-import type { BaseCoupon } from "@/types/coupons.types";
+import type { BaseCoupon } from "@/modules/coupons/types/coupons.types";
 import assets from '@/assets/coupon.png'
-
-import { AddCoupon } from "./AddCoupon";
-import { CouponDetails, CouponItem, CouponRow,Label,Divider,Value,CouponHeader } from "@/styles/coupomCart.style";
+import { AddCoupon } from "./addCoupon";
+import { CouponDetails, CouponItem, CouponRow,Label,Divider,Value,CouponHeader } from "@/modules/coupons/user/styles/index.style";
 
 
 type Props = {

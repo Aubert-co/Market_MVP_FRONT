@@ -1,6 +1,6 @@
 import { PrimaryButton } from "@/styles/shared.style"
 
-import { userAddCoupon } from "@/services/coupons.services"
+import { userAddCoupon } from "@/modules/coupons/user/services/service"
 import { useToastMessage } from "@/hooks/messages/useToastMessage"
 type Props = {
     id:number,

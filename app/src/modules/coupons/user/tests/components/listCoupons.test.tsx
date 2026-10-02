@@ -1,7 +1,7 @@
-import { ListCoupons } from "@/components/coupon/listCoupons"
+import { ListCoupons } from "../../components/listCoupons"
 import { fireEvent, render, waitFor } from "@testing-library/react"
-import { mockCoupons } from "../fixtures"
-import * as services from '../../services/coupons.services'
+import { mockCoupons } from "@/test/fixtures"
+import * as services from '../../services/service'
 import { MessageProvider } from "@/context/message.context"
 jest.mock("@/hooks/messages/useToastMessage", () => ({
   useToastMessage: jest.fn(),

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {  usableFetchWithPages } from "@/services/fetchs";
-import { getStoreCoupons, type StoreCoupons } from "@/services/store/couponAdmin.service";
-import type { BaseCoupon } from "@/types/coupons.types";
+import { getStoreCoupons, type StoreCoupons } from "@/modules/coupons/store/service/service";
+import type { BaseCoupon } from "@/modules/coupons/types/coupons.types";
 import type { FilterCoupons } from "@/types/filters.types";
 import type { SetPages } from "@/types/services.types";
 

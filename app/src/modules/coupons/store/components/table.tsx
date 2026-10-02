@@ -1,9 +1,9 @@
-import type { BaseCoupon } from "@/types/coupons.types";
+import type { BaseCoupon } from "@/modules/coupons/types/coupons.types";
 import CouponAsset from '@/assets/coupon.png'
-import { BaseTable } from "../templates/baseTable";
 import { getLocalDate } from "@/utils";
-import { RenderDataState } from "../shared/renderDataState";
-import { TableSkeleton } from "../templates/tableSkeleton";
+import { BaseTable } from "@/components/templates/baseTable";
+import { RenderDataState } from "@/components/shared/renderDataState";
+import { TableSkeleton } from "@/components/templates/tableSkeleton";
 
 type Coupom = BaseCoupon<number>
 

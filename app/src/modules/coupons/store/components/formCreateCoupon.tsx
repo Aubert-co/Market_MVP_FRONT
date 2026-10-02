@@ -1,13 +1,13 @@
 import {   UserFormStyles } from "@/styles/forms.style"
-import { InputWithLabel } from "./inputWithLabel"
+import { InputWithLabel } from "@/components/forms/inputWithLabel"
 import { useRef, useState, type SetStateAction } from "react"
-import { useBoxMessage } from "../../hooks/messages/useBoxMessages"
+import { useBoxMessage } from "@/hooks/messages/useBoxMessages"
 import { getMultiInputValues } from "@/utils"
 import { checkIsAValidNumber, isAValidString } from "@/utils/checkIsValid"
 
-import type { DiscountType } from "@/types/coupons.types"
+import type { DiscountType } from "@/modules/coupons/types/coupons.types"
 import { ButtonsDiv, PrimaryButton } from "@/styles/shared.style"
-import { createCoupon } from "@/services/store/couponAdmin.service"
+import { createCoupon } from "@/modules/coupons/store/service/service"
 
 type ValidateInputs={
     selectDiscount:unknown,
