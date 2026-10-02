@@ -1,5 +1,5 @@
-import type { Product } from "./products.types"
-import type { DiscountType } from "./coupons.types"
+import type { Product } from "@/modules/products/user/types"
+import type { DiscountType } from "@/modules/coupons/types/coupons.types"
 export type ItemsCheckout = Omit<Product,'category'|'description'> &{
     quantity:number
 }

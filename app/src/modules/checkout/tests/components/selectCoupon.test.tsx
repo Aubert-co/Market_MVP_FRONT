@@ -1,7 +1,7 @@
-import { SelectCoupon } from "@/components/checkout/selectCoupon"
+import { SelectCoupon } from "@/modules/checkout/components/selectCoupon"
 import { fireEvent, render, waitFor } from "@testing-library/react"
-import * as services from '@/services/userProfile.services'
-import { mockCoupons } from "../fixtures"
+import * as services from '@/modules/coupons/user/services/service'
+import { mockCoupons } from "@/test/fixtures"
 
 const userCoupons = jest.spyOn(services,'userCoupons')
 describe("component selectCoupon",()=>{

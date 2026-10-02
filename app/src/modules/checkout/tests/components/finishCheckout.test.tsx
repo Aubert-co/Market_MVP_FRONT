@@ -1,9 +1,9 @@
-import { FinishCheckout } from "@/components/checkout/finishCheckout"
+import { FinishCheckout } from "@/modules/checkout/components/finishCheckout"
 import { fireEvent, render, waitFor } from "@testing-library/react"
-import * as storage from "@/storage/checkout.storage"
-import { mockProducts } from "../fixtures/products"
-import * as services from '@/services/checkout.services'
-import type { ItemsCheckout } from "@/types/checkout.types"
+import * as storage from "@/modules/checkout/storage/checkout.storage"
+import { mockProducts } from "@/test/fixtures/products"
+import * as services from '@/modules/checkout/services'
+import type { ItemsCheckout } from "@/modules/checkout/types/checkout.types"
 jest.mock("@/hooks/messages/useToastMessage", () => ({
   useToastMessage: jest.fn(),
 }));

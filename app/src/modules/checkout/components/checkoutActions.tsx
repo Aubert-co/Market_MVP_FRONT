@@ -1,4 +1,4 @@
-import { removeItemCheckout } from "@/storage/checkout.storage";
+import { removeItemCheckout } from "@/modules/checkout/storage/checkout.storage";
 import { PrimaryButton } from "@/styles/shared.style"
 import {  type SetStateAction } from "react";
 import { ChangeQuantity } from "./changeItemQuantity";

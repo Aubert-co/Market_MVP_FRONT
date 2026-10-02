@@ -1,5 +1,5 @@
-import type { ItemsCheckout } from "@/types/checkout.types"
-import { mockProducts } from "../fixtures/products"
+import type { ItemsCheckout } from "@/modules/checkout/types/checkout.types"
+import { mockProducts } from "@/test/fixtures/products"
 import { getUserTotally } from "@/utils"
 
 

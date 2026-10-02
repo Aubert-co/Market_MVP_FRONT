@@ -1,7 +1,7 @@
-import type { ItemsCheckout } from "@/types/checkout.types"
+import type { ItemsCheckout } from "@/modules/checkout/types/checkout.types"
 import { CheckoutActions } from "./checkoutActions"
 import type { SetStateAction } from "react";
-import { CheckoutItem } from "@/styles/checkout.style";
+import { CheckoutItem } from "@/modules/checkout/styles";
 import { brlCurrency, loadImage } from "@/utils";
 
 

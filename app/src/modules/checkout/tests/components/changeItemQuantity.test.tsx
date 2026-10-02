@@ -1,6 +1,6 @@
-import { ChangeQuantity } from "@/components/checkout/changeItemQuantity"
+import { ChangeQuantity } from "@/modules/checkout/components/changeItemQuantity"
 import { fireEvent, render } from "@testing-library/react"
-import * as storage from '@/storage/checkout.storage'
+import * as storage from '@/modules/checkout/storage/checkout.storage'
 
 const spyStorage = jest.spyOn(storage,'updateItemCheckout')
 

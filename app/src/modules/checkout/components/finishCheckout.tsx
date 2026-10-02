@@ -1,5 +1,5 @@
-import { serviceCreateOrder, type CreateOrder } from "@/services/checkout.services"
-import { getItemsCheckout } from "@/storage/checkout.storage"
+import { serviceCreateOrder, type CreateOrder } from "@/modules/checkout/services"
+import { getItemsCheckout } from "@/modules/checkout/storage/checkout.storage"
 
 import { PrimaryButton } from "@/styles/shared.style"
 import { useToastMessage } from "@/hooks/messages/useToastMessage"

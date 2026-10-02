@@ -1,6 +1,6 @@
-import { CheckoutActions } from "@/components/checkout/checkoutActions"
+import { CheckoutActions } from "@/modules/checkout/components/checkoutActions"
 import { fireEvent, render } from "@testing-library/react"
-import * as storage from '@/storage/checkout.storage'
+import * as storage from '@/modules/checkout/storage/checkout.storage'
 
 const removeItem  =jest.spyOn(storage,'removeItemCheckout')
 

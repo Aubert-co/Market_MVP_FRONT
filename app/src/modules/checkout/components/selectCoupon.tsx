@@ -1,7 +1,7 @@
 import { usableFetch } from "@/services/fetchs";
-import { userCoupons } from "@/services/userProfile.services";
-import { CouponContainer } from "@/styles/checkout.style";
-import type { BaseCoupon } from "@/types/coupons.types";
+import { userCoupons } from "@/modules/coupons/user/services/service";
+import { CouponContainer } from "@/modules/checkout/styles";
+import type { BaseCoupon } from "@/modules/coupons/types/coupons.types";
 import { useEffect, useState, type SetStateAction } from "react"
 
 

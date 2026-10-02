@@ -1,5 +1,5 @@
 import { CHECKOUT_KEY } from "@/constants";
-import type { ItemsCheckout } from "@/types/checkout.types";
+import type { ItemsCheckout } from "@/modules/checkout/types/checkout.types";
 
 
 export const setItemsCheckout = (values:ItemsCheckout[]):void=>{

@@ -1,10 +1,10 @@
-import { Checkout } from "@/pages/checkout"
+import { Checkout } from "@/modules/checkout/page/checkout"
 import { render, waitFor } from "@testing-library/react"
-import * as storage from '@/storage/checkout.storage'
-import * as services from '@/services/userProfile.services'
-import { mockProducts } from "../fixtures/products"
-import type { ItemsCheckout } from "@/types/checkout.types"
-import { mockCoupons } from "../fixtures"
+import * as storage from '@/modules/checkout/storage/checkout.storage'
+import * as services from '@/modules/coupons/user/services/service'
+import { mockProducts } from "@/test/fixtures/products"
+import type { ItemsCheckout } from "@/modules/checkout/types/checkout.types"
+import { mockCoupons } from "@/test/fixtures"
 import { BrowserRouter } from "react-router-dom"
 import { brlCurrency } from "@/utils"
 
