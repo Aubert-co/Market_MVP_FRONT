@@ -1,9 +1,9 @@
 import '@testing-library/jest-dom';
 import {   render ,fireEvent} from "@testing-library/react";
 import { BrowserRouter as Router ,Routes,Route} from "react-router-dom"
-import * as service from  '@/services/loginOrRegister'
+import * as service from  '@/modules/auth/services/loginOrRegister'
 import { act } from 'react';
-import { Register } from '@/pages/register';
+import { Register } from '@/modules/auth/pages/register';
 
 
 

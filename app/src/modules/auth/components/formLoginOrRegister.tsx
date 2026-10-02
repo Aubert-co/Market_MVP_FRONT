@@ -4,12 +4,12 @@ import { Link } from "react-router-dom"
 import { getMultiInputValues } from "@/utils";
 import {  UserFormStyles ,Checkbox,Terms } from "@/styles/forms.style";
 import { isAValidString, isValidEmail } from "@/utils/checkIsValid";
-import type { TypeSubmitRegister } from "@/pages/register";
-import type { TypeSubmitLogin } from "@/pages/login";
-import { useBoxMessage } from "../../hooks/messages/useBoxMessages";
-import { PasswordInput } from "./passwordInput";
-import { InputWithLabel } from "./inputWithLabel";
+import type { TypeSubmitRegister } from "@/modules/auth/pages/register";
+import type { TypeSubmitLogin } from "@/modules/auth/pages/login";
+import { useBoxMessage } from "@/hooks/messages/useBoxMessages";
 import { PrimaryButton } from "@/styles/shared.style";
+import { PasswordInput } from "@/components/forms/passwordInput";
+import { InputWithLabel } from "@/components/forms/inputWithLabel";
 
 
 type TypeForm = "Login" | "Register"

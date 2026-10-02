@@ -1,8 +1,8 @@
 import '@testing-library/jest-dom';
 import {   render ,fireEvent} from "@testing-library/react";
 import { BrowserRouter as Router ,Routes,Route} from "react-router-dom"
-import {Login} from '@/pages/login'
-import * as service from  '@/services/loginOrRegister'
+import {Login} from '@/modules/auth/pages/login'
+import * as service from  '@/modules/auth/services/loginOrRegister'
 import { act } from 'react';
 
 const serviceMoked = jest.spyOn(service,'serviceLoginOrRegister')

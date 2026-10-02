@@ -1,12 +1,11 @@
 import {useRef} from "react";
 import { useNavigate } from "react-router-dom";
-import { serviceLoginOrRegister } from "@/services/loginOrRegister";
-import { FormLoginOrRegister } from "@/components/forms/formLoginOrRegister";
-
-import { StyleCreateStore } from "@/styles/registerPage";
-import { BoxBenefits } from "@/components/boxBenefits";
-import { adLinkRegister, adTextRegister, benefitsRegister } from "@/constants/benefitsRegister";
+import { serviceLoginOrRegister } from "@/modules/auth/services/loginOrRegister";
+import { StyleCreateStore } from "@/modules/auth/styles/registerPage";
+import { BoxBenefits } from "@/modules/auth/components/boxBenefits";
+import { adLinkRegister, adTextRegister, benefitsRegister } from "@/modules/auth/constants/benefitsRegister";
 import type { AddMessageParams } from "@/types/messages.types";
+import { FormLoginOrRegister } from "../components/formLoginOrRegister";
 
 
 
