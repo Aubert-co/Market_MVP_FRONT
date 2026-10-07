@@ -7,6 +7,7 @@ import { useModal } from "@/hooks/useModal"
 import { useEffect } from "react"
 import { AcceptCookie } from "../acceptCookie"
 import { hasSeenCookieNotice, setCookieNoticeSeen } from "@/storage/cookies.storage"
+import { IAChatLauncher } from "@/modules/ia-chat/components/iaChatLauncher"
 
 type Props={
     children:React.ReactNode
@@ -24,10 +25,12 @@ export const Container = ({children,navigateMode,showHeader=true}:Props)=>{
     
     return(
     <ContainerStyle>
-       { showHeader && (<Header>
+       { showHeader && (
+        <Header>
             <TopBar navigationMode={navigateMode}/>
-        </Header>)
-        }
+        </Header>
+        )}
+        <IAChatLauncher/>
         <Main>
             <MessageProvider >
                 <Modal title="Uso de cookies"> 
