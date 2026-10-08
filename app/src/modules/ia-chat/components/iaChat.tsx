@@ -5,6 +5,7 @@ import styled from "styled-components"
 import { SendMessage } from "./sendMessage"
 import { useIAChat } from "../hooks/useIAChat"
 import { ListMessages } from "./ListMessages"
+import { useAuth } from "@/modules/auth/hooks/useAuth"
 
 
 type Props = {
@@ -13,14 +14,14 @@ type Props = {
 
 export const IAChat = ({ onClose }: Props) => {
     const [draft, setDraft] = useState("")
-    const [authStatus,] = useState<"loading" | "authenticated" | "unauthenticated" | "error">("loading")
+    const {isAuthenticated,isLoading,error:authError} = useAuth()
     const { messages, isSending, error, sendMessage } = useIAChat()
 
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         const content = draft.trim()
-        if (!content || isSending || authStatus !== "authenticated") return
+        if (!content || isSending || !isAuthenticated) return
 
         setDraft("")
         void sendMessage(content)
@@ -49,21 +50,21 @@ export const IAChat = ({ onClose }: Props) => {
                 </CloseButton>
             </PanelHeader>
             
-            {authStatus === "loading" && (
+            {isLoading  && (
                 <AccessNotice role="status">Verificando seu acesso...</AccessNotice>
             )}
-            {authStatus === "unauthenticated" && (
+            {!isAuthenticated  && (
                 <AccessNotice role="status">
                     <p>Você precisa entrar na sua conta para conversar com a IA.</p>
                     <LoginLink to="/login">Ir para o login</LoginLink>
                 </AccessNotice>
             )}
-            {authStatus === "error" && (
+            {authError && (
                 <AccessNotice role="alert">
                     Não foi possível verificar seu acesso. Tente novamente mais tarde.
                 </AccessNotice>
             )}
-            {authStatus === "authenticated" && (
+            {isAuthenticated && (
                 <>
                     <ListMessages sendMessage={sendMessage} messages={messages} error={error} isSending={isSending}/>
                     <SendMessage

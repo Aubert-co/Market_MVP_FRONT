@@ -3,14 +3,14 @@ import { MemoryRouter } from "react-router-dom"
 import { IAChat } from "../../components/iaChat"
 import { useIAChat } from "../../hooks/useIAChat"
 import { initialMessages } from "../../constants/initialMessage"
-
+import * as service from "@/modules/auth/services/user.services"
 
 jest.mock("../../hooks/useIAChat", () => ({
     useIAChat: jest.fn(),
 }))
 
 const mockUseIAChat = jest.mocked(useIAChat)
-const mockServiceGetStores = jest.spyOn(storeServices, "serviceGetStores")
+const mockServiceGetStores = jest.spyOn(service, "serviceGetUser")
 
 describe("IAChat", () => {
     const sendMessage = jest.fn()
@@ -26,7 +26,7 @@ describe("IAChat", () => {
     beforeEach(() => {
         jest.clearAllMocks()
         mockServiceGetStores.mockResolvedValue({
-            datas: [],
+            datas: null,
             status: 200,
             message: "Success",
         })
@@ -110,7 +110,7 @@ describe("IAChat", () => {
 
     it("should prompt an unauthenticated user to log in instead of showing the chat input", async () => {
         mockServiceGetStores.mockResolvedValue({
-            datas: [],
+            datas: null,
             status: 401,
             message: "Unauthorized",
         })
@@ -128,7 +128,7 @@ describe("IAChat", () => {
 
     it("should display an error if authentication cannot be verified", async () => {
         mockServiceGetStores.mockResolvedValue({
-            datas: [],
+            datas: null,
             status: 500,
             message: "Server error",
         })

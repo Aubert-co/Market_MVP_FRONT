@@ -17,6 +17,7 @@ import { ProtectedStoreRoutes } from "@/modules/store/components/protectedStoreR
 import TermsPage from "./terms"
 import { Orders } from "../modules/orders/user/pages/orders"
 import { OrderDetails } from "../modules/orders/user/pages/orderDetails"
+import { ProtectedUserRoute } from "@/components/protectedUserRoute"
 
 
 export const App = ()=>{
@@ -37,8 +38,10 @@ export const App = ()=>{
                 <Route path="/pagamento" element={<Checkout/>}/>
                 <Route path="/termos" element={<TermsPage/>}/>
                 
-                <Route path="/minhas-compras" element={<Orders/>}/>
-                <Route path="/minhas-compra/detalhes/:orderId" element={<OrderDetails/>}/>
+                <Route element={<ProtectedUserRoute />}>
+                    <Route path="/minhas-compras" element={<Orders/>}/>
+                    <Route path="/minhas-compra/detalhes/:orderId" element={<OrderDetails/>}/>
+                </Route>
                 <Route element={<ProtectedStoreRoutes/>}>
                     <Route path="/loja" element={<StoreHome/>}/>
                     <Route path="/loja/produtos" element={<StoreProducts/>}/>
